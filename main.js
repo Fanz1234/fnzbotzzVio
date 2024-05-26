@@ -19,7 +19,6 @@ import { antiCall } from "./message/anticall.js";
 import { connectionUpdate } from "./message/connection.js";
 import { Function } from "./message/function.js";
 const PhoneNumber = require('awesome-phonenumber')
-const readline = require('readline');
 const PORT = process.env.PORT || 3000   
 import NodeCache from "node-cache";
 import { createRequire } from "module";
