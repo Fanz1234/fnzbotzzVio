@@ -25,7 +25,11 @@ global.botName = "FanzBotzz"
 global.session = "session" 
 global.runWith = "Satelit Nasa"
 global.language = "id"
-global.Qoted = "ftoko" 
+global.Qoted = "ftoko"
+// OPSI PAIRING BY FANZ
+global.usePairingCode = true // false untuk QR
+// ISI NOMOR BOTNYA DISINI
+global.pairingNumber = "6285607959390" // gunakan tanpa + dan spasi
 global.baileysMd = true
 global.antiSpam = true
 global.fake = botName
