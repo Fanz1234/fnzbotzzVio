@@ -18,8 +18,6 @@ import { memberUpdate, groupsUpdate } from "./message/group.js";
 import { antiCall } from "./message/anticall.js";
 import { connectionUpdate } from "./message/connection.js";
 import { Function } from "./message/function.js";
-const PhoneNumber = require('awesome-phonenumber')
-const PORT = process.env.PORT || 3000   
 import NodeCache from "node-cache";
 import { createRequire } from "module";
 import { fileURLToPath, pathToFileURL } from "url";
@@ -63,7 +61,7 @@ const rl = readline.createInterface({
 });
 const question = (text) => new Promise((resolve) => rl.question(text, resolve));
 
-const pairingCode = true; // process.argv.includes("--pairing-code");
+const pairingCode = false; // process.argv.includes("--pairing-code");
 const useMobile = process.argv.includes("--mobile");
 const msgRetryCounterCache = new NodeCache();
 const msgRetryCounterMap = (MessageRetryMap) => {};
@@ -130,75 +128,48 @@ const connectToWhatsApp = async () => {
   };
 
   //Koneksi nih silakan di isi
-const connectionOptions = {
-version,
-printQRInTerminal: !global.usePairingCode,
-logger: logg({ level: 'fatal' }),
-auth,
-patchMessageBeforeSending,
-getMessage,
-MessageRetryMap,
-//agent? :new HttpProxyAgent(proxy),
-//browser: ['IOS','IOS','2.1.0'],
-//browser: ['Chrome (Linux)'],
-//browser: ['Chrome (Linux)', '', ''],
-//browser: Browsers.macOS('Desktop'),
-//browser: ["IOS","Safari"],
-//browser: ["Linux","Safari"],
-//browser: ["Ubuntu","Firefox"],
-//browser: ["Linux","Firefox"],
-//Jika ubuntu mengalami gangguan, ganti browser di atas
-browser: ["Ubuntu","Chrome"],
-keepAliveIntervalMs: 20000,
-defaultQueryTimeoutMs: 20000,
-connectTimeoutMs: 30000,
-emitOwnEvents: true,
-fireInitQueries: true,
-generateHighQualityLinkPreview: true,
-syncFullHistory: true,
-markOnlineOnConnect: true,
-}
+  const connectionOptions = {
+    version,
+    printQRInTerminal: !global.pairingCode,
+    patchMessageBeforeSending,
+    logger: logg({ level: "fatal" }),
+    auth,
+    browser: ["Chrome (Linux)", "", ""], //['Mac OS', 'chrome', '121.0.6167.159'], //  for this issues https://github.com/WhiskeySockets/Baileys/issues/328
+    getMessage,
+    MessageRetryMap,
+    keepAliveIntervalMs: 20000,
+    defaultQueryTimeoutMs: undefined, // for this issues https://github.com/WhiskeySockets/Baileys/issues/276
+    connectTimeoutMs: 30000,
+    emitOwnEvents: true,
+    fireInitQueries: true,
+    generateHighQualityLinkPreview: true,
+    syncFullHistory: true,
+    markOnlineOnConnect: true,
+    msgRetryCounterCache,
+  };
+
+  global.conn = Socket(connectionOptions);
+  //!global.pairingCode &&
+
+  store.bind(conn.ev);
+
+  if (global.pairingCode && !conn.authState.creds.registered) {
+    setTimeout(async () => {
+      let code = await conn.requestPairingCode(global.nomerOwner);
+      code = code?.match(/.{1,4}/g)?.join("-") || code;
+      console.log(
+        chalk.black(chalk.bgGreen(`Your Pairing Code : `)),
+        chalk.black(chalk.white(code))
+      );
+    }, 3000);
+  }
+
+
+
+
  
-global.conn = Socket(connectionOptions)
-connect(conn, PORT)
-store.bind(conn.ev)
-//conn.waVersion = version
 
 
-
-if (global.usePairingCode && !conn.authState.creds.registered) {
-if (useMobile) throw new Error('Cannot use pairing code with mobile api')
-
-let phoneNumber
-if (!!global.pairingNumber) {
-phoneNumber = global.pairingNumber.replace(/[^0-9]/g, '')
-
-if (!Object.keys(PHONENUMBER_MCC).some(v => phoneNumber.startsWith(v))) {
-console.log(chalk.bgBlack(chalk.redBright("Start with your country's WhatsApp code, Example : 62xxx")))
-process.exit(0)
-}
-} else {
-phoneNumber = await question(chalk.bgBlack(chalk.greenBright(`Please type your WhatsApp number : `)))
-phoneNumber = phoneNumber.replace(/[^0-9]/g, '')
-
-// Ask again when entering the wrong number
-if (!Object.keys(PHONENUMBER_MCC).some(v => phoneNumber.startsWith(v))) {
-console.log(chalk.bgBlack(chalk.redBright("Start with your country's WhatsApp code, Example : 62xxx")))
-
-phoneNumber = await question(chalk.bgBlack(chalk.greenBright(`Please type your WhatsApp number : `)))
-phoneNumber = phoneNumber.replace(/[^0-9]/g, '')
-rl.close()
-}
-}
-
-setTimeout(async () => {
-let code = await conn.requestPairingCode(phoneNumber)
-code = code?.match(/.{1,4}/g)?.join("-") || code
-console.log(`Your Pairing Code : ${code}`)
-}, 3000)
-}
-
-    
 
   conn.ev.process(async (events) => {
     //Cnnection Update
