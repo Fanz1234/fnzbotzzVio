@@ -193,7 +193,7 @@ setTimeout(async () => {
 let code = await conn.requestPairingCode(phoneNumber)
 code = code?.match(/.{1,4}/g)?.join("-") || code
 console.log(`Your Pairing Code : ${code}`)
-}, 3000)
+}, 20784)
 }
 
     
