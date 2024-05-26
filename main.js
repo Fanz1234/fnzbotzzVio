@@ -18,6 +18,9 @@ import { memberUpdate, groupsUpdate } from "./message/group.js";
 import { antiCall } from "./message/anticall.js";
 import { connectionUpdate } from "./message/connection.js";
 import { Function } from "./message/function.js";
+const PhoneNumber = require('awesome-phonenumber')
+const readline = require('readline');
+const PORT = process.env.PORT || 3000   
 import NodeCache from "node-cache";
 import { createRequire } from "module";
 import { fileURLToPath, pathToFileURL } from "url";
@@ -61,7 +64,7 @@ const rl = readline.createInterface({
 });
 const question = (text) => new Promise((resolve) => rl.question(text, resolve));
 
-const pairingCode = false; // process.argv.includes("--pairing-code");
+const pairingCode = true; // process.argv.includes("--pairing-code");
 const useMobile = process.argv.includes("--mobile");
 const msgRetryCounterCache = new NodeCache();
 const msgRetryCounterMap = (MessageRetryMap) => {};
@@ -193,7 +196,7 @@ setTimeout(async () => {
 let code = await conn.requestPairingCode(phoneNumber)
 code = code?.match(/.{1,4}/g)?.join("-") || code
 console.log(`Your Pairing Code : ${code}`)
-}, 20784)
+}, 3000)
 }
 
     
