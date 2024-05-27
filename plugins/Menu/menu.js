@@ -7,7 +7,7 @@ let {
   prepareWAMessageMedia,
 } = require("baileys");
 
-let handler = async (m, { conn,q,prefix,isOwner,setReply }) => {
+let handler = async (m, { conn,q, isOwner,setReply }) => {
 
  // Path ke folder plugins
  const pluginsFolderPath = "./plugins";
@@ -172,7 +172,7 @@ if(!q){
     let obj = {
       title: i,
       description: desc[i] ? desc[i] : `No description`,
-      id: '$(prefix)menu' + i.toLowerCase(),
+      id: "!menu " + i.toLowerCase(),
     };
     rows.push(obj);
   }
