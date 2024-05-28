@@ -65,9 +65,9 @@ await (await import('./allfake.js')).default(m)
   //Presence Online
   if (isCmd) {
     db.data.users[m.sender].exp += Math.floor(Math.random() * 10) + 50;
-    conn.sendPresenceUpdate("available", m.chat);
+    conn.sendPresenceUpdate("", m.chat);
   } else {
-    conn.sendPresenceUpdate("available", m.chat);
+    conn.sendPresenceUpdate("", m.chat);
   }
   
  
