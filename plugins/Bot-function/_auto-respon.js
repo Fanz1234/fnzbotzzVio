@@ -46,7 +46,7 @@ handler.before = async function (m, { conn, command, q, prefix, isAccept }) {
        m.body.toLowerCase().includes(botName.toLowerCase().substring(0, 3))))
   ) {
     await sleep(2000);
-    conn.sendPresenceUpdate("composing", m.chat);
+    conn.sendPresenceUpdate("", m.chat);
     if (isQuotedReplySticker || isReplySticker) {
       await sleep(2000);
       if(db.data.stickerBot == {}) {return}
