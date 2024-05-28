@@ -14,10 +14,10 @@ let teks = `Hallo kak ${m.pushname}
 Untuk memasukan bot ke dalam group
 kamu harus menyewa bot terlebih dahulu
 harga mulai 3k untuk 7 hari, bisa cek di
-https://wa.me/c/6285953938243
+https://wa.me/c/6285812373011
 
 untuk order
-silakan hub: wa.me/6285156137901
+silakan hub: wa.me/6285812373011
 `
 m.reply(teks)
 }
