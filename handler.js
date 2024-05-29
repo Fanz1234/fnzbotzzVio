@@ -166,7 +166,7 @@ lastspam: 0
 
 
 
-//Anti CUlik
+/*/Anti CUlik
 const chat = db.data.chats[m.chat];
 const id = m.isGroup? m.groupMembers.map((item) => item.id.split("@")[0]) : [];
 
@@ -182,7 +182,7 @@ hub owner: wa.me/${global.nomerOwner}`,
 
 await sleep(2000);
 return conn.groupLeave(m.chat);
-}
+}*/
 
 
 
