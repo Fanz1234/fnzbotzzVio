@@ -1,6 +1,6 @@
 import { generateProfilePicture } from "../../lib/myfunc.js";
 import fs from 'fs-extra'
-let handler = async (m, { conn, q, setReply, isOwner }) => {
+let handler = async (m, { conn, q, setReply, isOwner,command }) => {
   const isImage = m.type === "imageMessage";
   const isQuotedImage =
     m.type === "extendedTextMessage" && m.content.includes("imageMessage");
@@ -22,11 +22,8 @@ let handler = async (m, { conn, q, setReply, isOwner }) => {
       fs.unlinkSync(media);
       setReply(`Sukses`);
     }
-  } else {
-    setReply(
-      `Kirim/balas gambar dengan caption ${command} untuk mengubah foto profil bot`
-    );
-  }
+  } else setReply(`Kirim/balas gambar dengan caption ${command} untuk mengubah foto profil bot`);
+  
 };
 handler.help = ["user"];
 handler.tags = ["owner"];
