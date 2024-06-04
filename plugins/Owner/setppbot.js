@@ -1,5 +1,5 @@
 import { generateProfilePicture } from "../../lib/myfunc.js";
-
+import fs from 'fs-extra'
 let handler = async (m, { conn, q, setReply, isOwner }) => {
   const isImage = m.type === "imageMessage";
   const isQuotedImage =
@@ -12,13 +12,13 @@ let handler = async (m, { conn, q, setReply, isOwner }) => {
       const { img } = await generateProfilePicture(media);
       await conn.query({
         tag: "iq",
-        attrs: { to: botNumber, type: "set", xmlns: "w:profile:picture" },
+        attrs: { to: m.botNumber, type: "set", xmlns: "w:profile:picture" },
         content: [{ tag: "picture", attrs: { type: "image" }, content: img }],
       });
       await setReply("Sukses");
     } else {
       let media = await conn.downloadAndSaveMediaMessage(quoted, makeid(5));
-      let data = await conn.updateProfilePicture(botNumber, { url: media });
+      let data = await conn.updateProfilePicture(m.botNumber, { url: media });
       fs.unlinkSync(media);
       setReply(`Sukses`);
     }
