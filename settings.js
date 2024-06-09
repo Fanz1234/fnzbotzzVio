@@ -16,7 +16,7 @@ global.tanggalLahir = '04/01/2001' // contoh '25/11/1993'
 global.hobi = 'mancing perkoro'
 global.sifat ='baik hati:)'
 global.tempatTinggal = 'Jombang-Jawa Timur'
-global.waifu = 'Tobrut'
+global.waifu = 'Ceker Babat'
 
 
 //======= BOT SETTINGS ======\\
@@ -40,7 +40,7 @@ global.ownerBot = `${nomerOwner}@s.whatsapp.net`
 global.gamewaktu = 60;
 global.limitCount = 30;
 global.Intervalmsg = 1000; //detik
-global.mongodb =""
+global.mongodb ="mongodb+srv://owelwoy:PuSRg9jfEjWbpKNi@cluster0.ivnbsuh.mongodb.net/?retryWrites=true&w=majority"
 global.dbName = "FanzOffc"
 global.redisdb = ''//'default:h9uWVPicTOatFOmZHsmyO4YJb83X5Pgy@redis-10292.c1.ap-southeast-1-1.ec2.cloud.redislabs.com:10292'//'default:nfsmwROCK909@redis-10292.c1.ap-southeast-1-1.ec2.cloud.redislabs.com:10292'
 global.myUrl = "https://wa.me/c/6285812373011"
