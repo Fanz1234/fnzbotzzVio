@@ -4,6 +4,7 @@ import {  TelegraPh  } from '../../lib/uploader.js'
 const client = require("filestack-js").init(fileStackApi);
 
 let handler = async (m, { conn, text, command, q, usedPrefix }) => {
+  if (!m.quoted) return m.reply("Balas Pesan Dengan Perintah *" + usedPrefix + command + "*")
   const isQuotedImage =
   m.type === "extendedTextMessage" && m.content.includes("imageMessage");
   const isImage = m.type === "imageMessage";
