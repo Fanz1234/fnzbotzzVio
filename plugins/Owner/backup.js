@@ -37,8 +37,9 @@ let handler = async (m,{ q, conn, isOwner, setReply, args, usedPrefix, command }
         const items = fs.readdirSync(dirPath);
         items.forEach((item) => {
             const fullPath = path.join(dirPath, item);
+            let kecuali = ['node_modules' ,'.git','package-lock.json','.heroku','.profile.d','vendor']
             if (fs.statSync(fullPath).isDirectory()) {
-                if (item !== 'node_modules' && item !== '.git' && item !== 'package-lock.json'  && item !== '.npm') {
+                if (!kecuali.includes(item)) {
                     // Tambahkan folder dan isinya
                     archive.directory(fullPath, item);
                 }
