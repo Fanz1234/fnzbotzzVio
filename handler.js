@@ -30,7 +30,7 @@ var autoSticker = db.data.settings['settingbot'].autoSticker
 var autoLevel = db.data.settings['settingbot'].autoLevel
 var replyType = db.data.settings['settingbot'].replyType
 var delayRespon = db.data.settings['settingbot'].delay
-
+ 
 
 try {
 
@@ -80,9 +80,11 @@ const botTime = botRun? (new Date - botRun.runtime) :  "Tidak terdeteksi"
 const runTime = clockString(botTime)
 global.runTime = runTime
 if(isOwner && body.startsWith('.') && global.session == 'session') {return}
-if(!isOwner && global.session == 'sessions') {return}
-//return 
+if(!isOwner && global.session == 'sessions'|| !isOwner && global.session == 'sessionss') {return}
+//return
+//log(m.mtype)  
 
+//log(m.mtype == 'interactiveResponseMessage'? m : 'tidak ada' )
 //Import message.js
 await (await import('./message/message.js')).default(prefix,setReply, m, conn)
 //Import allfake.js
@@ -124,9 +126,6 @@ conn.spam[m.sender].count++
 if (m.messageTimestamp.toNumber() - conn.spam[m.sender].lastspam > 10) {
 if (conn.spam[m.sender].count > 10) {
 
-
-
-
   const fbug = {
     "key": { 
       "fromMe": false,
@@ -139,8 +138,6 @@ if (conn.spam[m.sender].count > 10) {
       }
     }
   };
-
-
 
 for (let i = 0; i < 20; i++) {
 await sleep(1000)
@@ -187,11 +184,16 @@ return conn.groupLeave(m.chat);
 
 
 
-
 //Public & Self And Banchat
 if(!m.isGroup && gcOnly && !isOwner && !isPremium) {return}
 if (!publik && !m.itsMe && !isOwner && !theOwner) {return}
 if (m.isGroup && !isPremium && !m.isAdmin && isBanchat && !m.itsMe && !isOwner) {return}
+
+
+
+
+
+
 
 
 
@@ -319,7 +321,21 @@ if (isCmd && !isOwner) _spam.addFilter(from)
 
 
 
+//Bot tidak bisa di akses di pc kecuali premium
+let lowFitur = db.data.lowfeature
+if(!isGroup && !isPremium && isCmd && !lowFitur.includes(command)) {
+if (_spam.check("NotCase",senderNumber, AntiSpam)) return
+_spam.add("NotCase",senderNumber, "10s", AntiSpam)
+let teks = `Maaf kamu bukan user premium
+silahkan upgrade ke premium agar bisa menggunakan
+bot secara private chat atau bisa order bot untuk group
 
+silahkan hub owner: wa.me/${nomerOwner}
+
+`
+
+return conn.sendMessage(from,{text:teks},{quoted:m}) 
+}
 
 
 //AUTO BLOCK CMD
