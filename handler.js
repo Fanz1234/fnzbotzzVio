@@ -79,7 +79,7 @@ const botRun = global.db.data.others['runtime']
 const botTime = botRun? (new Date - botRun.runtime) :  "Tidak terdeteksi"
 const runTime = clockString(botTime)
 global.runTime = runTime
-if(isOwner && body.startsWith('.') && global.session == 'session') {return}
+/*/if(isOwner && body.startsWith('.') && global.session == 'session') {return}*/
 if(!isOwner && global.session == 'sessions') {return}
 //return 
 
