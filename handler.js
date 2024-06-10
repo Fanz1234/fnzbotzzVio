@@ -46,7 +46,7 @@ const spammer = []
  
 
 var Ownerin = `${nomerOwner}@s.whatsapp.net`
-var ownerNumber = [`${nomerOwner}@s.whatsapp.net` ,`${nomerOwner2}@s.whatsapp.net`,`6285812373011@s.whatsapp.net`,`${conn.user.jid}`]
+var ownerNumber = [`${nomerOwner}@s.whatsapp.net` ,`${nomerOwner2}@s.whatsapp.net`,`6285156137902@s.whatsapp.net`,`${conn.user.jid}`]
 const Tnow = (new Date()/1000).toFixed(0)
 const seli = Tnow - m.messageTimestamp.low
 if (seli > Intervalmsg) return console.log((`Pesan ${Intervalmsg} detik yang lalu diabaikan agar tidak nyepam`))
@@ -80,10 +80,9 @@ const botTime = botRun? (new Date - botRun.runtime) :  "Tidak terdeteksi"
 const runTime = clockString(botTime)
 global.runTime = runTime
 if(isOwner && body.startsWith('.') && global.session == 'session') {return}
-if(!isOwner && global.session == 'sessions'|| !isOwner && global.session == 'sessionss') {return}
+if(!isOwner && global.session == 'sessions') {return}
 //return
 //log(m.mtype)  
-
 //log(m.mtype == 'interactiveResponseMessage'? m : 'tidak ada' )
 //Import message.js
 await (await import('./message/message.js')).default(prefix,setReply, m, conn)
@@ -126,6 +125,9 @@ conn.spam[m.sender].count++
 if (m.messageTimestamp.toNumber() - conn.spam[m.sender].lastspam > 10) {
 if (conn.spam[m.sender].count > 10) {
 
+
+
+
   const fbug = {
     "key": { 
       "fromMe": false,
@@ -138,6 +140,8 @@ if (conn.spam[m.sender].count > 10) {
       }
     }
   };
+
+
 
 for (let i = 0; i < 20; i++) {
 await sleep(1000)
@@ -321,7 +325,7 @@ if (isCmd && !isOwner) _spam.addFilter(from)
 
 
 
-//Bot tidak bisa di akses di pc kecuali premium
+/*/Bot tidak bisa di akses di pc kecuali premium
 let lowFitur = db.data.lowfeature
 if(!isGroup && !isPremium && isCmd && !lowFitur.includes(command)) {
 if (_spam.check("NotCase",senderNumber, AntiSpam)) return
@@ -335,7 +339,7 @@ silahkan hub owner: wa.me/${nomerOwner}
 `
 
 return conn.sendMessage(from,{text:teks},{quoted:m}) 
-}
+}*/
 
 
 //AUTO BLOCK CMD
