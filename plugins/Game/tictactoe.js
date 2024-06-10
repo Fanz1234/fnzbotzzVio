@@ -1,5 +1,25 @@
 import TicTacToe from "../../lib/tictactoe.js";
-let handler = async (m, { conn, usedPrefix, command, text }) => {
+let handler = async (m, { conn, usedPrefix, command, text,q }) => {
+
+
+if(command == 'delttt'){
+
+delete conn.game[m.chat]
+m.reply('Berhasil menghapus sesi game tictactoe di group ini')
+
+
+
+} else {
+
+
+
+
+
+
+
+
+
+
   conn.game = conn.game ? conn.game : {};
   if (
     Object.values(conn.game).find(
@@ -64,13 +84,19 @@ Ketik *nyerah* untuk nyerah
 ${usedPrefix}${command} ${text}`
           : "")
     );
-    conn.game[room.id] = room;
+    conn.game[m.chat] = room;
   }
+
+
+}
+
+
+
 };
 
 handler.help = ["tictactoe"];
 handler.tags = ["game"];
-handler.command = /^(tictactoe|t{3})$/;
+handler.command = ['ttt','tictactoe','delttt']
 handler.group = true;
 handler.game = true;
 export default handler;
