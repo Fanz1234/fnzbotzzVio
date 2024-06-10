@@ -30,7 +30,7 @@ var autoSticker = db.data.settings['settingbot'].autoSticker
 var autoLevel = db.data.settings['settingbot'].autoLevel
 var replyType = db.data.settings['settingbot'].replyType
 var delayRespon = db.data.settings['settingbot'].delay
- 
+
 
 try {
 
@@ -46,7 +46,7 @@ const spammer = []
  
 
 var Ownerin = `${nomerOwner}@s.whatsapp.net`
-var ownerNumber = [`${nomerOwner}@s.whatsapp.net` ,`${nomerOwner2}@s.whatsapp.net`,`6285156137902@s.whatsapp.net`,`${conn.user.jid}`]
+var ownerNumber = [`${nomerOwner}@s.whatsapp.net` ,`${nomerOwner2}@s.whatsapp.net`,`6285812373011@s.whatsapp.net`,`${conn.user.jid}`]
 const Tnow = (new Date()/1000).toFixed(0)
 const seli = Tnow - m.messageTimestamp.low
 if (seli > Intervalmsg) return console.log((`Pesan ${Intervalmsg} detik yang lalu diabaikan agar tidak nyepam`))
@@ -81,9 +81,8 @@ const runTime = clockString(botTime)
 global.runTime = runTime
 if(isOwner && body.startsWith('.') && global.session == 'session') {return}
 if(!isOwner && global.session == 'sessions') {return}
-//return
-//log(m.mtype)  
-//log(m.mtype == 'interactiveResponseMessage'? m : 'tidak ada' )
+//return 
+
 //Import message.js
 await (await import('./message/message.js')).default(prefix,setReply, m, conn)
 //Import allfake.js
@@ -188,16 +187,11 @@ return conn.groupLeave(m.chat);
 
 
 
+
 //Public & Self And Banchat
 if(!m.isGroup && gcOnly && !isOwner && !isPremium) {return}
 if (!publik && !m.itsMe && !isOwner && !theOwner) {return}
 if (m.isGroup && !isPremium && !m.isAdmin && isBanchat && !m.itsMe && !isOwner) {return}
-
-
-
-
-
-
 
 
 
@@ -325,21 +319,7 @@ if (isCmd && !isOwner) _spam.addFilter(from)
 
 
 
-/*/Bot tidak bisa di akses di pc kecuali premium
-let lowFitur = db.data.lowfeature
-if(!isGroup && !isPremium && isCmd && !lowFitur.includes(command)) {
-if (_spam.check("NotCase",senderNumber, AntiSpam)) return
-_spam.add("NotCase",senderNumber, "10s", AntiSpam)
-let teks = `Maaf kamu bukan user premium
-silahkan upgrade ke premium agar bisa menggunakan
-bot secara private chat atau bisa order bot untuk group
 
-silahkan hub owner: wa.me/${nomerOwner}
-
-`
-
-return conn.sendMessage(from,{text:teks},{quoted:m}) 
-}*/
 
 
 //AUTO BLOCK CMD
