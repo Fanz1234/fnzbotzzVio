@@ -1,7 +1,7 @@
 {
-  "name": "Fanz",
+  "name": "fearless",
   "version": "6.6.0",
-  "developer": "FanzOffc",
+  "developer": "officialdittaz",
   "description": "Simple whatsapp bot with multi device.",
   "main": "index.js",
   "type": "module",
@@ -16,13 +16,14 @@
   "scripts": {
     "start": "node --optimize_for_size --max_old_space_size=512 --gc_interval=100 index.js "
   },
-  "author": "Fanz",
+  "author": "Dittaz",
   "license": "MIT",
   "dependencies": {
     "@adiwajshing/keyed-db": "^0.2.4",
     "@bochilteam/scraper": "^4.2.4",
     "@bochilteam/scraper-downloader": "^1.0.2",
     "@bochilteam/scraper-sosmed": "^1.0.5",
+    "@bolaxdd/scraper": "^2.1.0",
     "@hapi/boom": "^10.0.1",
     "@xct007/frieren-scraper": "^0.0.2",
     "acrcloud": "^1.4.0",
