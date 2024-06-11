@@ -1,11 +1,5 @@
 const gis = require("g-i-s");
-let {
-  generateWAMessageFromContent,
-  proto,
-  prepareWAMessageMedia,
-} = require("baileys");
-
-let handler = async (m, { conn, q,args, command,setReply,prefix }) => {
+let handler = async (m, { conn, q,args, command,setReply }) => {
   if (!q)
     return m.reply(
       `Kirim perintah ${command} query atau ${command} query --jumlah\nContoh :\n${command} cecan atau ${command} cecan --10`
@@ -13,92 +7,26 @@ let handler = async (m, { conn, q,args, command,setReply,prefix }) => {
   m.reply(mess.wait);
   var jumlah;
   if (q.includes("--")) jumlah = q.split("--")[1];
-  pinterest(q.replace("--" +jumlah , "")).then(async (data) => {
-
-
-    
-let result = data.result.slice(0, 5)
-      let caption = result.map(async (i) => {
-        return {
-          header: {
-              hasMediaAttachment: true,
-              ...(await prepareWAMessageMedia(
-                  {
-                      image: {
-                          url: i,
-                      },
-                  },
-                  { upload: conn.waUploadToServer },
-              )),
-          },
-          body: { text: `${q}` },
-          nativeFlowMessage: {
-            buttons: [
-              {
-                name: "quick_reply",
-                buttonParamsJson: `{"display_text":"Next","title":"Next","id":"${prefix}pinterest ${q}"}`,
-            },
-              {
-                  name:  'cta_url',
-                  buttonParamsJson: `{"display_text":"Url","url":"${i}","merchant_ur":"${i}"}`,
-              }, //{ display_text: button.text, url: button.id, merchant_url: button.id }
-              
-            ]
-          },
-      };
+  pinterest(q.replace("--" + jumlah, "")).then(async (data) => {
+    if (q.includes("--")) {
+      if (data.result.length < jumlah) {
+        jumlah = data.result.length;
+        m.reply(`Hanya ditemukan ${data.result.length}, foto segera dikirim`);
+      }
+      for (let i = 0; i < jumlah; i++) {
+        conn.sendMessage(m.chat, { image: { url: data.result[i] } });
+      }
+    } else {
+      conn.sendMessage(
+        m.chat,
+        {
+          caption: `Hasil pencarian dari ${q}`,
+          image: { url: data.result.getRandom() },
+        },
+        { quoted: m }
+      );
+    }
   });
-
-  
-  caption = await Promise.all(caption); // Tunggu semua operasi di pemetaan selesai
-  let msg = generateWAMessageFromContent(
-      m.chat,
-      {
-          viewOnceMessage: {
-              message: {
-                  interactiveMessage: {
-                      body: {
-                          text: "pinterest search",
-                      },
-                      carouselMessage: {
-                          cards: caption, // Diganti caption dari hasil pencarian
-                          messageVersion: 1,
-                      },
-                  },
-              },
-          },
-      },
-      { quoted: m },
-      {},
-  );
-
-  await conn.relayMessage(msg.key.remoteJid, msg.message, {
-      messageId: msg.key.id,
-  });
-
-
-
-
-
-
-
-        //conn.sendMessage(m.chat, { image: { url: data.result[i] } });
-   
-      });
-
-     
-
-
-
-
-
-
-
-  
-
-
-
-
-
 };
 handler.help = ["pinterest"];
 handler.tags = ["info"];
@@ -122,27 +50,3 @@ async function pinterest(query) {
     });
   });
 }
-
-
-
- 
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
