@@ -33,7 +33,7 @@ showAdAttribution: false,
 title: `${fake}`,
 body:baileysVersion,
 mediaType: 1,
-sourceUrl:"https://wa.me/c/6285812373011",
+sourceUrl:"https://wa.me/c/6285953938243",
 thumbnailUrl: 'https://telegra.ph/file/0aa9d587a19e37a0b0122.jpg'
 }
 }
