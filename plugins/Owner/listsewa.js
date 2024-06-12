@@ -5,7 +5,7 @@ let handler = async (m, { conn, q, isOwner }) => {
   let ordernye = `\n––––––[ *LIST ORDER* ]––––––
   \n\n*Total order* : ${sewa.length}\n`;
   if(q) m.reply(ordernye)
-  for (let i of sewa) {
+  for (let i of sewa) { 
     try {
       var data = await conn.groupMetadata(i.id);
     } catch {
