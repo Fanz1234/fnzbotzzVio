@@ -13,10 +13,10 @@ let handler = async (m, { conn, command, usedPrefix }) => {
   let src = JSON.parse(fs.readFileSync("./lib/game/tebakbendera.json", "utf-8"));
   let json = src[Math.floor(Math.random() * src.length)];
   let caption = `
-Logo apakah ini?
+bendera apakah ini?
 
 Timeout *${(timeout / 1000).toFixed(2)} detik*
-Ketik ${usedPrefix}hgame untuk bantuan
+Ketik ${usedPrefix}hbend untuk bantuan
 Bonus: ${poin} XP
 `.trim();
   conn.game[id] = [
