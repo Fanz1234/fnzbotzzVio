@@ -16,7 +16,7 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
   try {
     let media = await conn.downloadAndSaveMediaMessage(q, makeid(5));
     let url = await TelegraPh(media);
-    let hasil = `https://skizo.tech/api/toanime?url=${url}&apikey=officialdittaz`;
+    let hasil = `https://skizo.tech/api/toanime?url=${url}&apikey=ReyOsaka`;
     await conn.sendMessage(
       m.chat,
       {
@@ -32,7 +32,5 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
 handler.help = ["toanime"];
 handler.tags = ["ai"];
 handler.command = /^(jadianime|toanime)$/i;
-handler.premium = false;
-handler.limit = true;
-
+ 
 export default handler;
