@@ -1,16 +1,13 @@
 let handler = async (m, { conn }) => {
-  conn.game = conn.game ? conn.game : {};
-  let id = "tebakbendera-" + m.chat;
-  if (!(id in conn.game)) return;
-  let json = conn.game[id][1];
-  m.reply(
-    "Clue : " +
-      "```" +
-      json.jawaban.replace(/[AIUEOaiueo]/gi, "_") +
-      "```" +
-      "\n\n_*Jangan Balas Chat Ini Tapi Balas Soalnya*_"
-  );
-};
-handler.command = /^(hbend)$/i;
+    conn.tebakbendera = conn.tebakbendera ? conn.tebakbendera : {}
+    let id = m.chat
+    if (!(id in conn.tebakbendera)) throw false
+    let json = conn.tebakbendera[id][1]
+    let ans = json.name.trim()
+    let clue = ans.replace(/[AIUEOaiueo]/g, '_')
+    conn.reply(m.chat, '```' + clue + '```\nReply soalnya, bukan pesan ini', conn.tebakbendera[id][0])
+}
+handler.command = /^tekbe$/i;
 handler.limit = true;
+
 export default handler;
