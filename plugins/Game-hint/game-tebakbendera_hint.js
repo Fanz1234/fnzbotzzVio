@@ -11,6 +11,6 @@ let handler = async (m, { conn }) => {
       "\n\n_*Jangan Balas Chat Ini Tapi Balas Soalnya*_"
   );
 };
-handler.command = /^(cok)$/i;
+handler.command = /^(hbend)$/i;
 handler.limit = true;
 export default handler;
