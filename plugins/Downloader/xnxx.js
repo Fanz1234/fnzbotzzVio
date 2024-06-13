@@ -1,7 +1,7 @@
 let fetch = require('node-fetch')
 let handler = async(m, { conn, text }) => {
-    if (!text) throw `Harap masukan judulnya\n\n\nContoh : .xnxxsearch segs brutal`
-    let res = await fetch(`https://skizo.tech/api/xnxxsearch?apikey=ReyOsaka&search=${teks}`)
+    if (!text) throw `Harap masukan judulnya\n\n\nContoh : .xnxx segs brutal`
+    let res = await fetch(`https://skizo.tech/api/xnxxsearch?apikey=ReyOsaka&search=${text}`)
     if (!res.ok) throw await res.text()
     let json = await res.json()
     let keqing = json.result.map((v, i) => `#${i + 1}. \n*Title:* ${v.title}\n*Info:* ${v.info}\n*Link:* ${v.link}\n==============\n`).join('\n') 
