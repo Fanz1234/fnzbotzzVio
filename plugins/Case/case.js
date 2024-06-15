@@ -294,6 +294,7 @@ case 'fnzaiimg4': {
       
 case 'tebakbendera':{
 //if (!isGroup) return onlyGroup()
+//if (!isPremium && global.db.data.users[sender].glimit < 1) return onlyGlimit()
 user.glimit -= 0
 let poin = 9999
 let timeout = 120000
@@ -318,7 +319,7 @@ Jawabannya adalah : ${json.name}`)
 delete conn.tebakbendera[id]
  }, timeout)
  ]
-db.data.users[sender].glimit -= 1 
+db.data.users[sender].glimit -= 0 
 }
 break
 
