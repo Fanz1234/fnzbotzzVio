@@ -162,7 +162,8 @@ let id = from
 // let but8 = [{"buttonId": `${prefix}tebakbendera`,"buttonText": {"displayText": `🎮 ᴍᴀɪɴ ʟᴀɢɪ`},"type": "RESPONSE"}]
  let json = JSON.parse(JSON.stringify(conn.tebakbendera[id][1]))
  if (budy.toLowerCase() == json.name.toLowerCase().trim()) {
-user.balance += conn.tebakbendera[id][2]
+global.db.data.users[m.sender].money += conn.tebakbendera[id][2]
+global.db.data.users[m.sender].exp += conn.tebakbendera[id][2]
 setReply(`*TEBAK BENDERA*
 
 Jawaban Kamu Benar!
