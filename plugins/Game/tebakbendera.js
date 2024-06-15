@@ -1,3 +1,4 @@
+import fs from 'fs-extra'
 let handler = async (m, { conn, text }) => {
 	//if (!isGroup) return onlyGroup()
 //if (!isPremium && global.db.data.users[sender].glimit < 1) return onlyGlimit()
