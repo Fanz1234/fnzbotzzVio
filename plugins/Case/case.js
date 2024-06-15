@@ -329,7 +329,130 @@ case 'fnzaiimg4': {
   conn.sendFile(m.chat, imageBuffer.data, 'image.jpg', 'Ini gambarnya', m);
   }
   break
-      
+  
+  case 'ping': {
+	const used = process.memoryUsage()
+	let timestamp = speed()
+	let latensi = speed() - timestamp
+	let neww = performance.now()
+	let oldd = performance.now()
+	let respon = `
+	Kecepatan Respon ${latensi.toFixed(4)} _Second_ 
+	Info Server
+	RAM: ${formatp(os.totalmem() - os.freemem())} / ${formatp(os.totalmem())}
+	
+	_NodeJS Memory Usaage_
+	${Object.keys(used).map((key, _, arr) => `${key.padEnd(Math.max(...arr.map(v=>v.length)),' ')}: ${formatp(used[key])}`).join('\n')}
+	
+	`.trim()
+	setReply(respon)
+     }
+     break
+     
+     case 'donasi':{
+let { generateWAMessageFromContent } = (await import("@adiwajshing/baileys")).default 
+const teks = `hallo Saya *FanzBotzz* Teman Virtual Kalian☺️\nHi Kak Bot Ini Dalam Tahap Pengembangan\nTerimakasih Kepada Para Creator Bot WhatsApp\n Sehingga *Fanz* Bisa Ada Disini Menemani Anda☺️\nJangan Lupa Yak Semangatin Para Creator Bot\nBiar Mereka Semangat Untuk Update Bot Nya\n *Dari Yang Biasa Jadi Luar Biasa* \n_Adudu Suka Modus_\n_Boleh Kah Pinjam Seratus_\n_Agar Silaturahmi Tak Terputus_👁️🫠\n ]===== *DONASI SEIKHLASNYA* =====[\n\nhttps://wa.me//6285812373011\nhttps://wa.me//6285812373011`
+let prep = generateWAMessageFromContent(m.chat, { orderMessage: { 
+itemCount: -10062007, status: 500,
+surface: 999,
+message: teks,
+description: '^^',
+orderTitle: 'Haii Kak',
+token: '9',
+curreyCode: 'IDR',
+totalCurrencyCode: '>〰<',
+totalAmount1000: '1000000',
+sellerJid: '6285812373011@s.whatsapp.net',
+thumbnail: fs.readFileSync('./media/donate.jpg')
+}}, {contextInfo: null, quoted: m})
+conn.relayWAMessage(prep)
+    } 
+break
+
+case 'rules':{
+let teks =`
+Syarat dan Ketentuan menggunakan *${botName}*
+
+1. Nama dan nomer user ${botName}
+akan Kami simpan di dalam
+server selama bot aktif
+
+2. Data akan di hapus ketika bot Offline
+atau di hapus oleh Owner Bot
+
+3. Kami tidak menyimpan gambar,
+video, file, audio, dan dokumen
+yang kamu kirim ke ${botName}
+
+4. Kami tidak akan pernah meminta users
+untuk memberikan informasi pribadi
+
+5. Jika menemukan Bug/Error silahkan
+langsung lapor ke Owner atau Developer
+
+
+6. Beberapa fitur mungkin ada yang error,
+jadi tunggu sampai developer
+memperbaiki fitur tersebut
+
+8. Bot ini sudah di lengkapi dengan
+fitur _*Auto Report Bug*_ jika terjadi
+error maka bot akan auto report ke
+developer, terkecuali error yang
+menyebabkan bot mati, maka user
+harus lapor ke developer
+
+7. Bot ini juga sudah di lengkapi dengan
+Fitur Anti Spam jika kamu terdeteksi
+melakukan spam, maka Bot tidak
+akan menanggapi kamu selama 20 detik
+
+9. User dilarang keras menelpon bot!
+jika melanggar maka kamu akan terkena
+banned,block dan dikirim bug
+
+10. Bot tidak akan menanggapi user yang
+meminta untuk di save nomernya`
+conn.relayMessage(from, { liveLocationMessage: { 
+degreesLatitude: 35.676570,
+degreesLongitude: 139.762148,
+caption : teks,
+sequenceNumber: 1656662972682001, timeOffset: 8600, jpegThumbnail: null,
+contextInfo: {
+mentionedJid: [m.sender],
+externalAdReply: {
+containsAutoReply: true,
+showAdAttribution: true,
+}
+}
+}
+}, { quoted: m })
+}
+break
+  
+  case 'jodohku':{
+if (!isGroup) return setReply(mess.only.group)
+let member = groupMembers.map(u => u.id)
+let jodoh = member[Math.floor(Math.random() * member.length)]
+let jawab = `Jodoh kamu adalah @${jodoh.split('@')[0]}`
+let menst = [jodoh]
+conn.sendMessage(from, { text: jawab, mentions: menst }, { quoted: m })
+}
+break
+
+case 'jadian': {
+if (!isGroup) return setReply(mess.only.group)
+let member = groupMembers.map(u => u.id)
+let orang = member[Math.floor(Math.random() * member.length)]
+let jodoh = member[Math.floor(Math.random() * member.length)]
+let jawab = `Ciee yang jadian ❤️ Jangan lupa pajak jadiannya yee
+
+@${orang.split('@')[0]} ❤️ @${jodoh.split('@')[0]}`
+let menst = [orang, jodoh]
+conn.sendMessage(from, { text: jawab, mentions: menst },{quoted: m}) 
+}
+break
+  
 case 'tebakbendera':{
 //if (!isGroup) return onlyGroup()
 //if (!isPremium && global.db.data.users[sender].glimit < 1) return onlyGlimit()
