@@ -395,20 +395,7 @@ banned,block dan dikirim bug
 
 10. Bot tidak akan menanggapi user yang
 meminta untuk di save nomernya`
-conn.relayMessage(from, { liveLocationMessage: { 
-degreesLatitude: 35.676570,
-degreesLongitude: 139.762148,
-caption : teks,
-sequenceNumber: 1656662972682001, timeOffset: 8600, jpegThumbnail: null,
-contextInfo: {
-mentionedJid: [m.sender],
-externalAdReply: {
-containsAutoReply: true,
-showAdAttribution: true,
-}
-}
-}
-}, { quoted: m })
+setReply(teks)
 }
 break
   
