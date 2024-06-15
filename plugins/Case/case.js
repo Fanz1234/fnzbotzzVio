@@ -176,6 +176,33 @@ Exp : +999`)
 }
 
 
+// Game Caklontong Function
+conn.caklontong = conn.caklontong ? conn.caklontong : {}  
+if(isGroup && from in conn.caklontong){
+const similarity = require('similarity')
+const threshold = 0.72
+let id = from
+
+//let but = [{"buttonId": `${prefix}caklontong`,"buttonText": {"displayText": `🎮 ᴍᴀɪɴ ʟᴀɢɪ`},"type": "RESPONSE"}]
+ let json = JSON.parse(JSON.stringify(conn.caklontong[id][1]))
+ if (budy.toLowerCase() == json.jawaban.toLowerCase().trim()) {
+ global.db.data.users[m.sender].money += conn.caklontong[id][2]
+global.db.data.users[m.sender].exp += conn.caklontong[id][2]
+setReply(`*CAK LONTONG*
+
+Jawaban Kamu Benar!
+Bonus Saldo : +3000
+Exp : +${conn.caklontong[id][2]}
+
+${json.deskripsi}`)  
+clearTimeout(conn.caklontong[id][3])
+delete conn.caklontong[id]
+} else if(similarity(budy.toLowerCase(), json.jawaban.toLowerCase().trim()) >= threshold) setReply(`*Dikit Lagi!*`)
+ 
+}
+
+
+
 
 
 
@@ -247,6 +274,12 @@ delete conn.tebakkata[id]
 ]
 }
 break
+
+case  'intro': {
+let teks = 'Member baru INTRO  :)\nNama lengkap:\nNama panggilan:\nHobi:\nUmur:\nGender:\nKelas:\nTinggi badan:\nBeratbadan :\nAgama:\nGolongan darah:\nStatus:\nNama pacar:\nJumlah mantan:\nNama mantan:\nNama bapak :\nNama ibu : \nNama kakak:\nKakak online:\nKakak kandung\tiri:\nJumlah kakak:\nNama adek:\nAdek online:\nAdek kandung\tiri:\nJumlah adek:\nNama kakek:\nKakek dari ayah :\nKakek dari ibu :\nNama nenek:\nNenek dari ayah :\nNenek dari ibu :\nNama bibi:\nBibi dari ayah :\nBibi dari ibu :\nNama paman:\nBibi dari ayah :\nBibi dari ibu :\nKTP:\nSIM:\nSTNK:\nBPKB:\nKK:\nAlamat rumah:\nRT:\nRW:\nKELURAHAN:\nKECAMATAN:\nKABUPATEN:\nKOTA:\nPROVINSI:\nPLANET:\nGALAXY:\nUNIVERSE:\nLANGIT:\nDARATAN:\nLAUTAN:\nKEPULAUAN:\nSAMUDRA:\nUKURAN SEPATU:\nUKURAN BAJU:\nUKURAN CELANA:\nLEBAR PINGGANG:\nPANJANG TANGAN:\nPANJANG KAKI:\nMAKANAN FAVORIT:\nMINUMAN FAVORIT:\nFILM FAVORIT:\nSINETRON FAVORIT:\nGAME FAVORIT:\nANIME FAVORIT:\nMANGA FAVORIT:\nMANHUA FAVORIT:\nMANHWA FAVORIT:\nCHANNEL YOUTUBE:\nINSTAGRAM:\nTWITTEER:\nFACEBOOK:\nMUSIC FAVORIT:\nSIFAT:\nSIKAP:\nZODIAK:\nTANGGAL LAHIR:\nMERK HP:\nMERK MOTOR:\nMERK MOBIL:\nTINGKAT RUMAH:\nALAMAT SEKOLAH:\nUkuran daleman:\nUkuran atasan :\nDiameter kepala :\nStatistik tubuh:\nDiameter perut :\nDiameter lengan :\nDiameter paha :\nDiameter lutut :\nDiameter betis:\nPanjang tangan :\nPanjang kaki :\nPanjang kepala :\nLebar hidung :\nCita cita :\nHobi :\nJenis hewanpeliharaan :\nNama hewan:\nDiameter rumah:\nWaifu:\nHusbu:\nLoli kesukaan :\nShota kesukaan :\nPunya brp teman :\nTeman online :\nTeman offline :\nTeman main game:\nTeman sekolah:\nTemen rumah:'
+setReply(teks)
+}
+break    
 
 case 'fnzaiimg': {
   if (!isPremium && !isOwner) return setReply(mess.only.prem)
@@ -320,6 +353,39 @@ delete conn.tebakbendera[id]
  }, timeout)
  ]
 db.data.users[sender].glimit -= 0 
+}
+break
+
+case 'caklontong':{
+//if (!isGroup) return onlyGroup()
+//if (!isPremium && global.db.data.users[sender].glimit < 1) return onlyGlimit()
+user.glimit -= 0
+let poin = 3000
+let timeout = 120000
+let tiketcoin = 1
+let id = m.chat
+
+//let but1 = [{"buttonId": `${prefix}caklontong`,"buttonText": {"displayText": `🎮 ᴍᴀɪɴ ʟᴀɢɪ`},"type": "RESPONSE"}]
+if (id in conn.caklontong) return setReply('Masih ada soal belum terjawab di chat ini')
+let src = await (await fetch('https://raw.githubusercontent.com/BochilTeam/database/master/games/caklontong.json')).json()
+let json = src[Math.floor(Math.random() * src.length)]
+let caption = `*Soal :* ${json.soal}
+
+Timeout *${(timeout / 1000).toFixed(2)} detik*
+Bonus : +${poin}
+Tiketcoin : +${tiketcoin} `.trim()
+conn.caklontong[id] = [
+await setReply(caption),
+json, poin,
+setTimeout(() => {
+setReply(`Waktu game telah habis
+Jawabannya adalah : ${json.jawaban}
+
+${json.deskripsi}`)  
+delete conn.caklontong[id]
+ }, timeout)
+ ]
+db.data.users[sender].glimit -= 0
 }
 break
 
