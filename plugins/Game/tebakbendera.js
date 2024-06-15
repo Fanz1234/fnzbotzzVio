@@ -1,7 +1,6 @@
 let handler = async (m, { conn, text }) => {
 	//if (!isGroup) return onlyGroup()
 //if (!isPremium && global.db.data.users[sender].glimit < 1) return onlyGlimit()
-user.glimit -= 0
 let poin = 9999
 let timeout = 120000
 let id = m.chat
