@@ -292,7 +292,7 @@ case 'fnzaiimg4': {
   break
       
 case 'tebakbendera':{
-if (!isGroup) return onlyGroup()
+//if (!isGroup) return onlyGroup()
 if (!isPremium && global.db.data.users[sender].glimit < 1) return onlyGlimit()
 let poin = 9999
 let timeout = 120000
