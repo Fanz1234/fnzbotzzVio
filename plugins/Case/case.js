@@ -151,6 +151,28 @@ delete conn.tebakkata[id]
 
 }
 
+    
+//GAME Tebak Bendera Function
+conn.tebakbendera = conn.tebakbendera ? conn.tebakbendera : {}  
+if(isGroup && from in conn.tebakbendera){
+const similarity = require('similarity')
+const threshold = 0.72
+let id = from
+
+// let but8 = [{"buttonId": `${prefix}tebakbendera`,"buttonText": {"displayText": `🎮 ᴍᴀɪɴ ʟᴀɢɪ`},"type": "RESPONSE"}]
+ let json = JSON.parse(JSON.stringify(conn.tebakbendera[id][1]))
+ if (budy.toLowerCase() == json.name.toLowerCase().trim()) {
+user.balance += conn.tebakbendera[id][2]
+setReply(`*TEBAK BENDERA*
+
+Jawaban Kamu Benar!
+Bonus Saldo : +${conn.tebakbendera[id][2]}
+Exp : +999`)  
+ clearTimeout(conn.tebakbendera[id][3])
+ delete conn.tebakbendera[id]
+ } else if(similarity(budy.toLowerCase(), json.name.toLowerCase().trim()) >= threshold) setReply(`*Dikit Lagi!*`)
+
+}
 
 
 
@@ -299,27 +321,6 @@ db.data.users[sender].glimit -= 1
 }
 break
 
-//GAME Tebak Bendera Function
-conn.tebakbendera = conn.tebakbendera ? conn.tebakbendera : {}  
-if(isGroup && from in conn.tebakbendera){
-const similarity = require('similarity')
-const threshold = 0.72
-let id = from
-
-// let but8 = [{"buttonId": `${prefix}tebakbendera`,"buttonText": {"displayText": `🎮 ᴍᴀɪɴ ʟᴀɢɪ`},"type": "RESPONSE"}]
- let json = JSON.parse(JSON.stringify(conn.tebakbendera[id][1]))
- if (budy.toLowerCase() == json.name.toLowerCase().trim()) {
-user.balance += conn.tebakbendera[id][2]
-setReply(`*TEBAK BENDERA*
-
-Jawaban Kamu Benar!
-Bonus Saldo : +${conn.tebakbendera[id][2]}
-Exp : +999`)  
- clearTimeout(conn.tebakbendera[id][3])
- delete conn.tebakbendera[id]
- } else if(similarity(budy.toLowerCase(), json.name.toLowerCase().trim()) >= threshold) setReply(`*Dikit Lagi!*`)
-
-}      
     
     case 'startchat': {
     if (isGroup) return setReply('Fitur Tidak Dapat Digunakan Di Dalam Group!')
