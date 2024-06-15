@@ -236,8 +236,68 @@ case 'fnzaiimg': {
   }
   break
 
+case 'fnzaiimg2': {
+  if (!isPremium && !isOwner) return setReply(mess.only.prem)
+  if (!isGroup) return setReply(mess.only.group)
+  if (!q) return reply(`Teksnya?\nExample: ${prefix+command} apa itu rumah`);
+  setReply(mess.wait);
+  let imageUrl = `https://aemt.me/v1/text2img?text=${encodeURIComponent(q)}`;
+  let imageBuffer = await axios.get(imageUrl, { responseType: 'arraybuffer' });
+  conn.sendFile(m.chat, imageBuffer.data, 'image.jpg', 'Ini gambarnya', m);
+  }
+  break
 
+case 'fnzaiimg3': {
+  if (!isPremium && !isOwner) return setReply(mess.only.prem)
+  if (!isGroup) return setReply(mess.only.group)
+  if (!q) return reply(`Teksnya?\nExample: ${prefix+command} apa itu rumah`);
+  setReply(mess.wait);
+  let imageUrl = `https://aemt.me/dalle?text=${encodeURIComponent(q)}`;
+  let imageBuffer = await axios.get(imageUrl, { responseType: 'arraybuffer' });
+  conn.sendFile(m.chat, imageBuffer.data, 'image.jpg', 'Ini gambarnya', m);
+  }
+  break
+      
+case 'fnzaiimg4': {
+  if (!isPremium && !isOwner) return setReply(mess.only.prem)
+  if (!isGroup) return setReply(mess.only.group)
+  if (!q) return reply(`Teksnya?\nExample: ${prefix+command} apa itu rumah`);
+  setReply(mess.wait);
+  let imageUrl = `https://aemt.me/v6/text2img?text=${encodeURIComponent(q)}`;
+  let imageBuffer = await axios.get(imageUrl, { responseType: 'arraybuffer' });
+  conn.sendFile(m.chat, imageBuffer.data, 'image.jpg', 'Ini gambarnya', m);
+  }
+  break
+      
+case 'tebakbendera':{
+if (!isGroup) return onlyGroup()
+if (!isPremium && global.db.data.users[sender].glimit < 1) return onlyGlimit()
+let poin = 9999
+let timeout = 120000
+let id = m.chat
 
+//let but1 = [{"buttonId": `${prefix}tebakbendera`,"buttonText": {"displayText": `🎮 ᴍᴀɪɴ ʟᴀɢɪ`},"type": "RESPONSE"}]
+if (id in conn.tebakbendera) return setReply('Masih ada soal belum terjawab di chat ini')
+let src = await (await fetch('https://raw.githubusercontent.com/BochilTeam/database/master/games/tebakbendera.json')).json()
+let json = src[Math.floor(Math.random() * src.length)]
+let teks = `Bendera Apakah Ini ?
+
+Timeout *${(timeout / 1000).toFixed(2)} detik*
+Exp : +999
+Bonus : +${poin} Saldo`.trim()
+conn.tebakbendera[id] = [
+conn.sendImage(from, json.img , teks, m),
+json, poin,
+setTimeout(() => {
+if (conn.tebakbendera[id]) 
+setReply(`Waktu game telah habis
+Jawabannya adalah : ${json.name}`)  
+delete conn.tebakbendera[id]
+ }, timeout)
+ ]
+db.data.users[sender].glimit -= 1 
+}
+break
     
     case 'startchat': {
     if (isGroup) return setReply('Fitur Tidak Dapat Digunakan Di Dalam Group!')
