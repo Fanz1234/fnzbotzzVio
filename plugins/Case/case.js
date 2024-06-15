@@ -152,7 +152,7 @@ delete conn.tebakkata[id]
 }
 
     
-/*/GAME Tebak Bendera Function
+//GAME Tebak Bendera Function
 conn.tebakbendera = conn.tebakbendera ? conn.tebakbendera : {}  
 if(isGroup && from in conn.tebakbendera){
 const similarity = require('similarity')
@@ -173,7 +173,7 @@ Exp : +999`)
  delete conn.tebakbendera[id]
  } else if(similarity(budy.toLowerCase(), json.name.toLowerCase().trim()) >= threshold) setReply(`*Dikit Lagi!*`)
 
-}*/
+}
 
 
 // Game Caklontong Function
@@ -422,7 +422,7 @@ conn.sendMessage(from, { text: jawab, mentions: menst },{quoted: m})
 }
 break
   
-/*/case 'tebakbendera':{
+case 'tebakbendera':{
 //if (!isGroup) return onlyGroup()
 //if (!isPremium && global.db.data.users[sender].glimit < 1) return onlyGlimit()
 user.glimit -= 0
@@ -451,7 +451,7 @@ delete conn.tebakbendera[id]
  ]
 db.data.users[sender].glimit -= 0 
 }
-break*/
+break
 
 case 'caklontong':{
 //if (!isGroup) return onlyGroup()
