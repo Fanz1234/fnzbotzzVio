@@ -225,7 +225,16 @@ delete conn.tebakkata[id]
 }
 break
 
-
+case 'fnzaiimg': {
+  if (!isPremium && !isOwner) return setReply(mess.only.prem)
+  if (!isGroup) return setReply(mess.only.group)
+  if (!q) return reply(`Teksnya?\nExample: ${prefix+command} apa itu rumah`);
+  setReply(mess.wait);
+  let imageUrl = `https://aemt.me/ai/text2img?text=${encodeURIComponent(q)}`;
+  let imageBuffer = await axios.get(imageUrl, { responseType: 'arraybuffer' });
+  conn.sendFile(m.chat, imageBuffer.data, 'image.jpg', 'nyoh gambare cok', m);
+  }
+  break
 
 
 
