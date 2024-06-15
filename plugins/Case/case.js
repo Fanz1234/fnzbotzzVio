@@ -193,6 +193,7 @@ setReply(`*CAK LONTONG*
 Jawaban Kamu Benar!
 Bonus Saldo : +3000
 Exp : +${conn.caklontong[id][2]}
+TiketCoin : +1
 
 ${json.deskripsi}`)  
 clearTimeout(conn.caklontong[id][3])
@@ -330,25 +331,6 @@ case 'fnzaiimg4': {
   }
   break
   
-  case 'ping': {
-	const used = process.memoryUsage()
-	let timestamp = speed()
-	let latensi = speed() - timestamp
-	let neww = performance.now()
-	let oldd = performance.now()
-	let respon = `
-	Kecepatan Respon ${latensi.toFixed(4)} _Second_ 
-	Info Server
-	RAM: ${formatp(os.totalmem() - os.freemem())} / ${formatp(os.totalmem())}
-	
-	_NodeJS Memory Usaage_
-	${Object.keys(used).map((key, _, arr) => `${key.padEnd(Math.max(...arr.map(v=>v.length)),' ')}: ${formatp(used[key])}`).join('\n')}
-	
-	`.trim()
-	setReply(respon)
-     }
-     break
-     
      case 'donasi':{
 let { generateWAMessageFromContent } = (await import("@adiwajshing/baileys")).default 
 const teks = `hallo Saya *FanzBotzz* Teman Virtual Kalian☺️\nHi Kak Bot Ini Dalam Tahap Pengembangan\nTerimakasih Kepada Para Creator Bot WhatsApp\n Sehingga *Fanz* Bisa Ada Disini Menemani Anda☺️\nJangan Lupa Yak Semangatin Para Creator Bot\nBiar Mereka Semangat Untuk Update Bot Nya\n *Dari Yang Biasa Jadi Luar Biasa* \n_Adudu Suka Modus_\n_Boleh Kah Pinjam Seratus_\n_Agar Silaturahmi Tak Terputus_👁️🫠\n ]===== *DONASI SEIKHLASNYA* =====[\n\nhttps://wa.me//6285812373011\nhttps://wa.me//6285812373011`
@@ -490,6 +472,7 @@ case 'caklontong':{
 user.glimit -= 0
 let poin = 3000
 let timeout = 120000
+let tiketcoin = 1
 let id = m.chat
 
 //let but1 = [{"buttonId": `${prefix}caklontong`,"buttonText": {"displayText": `🎮 ᴍᴀɪɴ ʟᴀɢɪ`},"type": "RESPONSE"}]
