@@ -216,7 +216,7 @@ Exp : +999`)
 
 
 case 'tebakkata':{
-user.glimit -= 1
+user.glimit -= 0
 let but = [{ buttonId: `${prefix}ceklimit`, buttonText: { displayText: "Limit" }, type: 1 },{ buttonId: `${prefix}caklontong`, buttonText: { displayText: "Main lagi" }, type: 1 } ]
 let timeout = 60000
 let money = randomNomor(1500)
@@ -294,7 +294,7 @@ case 'fnzaiimg4': {
       
 case 'tebakbendera':{
 //if (!isGroup) return onlyGroup()
-if (!isPremium && global.db.data.users[sender].glimit < 1) return onlyGlimit()
+user.glimit -= 0
 let poin = 9999
 let timeout = 120000
 let id = m.chat
