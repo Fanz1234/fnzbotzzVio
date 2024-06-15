@@ -425,6 +425,7 @@ break
 case 'tebakbendera':{
 //if (!isGroup) return onlyGroup()
 //if (!isPremium && global.db.data.users[sender].glimit < 1) return onlyGlimit()
+if (!isGroup) return setReply(mess.only.group)
 user.glimit -= 0
 let poin = 9999
 let timeout = 120000
@@ -456,6 +457,7 @@ break
 case 'caklontong':{
 //if (!isGroup) return onlyGroup()
 //if (!isPremium && global.db.data.users[sender].glimit < 1) return onlyGlimit()
+if (!isGroup) return setReply(mess.only.group)
 user.glimit -= 0
 let poin = 3000
 let timeout = 120000
