@@ -287,30 +287,6 @@ setReply(teks)
 }
 break    
 
-case 'toanime2':
-case 'jadianime2':{
-//if (!isGroup) return onlyGroup()
-if (!q) return setReply(`Kirim gambar lalu reply ${prefix + command} atau tag gambar yang sudah dikirim`)
-setReply(mess.wait)
-try{
-let ahah = await conn.downloadAndSaveMediaMessage(quoted)
-let wewek = await TelegraPh(ahah)
-let ini_gen = `${command}`
-let get_result = await getBuffer(`https://aemt.me/toanime?url=${wewek}`)
-conn.sendMessage(from, { contextInfo: { externalAdReply: { showAdAttribution: true,
-title: `${botName}`,
-body:`Bot aktif ${runtime(process.uptime())}`,
-previewType:"PHOTO", 
-thumbnail: fs.readFileSync('./media/donate.jpg'),
-sourceUrl:`${sig}`
-}}, image: get_result, caption: `*Nih Kak Kamu jadi Anime*`}, { quoted: m })
-fs.unlinkSync(ahah) 
-}catch(err){
-console.log((err) => setReply('Error coba lagi kak'))
-}
-}
-break
-
 case 'fnzaiimg': {
   if (!isPremium && !isOwner) return setReply(mess.only.prem)
   if (!isGroup) return setReply(mess.only.group)
