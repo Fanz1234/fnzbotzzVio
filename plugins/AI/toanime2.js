@@ -17,7 +17,7 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
     let media = await conn.downloadAndSaveMediaMessage(q, makeid(5));
     let url = await TelegraPh(media);
     let hasil = `https://aemt.me/toanime?url=${url}`;
-    conn.sendMessage(m.chat,{image:{url: hasil}},{quoted:m})
+    conn.sendMessage(m.chat,{image:{url}},{quoted:m})
     catch (e) {
     m.reply(`${e}`);
   }
