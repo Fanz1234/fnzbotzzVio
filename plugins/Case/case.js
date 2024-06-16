@@ -290,7 +290,7 @@ break
 case 'toanime2':
 case 'jadianime2':{
 //if (!isGroup) return onlyGroup()
-if (!isImage && !isQuotedImage) return setReply(`Kirim gambar lalu reply ${prefix + command} atau tag gambar yang sudah dikirim`)
+if (!q) return setReply(`Kirim gambar lalu reply ${prefix + command} atau tag gambar yang sudah dikirim`)
 setReply(mess.wait)
 try{
 let ahah = await conn.downloadAndSaveMediaMessage(quoted)
