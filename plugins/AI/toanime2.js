@@ -17,7 +17,6 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
     let media = await conn.downloadAndSaveMediaMessage(q, makeid(5));
     let url = await TelegraPh(media);
     let hasil = `https://aemt.me/toanime?url=${url}`;
-    let cok = await conn.downloadAndSaveMediaMessage(hasil);
    
  // Download the URL content
 let response = await fetch(hasil);
@@ -25,7 +24,7 @@ let downloadedContent = await response.text();
 
 // Send the downloaded URL content
 await conn.sendMessage(
-      m.chat, cok, downloadedContent,
+      m.chat, downloadedContent,
       {
         image: { url: hasil },
         caption: "Nih Kak, Maaf Kalau Hasilnya Tidak Sesuai Keinginan",
