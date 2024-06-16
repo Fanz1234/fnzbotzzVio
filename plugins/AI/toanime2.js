@@ -18,7 +18,10 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
     let url = await TelegraPh(media);
     let hasil = `https://aemt.me/toanime?url=${url}`;
     conn.sendMessage(m.chat,{image:{url: hasil}},{quoted:m})
-    }
+    catch (e) {
+    m.reply(`${e}`);
+  }
+    };
 handler.help = ["toanime2"];
 handler.tags = ["ai"];
 handler.command = /^(jadianime2|toanime2)$/i;
