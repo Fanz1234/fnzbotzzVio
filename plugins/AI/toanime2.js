@@ -21,7 +21,7 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
  // Download the URL content
 let response = await fetch(hasil);
 let downloadedContent = await response.text();
-let cok = ${url}
+let cok = `${url}`;
 
 // Send the downloaded URL content
 await conn.sendMessage(
