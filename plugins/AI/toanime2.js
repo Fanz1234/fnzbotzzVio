@@ -20,7 +20,7 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
    
  // Download the URL content
 let response = await fetch(hasil);
-let downloadedContent = await response.text();
+let downloadedContent = await response.image();
 
 // Send the downloaded URL content
 await conn.sendMessage(
