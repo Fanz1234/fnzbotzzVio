@@ -26,7 +26,8 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
     caption: 'dah jadi wir.',  // Opsional: keterangan untuk gambar
     quoted: m  // Opsional: merespons pesan asli
 })
-
+catch (e) {
+    m.reply(`${e}`);
 };
 handler.help = ["toanime2"];
 handler.tags = ["ai"];
