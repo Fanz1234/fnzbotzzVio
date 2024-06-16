@@ -287,6 +287,17 @@ setReply(teks)
 }
 break    
 
+case 'toanime2':{
+if (!q) return reply(`Teksnya?\nExample: ${prefix+command} reply gambarnya`);
+  setReply(mess.wait);
+  let media = await conn.downloadAndSaveMediaMessage(quoted);
+    let url = await TelegraPh(media);
+  let imageUrl = `https://aemt.me/toanime?url=${url}`;
+  let imageBuffer = await axios.get(imageUrl, { responseType: 'arraybuffer' });
+  conn.sendFile(m.chat, imageBuffer.data, 'image.jpg', 'Ini gambarnya', m);
+  }
+break
+
 case 'fnzaiimg': {
   if (!isPremium && !isOwner) return setReply(mess.only.prem)
   if (!isGroup) return setReply(mess.only.group)
