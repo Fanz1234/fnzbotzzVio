@@ -21,7 +21,7 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
     await conn.sendMessage(
       m.chat,
       {
-        image: { url: img },
+        image: { url: hasil, img },
         caption: "Nih Kak, Maaf Kalau Hasilnya Tidak Sesuai Keinginan",
       },
       { quoted: m }
