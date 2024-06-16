@@ -289,7 +289,7 @@ break
 
 case 'remini2':
 case 'hd2':{
-if (isImage || isQuotedImage) {
+ {
 const media = await conn.downloadAndSaveMediaMessage(quoted)
 const anu = await TelegraPh(media)
 setReply(mess.wait)
