@@ -17,11 +17,18 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
     let media = await conn.downloadAndSaveMediaMessage(q, makeid(5));
     let url = await TelegraPh(media);
     let hasil = `https://aemt.me/toanime?url=${url}`;
-    let img = await conn.downloadMed(q,makeid(5));
-    await conn.sendMessage(
-      m.chat,
+   
+ // Download the URL content
+let response = await fetch(hasil);
+let downloadedContent = await response.text();
+
+// Send the downloaded URL content
+await conn.sendMessage(
+      q,
+  downloadedContent,
+  MessageType.text,
       {
-        image: { url: hasil, img },
+        image: { url: hasil },
         caption: "Nih Kak, Maaf Kalau Hasilnya Tidak Sesuai Keinginan",
       },
       { quoted: m }
