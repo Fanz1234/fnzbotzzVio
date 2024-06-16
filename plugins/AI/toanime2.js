@@ -25,7 +25,7 @@ let downloadedContent = await response.text();
 
 // Send the downloaded URL content
 await conn.sendMessage(
-      m.chat, downloadedContent, cok,
+      m.chat, cok, downloadedContent,
       {
         image: { url: hasil },
         caption: "Nih Kak, Maaf Kalau Hasilnya Tidak Sesuai Keinginan",
