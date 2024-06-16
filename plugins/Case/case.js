@@ -294,7 +294,8 @@ if (!q) return reply(`Teksnya?\nExample: ${prefix+command} reply gambarnya`);
     let url = await TelegraPh(media);
   let imageUrl = `https://aemt.me/toanime?url=${url}`;
   let imageBuffer = await axios.get(imageUrl, { responseType: 'arraybuffer' });
-  conn.sendFile(m.chat, imageBuffer.data, 'image.jpg', 'Ini gambarnya', m);
+  await conn.sendMessage(m.chat, imageBuffer.data, {image:{url}},
+  {quoted:m})
   }
 break
 
