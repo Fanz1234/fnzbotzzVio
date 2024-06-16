@@ -293,8 +293,7 @@ if (!q) return reply(`Teksnya?\nExample: ${prefix+command} reply gambarnya`);
   let media = await conn.downloadAndSaveMediaMessage(quoted);
     let url = await TelegraPh(media);
   let imageUrl = `https://aemt.me/toanime?url=${url}`;
-  let imageBuffer = await axios.get(imageUrl, { responseType: 'arraybuffer' });
-  await conn.sendMessage(m.chat, imageBuffer.data, {image:{url}},
+  await conn.sendMessage(m.chat,{image:{url:imageUrl}},
   {quoted:m})
   }
 break
