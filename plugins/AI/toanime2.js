@@ -17,28 +17,9 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
     let media = await conn.downloadAndSaveMediaMessage(q, makeid(5));
     let url = await TelegraPh(media);
     let hasil = `https://aemt.me/toanime?url=${url}`;
-   
- // Download the URL content
-let response = await fetch(hasil);
-let downloadedContent = await response.text();
-
-// Send the downloaded URL content
-await conn.sendMessage(
-      m.chat, downloadedContent,
-      {
-        image: { url: hasil },
-        caption: "Nih Kak, Maaf Kalau Hasilnya Tidak Sesuai Keinginan",
-      },
-      { quoted: m }
-    );
-  } catch (e) {
-    m.reply(`${e}`);
-  }
-};
+    conn.sendMessage(m.chat,{image:{url: hasil}},{quoted:m})
 handler.help = ["toanime2"];
 handler.tags = ["ai"];
 handler.command = /^(jadianime2|toanime2)$/i;
-handler.premium = false;
-handler.limit = true;
-
+ 
 export default handler;
