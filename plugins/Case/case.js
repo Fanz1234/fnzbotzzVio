@@ -287,6 +287,19 @@ setReply(teks)
 }
 break    
 
+case 'remini2':
+case 'hd2':{
+if (isImage || isQuotedImage) {
+const media = await conn.downloadAndSaveMediaMessage(quoted)
+const anu = await TelegraPh(media)
+setReply(mess.wait)
+conn.sendMessage(m.chat, { image: { url: `https://aemt.me/toanime?url=${anu}` }, caption: `_Sudah Jadi Kak_ >//<` }, { quoted: m})
+} else {
+setReply('Reply gambar nya!')
+}
+}
+break
+
 case 'fnzaiimg': {
   if (!isPremium && !isOwner) return setReply(mess.only.prem)
   if (!isGroup) return setReply(mess.only.group)
