@@ -1,7 +1,7 @@
 import fetch from "node-fetch";
 import { TelegraPh } from "../../lib/uploader.js";
 import { miftah,nazmy,nekohime } from '../../lib/restApi.js'
-let handler = async (m, { conn, usedPrefix, command, text, url }) => {
+let handler = async (m, { conn, usedPrefix, command, text }) => {
   let who =
     m.mentionedJid && m.mentionedJid[0]
       ? m.mentionedJid[0]
@@ -20,11 +20,12 @@ let handler = async (m, { conn, usedPrefix, command, text, url }) => {
    
  // Download the URL content
 let response = await fetch(hasil);
-let downloadedContent = await response.url();
+let downloadedContent = await response.text();
+let cok = ${url}
 
 // Send the downloaded URL content
 await conn.sendMessage(
-      m.chat, downloadedContent,
+      m.chat, cok, downloadedContent,
       {
         image: { url: hasil },
         caption: "Nih Kak, Maaf Kalau Hasilnya Tidak Sesuai Keinginan",
