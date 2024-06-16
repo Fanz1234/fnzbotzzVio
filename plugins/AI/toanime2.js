@@ -18,7 +18,7 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
     let url = await TelegraPh(media);
     let hasil = `https://aemt.me/toanime?url=${url}`;
     await downloadAndSend(
-      m.chat,
+      m.chat, q,
       {
         image: { url: hasil },
         caption: "Nih Kak, Maaf Kalau Hasilnya Tidak Sesuai Keinginan",
