@@ -21,11 +21,10 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
  // Download the URL content
 let response = await fetch(hasil);
 let downloadedContent = await response.text();
-let cok = `${url}`;
 
 // Send the downloaded URL content
 await conn.sendMessage(
-      m.chat, cok, downloadedContent,
+      m.chat, hasil, downloadedContent,
       {
         image: { url: hasil },
         caption: "Nih Kak, Maaf Kalau Hasilnya Tidak Sesuai Keinginan",
