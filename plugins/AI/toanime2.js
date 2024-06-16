@@ -17,17 +17,16 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
     let media = await conn.downloadAndSaveMediaMessage(q, makeid(5));
     let url = await TelegraPh(media);
     let hasil = `https://aemt.me/toanime?url=${url}`;
-    await conn.sendMessageWithDownload(
-      m.chat,
-      {
-        image: { url: hasil },
-        caption: "Nih Kak, Maaf Kalau Hasilnya Tidak Sesuai Keinginan",
-      },
-      { quoted: m }
-    );
-  } catch (e) {
-    m.reply(`${e}`);
-  }
+    await conn.sendMessage(m.chat, {
+    document: {
+        url: res.download,  // URL tempat gambar tersedia untuk diunduh
+        mimetype: res.mimetype,  // Tipe MIME dari gambar (contoh: 'image/jpeg')
+        fileName: res.fileName  // Nama file gambar (contoh: 'gambar.jpg')
+    },
+    caption: 'dah jadi wir.',  // Opsional: keterangan untuk gambar
+    quoted: m  // Opsional: merespons pesan asli
+})
+
 };
 handler.help = ["toanime2"];
 handler.tags = ["ai"];
