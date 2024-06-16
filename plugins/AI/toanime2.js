@@ -14,16 +14,10 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
   if (!mime) return m.reply("Kirim/Reply Gambar Dengan Caption .toanime")
   m.reply(mess.wait);
   try {
-    let media = await conn.downloadAndSaveMediaMessage(q, makeid(5));
+    let media = await conn.downloadAndSaveMediaMessage(quoted);
     let url = await TelegraPh(media);
     let hasil = `https://aemt.me/toanime?url=${url}`;
-   
- // Download the URL content
-let response = await fetch(hasil);
-let downloadedContent = await response.text();
-
-// Send the downloaded URL content
-await conn.sendMessage(
+    await downloadAndSend(
       m.chat,
       {
         image: { url: hasil },
