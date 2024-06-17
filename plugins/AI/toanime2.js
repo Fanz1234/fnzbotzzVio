@@ -28,6 +28,11 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
     
     let hasil = await response.json(); // Mendapatkan hasil JSON dari endpoint
     
+    // Memastikan hasil.image ada dan tidak kosong
+    if (!hasil || !hasil.image) {
+      throw new Error("Tidak dapat mendapatkan URL gambar dari respons");
+    }
+    
     // Mendapatkan URL gambar dari hasil JSON
     let imageUrl = hasil.image;
     
