@@ -28,8 +28,16 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
     
     let hasil = await response.json(); // Mendapatkan hasil JSON dari endpoint
     
+    // Mendapatkan URL gambar dari hasil JSON
+    let imageUrl = hasil.image;
+    
+    // Memastikan URL absolut
+    if (!imageUrl.startsWith("http")) {
+      imageUrl = "https://aemt.me" + imageUrl; // Ganti dengan domain yang sesuai jika diperlukan
+    }
+    
     // Mengunduh gambar dari URL yang diberikan oleh hasil JSON
-    let imageResponse = await fetch(hasil.image); // URL gambar dari hasil JSON
+    let imageResponse = await fetch(imageUrl); // URL gambar dari hasil JSON
     let imageBuffer = await imageResponse.buffer(); // Mengambil buffer gambar
     
     // Mengirim gambar sebagai pesan dengan teks tambahan
