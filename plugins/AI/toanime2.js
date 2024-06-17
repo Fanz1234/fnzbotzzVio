@@ -22,7 +22,7 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
     let url = await TelegraPh(media);
     
     // Mengirim permintaan GET ke endpoint untuk mendapatkan hasil URL gambar
-    let response = await fetch(`https://skizo.tech/api/toanime?url=${url}&apikey=officialdittaz`);
+    let response = await fetch(`https://aemt.me/toanime?url=${url}`);
     
     if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
     
