@@ -332,44 +332,14 @@ case 'fnzaiimg4': {
   break
   
   case 'ttsearch':{
-if (!isGroup) return onlyGroup()
 if (!isPremium && global.db.data.users[sender].limit < 1) return setReply(mess.wait) // respon ketika limit habis
 if(!q) return reply (`Mau cari apa??\nCara penggunaan: ${prefix+command} judul|jumlah\n\nContoh: ${prefix+command} taubat|3`)
 reply(mess.wait)
 let res = `https://aemt.me/tiktoksearch?text=${q}`
 let caption = `*TIKTOK SEARCH*
-
-*𖦹 Judul:* ${res.title}
-*𖦹 Region:* ${res.region}
-*𖦹 Durasi:* ${res.duration}
-*𖦹 Musik:* ${res.music}
-  *- Musik Info:*
-      *• Judul:* ${res.music_info.title}
-      *• Link:* ${res.music_info.play}
-      *• Author:* ${res.music_info.author}
 `
-conn.sendMedia(from, res.play, m, {caption: caption})
+conn.sendMedia(from, res.play, m, {caption: result})
 db.data.users[sender].limit -= 1 // -1 limit
-}
-break
-
-case 'sstab':{
-if (!q) return setReply("Masukan Link")
-if (!isUrl(args[0]) && !args[0].includes('www.')) return reply("Link error");
-let Url = `https://api.apiflash.com/v1/urltoimage?access_key=185eff3aa9fe4e3c8e30bda63b1fb9cf&wait_until=page_loaded&url=${q}`
-conn.sendMessage(from, { contextInfo: {externalAdReply: {showAdAttribution: true, title: `${botName}`, mediaType: 3,  renderLargerThumbnail : true,thumbnailUrl: vid.url,sourceUrl: `https://wa.me/${nomerOwner}`
-}}, image:{url: Url},caption:`${mess.success}`},{quoted:m})
-.catch((err) => reply('Server sedang error coba lagi besok'))
-}
-break
-
-case 'sshp':{
-if (!q) return setReply("Masukan Link")
-if (!isUrl(args[0]) && !args[0].includes('www.')) return reply("Link error");
-let Url = `https://aemt.me/sshp?url=${q}`
-conn.sendMessage(from, { contextInfo: {externalAdReply: {showAdAttribution: true, title: `${botName}`, mediaType: 3,  renderLargerThumbnail : true,thumbnailUrl: vid.url,sourceUrl: `https://wa.me/${nomerOwner}`
-}}, image:{url: Url},caption:`${mess.success}`},{quoted:m})
-.catch((err) => reply('Server sedang error coba lagi besok'))
 }
 break
 
@@ -390,23 +360,6 @@ setReply(teks)
 }
 break
 
-case 'infocuaca':{
-			if (!q) return m.reply(`Example: ${prefix + command} Tasikmalaya`)
-			setReply(mess.wait)
-			var { data } = await axios.get(`https://api.maher-zubair.tech/search/weather?q=${q}`)
-			var titttttttttt = `Tempat : ${data.result.base}\n`
-			titttttttttt += `Cuaca : ${data.result.weather}\n`
-			titttttttttt += `Angin : ${data.result.wind}\n`
-			titttttttttt += `Description : ${data.result.description}\n`
-			titttttttttt += `Kelembapan : ${data.result.kelembapan}\n`
-			titttttttttt += `Suhu : ${data.result.suhu}\n`
-			titttttttttt += `Udara : ${data.result.udara}\n`
-			titttttttttt += `Permukaan laut : ${data.result.permukaan_laut}\n`
-			conn.sendMessage(m.chat, { location: { degreesLatitude: data.result.latitude, degreesLongitude: data.result.longitude } })
-		 setReply(titttttttttt)
-			}
-			break
-  
      case 'donasi':{
 let { generateWAMessageFromContent } = (await import("@adiwajshing/baileys")).default 
 const teks = `hallo Saya *FanzBotzz* Teman Virtual Kalian☺️\nHi Kak Bot Ini Dalam Tahap Pengembangan\nTerimakasih Kepada Para Creator Bot WhatsApp\n Sehingga *Fanz* Bisa Ada Disini Menemani Anda☺️\nJangan Lupa Yak Semangatin Para Creator Bot\nBiar Mereka Semangat Untuk Update Bot Nya\n *Dari Yang Biasa Jadi Luar Biasa* \n_Adudu Suka Modus_\n_Boleh Kah Pinjam Seratus_\n_Agar Silaturahmi Tak Terputus_👁️🫠\n ]===== *DONASI SEIKHLASNYA* =====[\n\nhttps://wa.me//6285812373011\nhttps://wa.me//6285812373011`
