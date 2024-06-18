@@ -438,6 +438,22 @@ let menst = [orang, jodoh]
 conn.sendMessage(from, { text: jawab, mentions: menst },{quoted: m}) 
 }
 break
+
+case 'toptv':{
+try {
+  if (!isGroup) return setReply(mess.only.group)
+    setReply(mess.wait)
+if
+	(m.message.extendedTextMessage) 
+{
+  var dataVideo = { ptvMessage: m.message.extendedTextMessage.contextInfo.quotedMessage.videoMessage }
+    conn.relayMessage(m.chat, dataVideo, {})
+ }
+    } catch (error) {
+        m.reply(error);
+        }
+        }
+        break
   
 case 'tebakbendera':{
 //if (!isGroup) return onlyGroup()
