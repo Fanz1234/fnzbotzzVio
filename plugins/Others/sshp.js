@@ -9,9 +9,8 @@ let handler = async (m, { conn, command, args }) => {
 handler.help = ['sshp']
 handler.tags = ['internet']
 handler.command = /^sshp$/i
-handler.limit = true
-handler.fail = null
-module.exports = handler
+
+export default handler
 const fetchJson = (url, options) => new Promise(async (resolve, reject) => {
     fetch(url, options)
         .then(response => response.json())
