@@ -338,7 +338,7 @@ reply(mess.wait)
 let res = `https://aemt.me/tiktoksearch?text=${q}`
 let caption = `*TIKTOK SEARCH*
 `
-conn.sendMedia(from, res.play, m, {caption: result})
+conn.sendMedia(from, res.play, m, {caption: caption})
 db.data.users[sender].limit -= 1 // -1 limit
 }
 break
