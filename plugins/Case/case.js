@@ -330,18 +330,6 @@ case 'fnzaiimg4': {
   conn.sendFile(m.chat, imageBuffer.data, 'image.jpg', 'Ini gambarnya', m);
   }
   break
-  
-  case 'ttsearch':{
-if (!isPremium && global.db.data.users[sender].limit < 1) return setReply(mess.wait) // respon ketika limit habis
-if(!q) return reply (`Mau cari apa??\nCara penggunaan: ${prefix+command} judul|jumlah\n\nContoh: ${prefix+command} taubat|3`)
-reply(mess.wait)
-let res = `https://aemt.me/tiktoksearch?text=${q}`
-let caption = `*TIKTOK SEARCH*
-`
-conn.sendMedia(from, res.play, m, {caption: caption})
-db.data.users[sender].limit -= 1 // -1 limit
-}
-break
 
 case 'infogempa':{
 let scrapy = require("node-scrapy")
