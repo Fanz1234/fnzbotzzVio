@@ -336,7 +336,7 @@ if (!isGroup) return onlyGroup()
 if (!isPremium && global.db.data.users[sender].limit < 1) return setReply(mess.wait) // respon ketika limit habis
 if(!q) return reply (`Mau cari apa??\nCara penggunaan: ${prefix+command} judul|jumlah\n\nContoh: ${prefix+command} taubat|3`)
 reply(mess.wait)
-let res = await fetchJson(`https://aemt.me/tiktoksearch?text=${q}`)
+let res = `https://aemt.me/tiktoksearch?text=${q}`
 let caption = `*TIKTOK SEARCH*
 
 *𖦹 Judul:* ${res.title}
@@ -354,7 +354,6 @@ db.data.users[sender].limit -= 1 // -1 limit
 break
 
 case 'sstab':{
-if (!isGroup) return onlyGroup()
 if (!q) return setReply("Masukan Link")
 if (!isUrl(args[0]) && !args[0].includes('www.')) return reply("Link error");
 let Url = `https://api.apiflash.com/v1/urltoimage?access_key=185eff3aa9fe4e3c8e30bda63b1fb9cf&wait_until=page_loaded&url=${q}`
@@ -365,7 +364,6 @@ conn.sendMessage(from, { contextInfo: {externalAdReply: {showAdAttribution: true
 break
 
 case 'sshp':{
-if (!isGroup) return onlyGroup()
 if (!q) return setReply("Masukan Link")
 if (!isUrl(args[0]) && !args[0].includes('www.')) return reply("Link error");
 let Url = `https://aemt.me/sshp?url=${q}`
@@ -396,9 +394,9 @@ case 'infocuaca':{
 			if (!q) return m.reply(`Example: ${prefix + command} Tasikmalaya`)
 			setReply(mess.wait)
 			var { data } = await axios.get(`https://api.maher-zubair.tech/search/weather?q=${q}`)
-			var titttttttttt = `Tempat : ${data.result.tempat}\n`
-			titttttttttt += `Cuaca : ${data.result.cuaca}\n`
-			titttttttttt += `Angin : ${data.result.angin}\n`
+			var titttttttttt = `Tempat : ${data.result.base}\n`
+			titttttttttt += `Cuaca : ${data.result.weather}\n`
+			titttttttttt += `Angin : ${data.result.wind}\n`
 			titttttttttt += `Description : ${data.result.description}\n`
 			titttttttttt += `Kelembapan : ${data.result.kelembapan}\n`
 			titttttttttt += `Suhu : ${data.result.suhu}\n`
@@ -408,31 +406,6 @@ case 'infocuaca':{
 		 setReply(titttttttttt)
 			}
 			break
-			
-case 'jarak':{
-if (!isGroup) return onlyGroup()
-if(!q.includes("|")) return setReply("Contoh Tasik|Bandung")
-let Dari = q.split("|")[0]
-let Ke = q.split("|")[1]
-async function jarak(dari, ke) {
-  let url = `https://www.google.com/search?q=${encodeURIComponent("jarak " + dari + " ke " + ke)}&hl=id`
-  let { data } = await axios(url)
-  let $ = cheerio.load(data)
-  let img = data.split("var s=\'")[1].split("\'")[0]
-  let res = {
-   result: {
-    img: /^data:.*?\/.*?;base64,/i.test(img) ? Buffer.from(img.split`,`[1], 'base64') : '',
-    desc: $("div.BNeawe.deIvCb.AP7Wnd").text()
-    }
-  }
-  return res
-}
-let nana = await jarak(Dari,Ke)
-let image = nana.result.img
-let caption = `*Google Maps* \n\n${nana.result.desc}`
-conn.sendMessage(from,{image, caption},{quoted: m})
-} 
-break
   
      case 'donasi':{
 let { generateWAMessageFromContent } = (await import("@adiwajshing/baileys")).default 
