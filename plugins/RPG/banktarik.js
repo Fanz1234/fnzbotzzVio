@@ -1,5 +1,5 @@
 const xpperlimit = 1;
-let handler = async (m, { conn, command, args,q }) => {
+let handler = async (m, { conn, command, args }) => {
   if (global.db.data.chats[m.chat].rpg == false && m.isGroup)
     return conn.sendButton(
       m.chat,
@@ -11,13 +11,13 @@ let handler = async (m, { conn, command, args,q }) => {
     );
   let user = global.db.data.users[m.sender];
   let all = command.replace(/^tarik/i, "");
-  let count = all ? all : q
+  let count = all ? all : args[0];
   count = count
     ? /all/i.test(count)
       ? Math.floor(global.db.data.users[m.sender].bank / xpperlimit)
       : parseInt(count)
-    : q
-    ? parseInt(q)
+    : args[0]
+    ? parseInt(args[0])
     : 1;
   count = Math.max(1, count);
   if (user.atm == 0) return m.reply("kamu belum mempuyai kartu ATM !");
