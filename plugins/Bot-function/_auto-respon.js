@@ -1,4 +1,4 @@
-import fetch from "node-fetch";
+/*/import fetch from "node-fetch";
 let handler = (m) => m;
 handler.before = async function (m, { conn, command, q, prefix, isAccept }) {
   const chat = global.db.data.chats[m.chat];
@@ -114,4 +114,4 @@ handler.before = async function (m, { conn, command, q, prefix, isAccept }) {
     }
   }
 };
-export default handler;
+export default handler;*/
