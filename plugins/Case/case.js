@@ -331,7 +331,7 @@ case 'fnzaiimg4': {
   }
   break
   
-  case  'cekkhodam':{
+  /*/case  'cekkhodam':{
 const tanggal = new Date().toLocaleDateString('id', { weekday: 'long' }) + ',' + ' ' + new Date().toLocaleDateString("id", {day: 'numeric', month: 'long', year: 'numeric'})
 const timeout = 86400000
 const msToTime = (ms) => {
@@ -538,7 +538,7 @@ await sleep(1000)
 m.reply(`khodam kamu adalah : ${await pickRandom(khodam)}`) 
 global.db.data.users[m.sender].cekkhodam = new Date * 1
 }
-        break
+        break*/
         
 /*/case 'cekkhodam': {
 if (!q) return m.reply("ketik nama lu anjg")
