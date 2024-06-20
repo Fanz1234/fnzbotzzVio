@@ -32,9 +32,9 @@ let handler = async (m, { conn, command, args }) => {
       m
     );
 };
-handler.help = ["banktarik <jumlah>"];
+handler.help = ["tarik <jumlah>"];
 handler.tags = ["rpg"];
-handler.command = /^banktarik([0-9]+)|banktarik|tarik|tarikall$/i;
+handler.command = /^tarik([0-9]+)|banktarik|tarik|tarikall$/i;
 handler.group = true;
 handler.rpg = true;
 export default handler;
