@@ -176,7 +176,7 @@ Exp : +999`)
 }
 
 
-// Game Caklontong Function
+/*/ Game Caklontong Function
 conn.caklontong = conn.caklontong ? conn.caklontong : {}  
 if(isGroup && from in conn.caklontong){
 const similarity = require('similarity')
@@ -200,7 +200,7 @@ clearTimeout(conn.caklontong[id][3])
 delete conn.caklontong[id]
 } else if(similarity(budy.toLowerCase(), json.jawaban.toLowerCase().trim()) >= threshold) setReply(`*Dikit Lagi!*`)
  
-}
+}*/
 
 
 
@@ -781,7 +781,7 @@ db.data.users[sender].glimit -= 0
 }
 break
 
-case 'caklontong':{
+/*/case 'caklontong':{
 //if (!isGroup) return onlyGroup()
 //if (!isPremium && global.db.data.users[sender].glimit < 1) return onlyGlimit()
 if (!isGroup) return setReply(mess.only.group)
@@ -813,7 +813,7 @@ delete conn.caklontong[id]
  ]
 db.data.users[sender].glimit -= 0
 }
-break
+break*/
 
     
     case 'startchat': {
