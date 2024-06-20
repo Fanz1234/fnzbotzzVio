@@ -1,7 +1,7 @@
 const xpperlimit = 1;
 let handler = async (m, { conn, command, args }) => {
   let user = global.db.data.users[m.sender];
- // let all = command.replace(/^tarik/i, "");
+  let all = command.replace(/^tarik/i, "");
   let count = command.replace(/^nabung/i, "");
   count = count
     ? /all/i.test(count)
@@ -28,7 +28,7 @@ let handler = async (m, { conn, command, args }) => {
 };
 handler.help = ["atm <jumlah>"];
 handler.tags = ["rpg"];
-handler.command = ['atm','nabung']
+handler.command = ['atm','nabung','tarik']
 handler.rpg = true;
 handler.group = true;
 export default handler;
