@@ -50,8 +50,6 @@ handler.before = async function (m, { conn, q,isPremium, command, setReply, isOw
   const settings = global.db.data.settings["settingbot"];
   const timeWib = moment().tz('Asia/Jakarta').format('HH:mm:ss')
   const user = global.db.data.users[m.sender]
-  const quoted = m.quoted ? m.quoted : m
-  const mime = (quoted.msg || quoted).mimetype || ''
 
 
 
@@ -560,34 +558,6 @@ await conn.sendMessage(m.chat, { audio: res, ptt: true, mimetype: "audio/mpeg", 
         }
     }
 };
-break
-
-case 'remini2':
-case 'hd2':{
-const quoted = m.quoted ? m.quoted : m
-const mime = (quoted.msg || quoted).mimetype || ''
-const quoted = (quoted.msg || quoted)
-if (/image/.test(mime)) {
-await reply('sek proses, please wait...');
-let media = await conn.downloadAndSaveMediaMessage(quoted);
-let re2s = await await TelegraPh(media)
-let res = await fetchJson(`https://aemt.me/remini?url=${re2s}&resolusi=4`)
-await conn.sendMessage(m.chat, { image: {url: res.url }, caption: 'kio su wes dadi gambare:v' , mimetype: "image/jpeg"},{ quoted: m });
-} else return reply('Bot Hanya Bisa Enhance Image/gambar.') 
-
-}
-break
-
-case  'lirik2':{
-if (!q) return reply(`lu mauu nyari lirik lagu apa tod\n\n Ex:.lirik Bernafas Tanpamu`)
-let res = await fetchJson('https://aemt.me/lirik?text='+q)
-let teks =`
-- Judul: ${res.result.title}
-- Artis: ${res.result.artist}
-- Lirik: \n${res.result.lyrics}
-`
-reply(teks)
-}
 break
   
   /*/case  'cekkhodam':{
