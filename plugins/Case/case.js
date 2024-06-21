@@ -562,6 +562,8 @@ break
 
 case 'remini2':
 case 'hd2':{
+const quoted = m.quoted ? m.quoted : m
+const mime = (quoted.msg || quoted).mimetype || ''
 if (/image/.test(mime)) {
 await reply('sek proses, please wait...');
 let media = await conn.downloadAndSaveMediaMessage(quoted);
