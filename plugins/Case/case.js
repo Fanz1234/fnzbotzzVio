@@ -21,7 +21,7 @@ import _blockcmd from "../../lib/blockcmd.js"
 import _spam from '../../lib/antispam.js'
 import _ban from "../../lib/banned.js"
 import { TelegraPh } from "../../lib/uploader.js"
-import { fetchJson } from "../lib/myfunc.js"
+import { fetchJson } from "../../lib/myfunc.js"
 
 import {randomNomor } from "../../lib/myfunc.js"
 
