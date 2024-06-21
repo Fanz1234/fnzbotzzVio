@@ -41,7 +41,7 @@ handler.before = async function (m, { conn, q,isPremium, command, setReply, isOw
   const setTime = db.data.others["setTime"];
   const spammer = [];
 
-  const { type,args, reply,sender,ucapanWaktu,from,botNumber,senderNumber,groupName,groupId,groupMembers,groupDesc,groupOwner,pushname,itsMe,isGroup,mentionByTag,mentionByReply,users,budy,content,body,quoted } = m
+  const { type,args, reply,sender,ucapanWaktu,from,botNumber,senderNumber,groupName,groupId,groupMembers,groupDesc,groupOwner,pushname,itsMe,isGroup,mentionByTag,mentionByReply,users,budy,content,body } = m
   var Ownerin = `${nomerOwner}@s.whatsapp.net`
 
 
@@ -50,6 +50,8 @@ handler.before = async function (m, { conn, q,isPremium, command, setReply, isOw
   const settings = global.db.data.settings["settingbot"];
   const timeWib = moment().tz('Asia/Jakarta').format('HH:mm:ss')
   const user = global.db.data.users[m.sender]
+  const quoted = m.quoted ? m.quoted : m
+  const mime = (quoted.msg || quoted).mimetype || ''
 
 
 
