@@ -331,7 +331,7 @@ case 'fnzaiimg4': {
   }
   break
   
-case 'spotify2';
+case 'spotify2':
   if (!q) throw "Judulnya apa, ya?";
   try {
     await m.reply("`Tunggu Sebentar.....`");
