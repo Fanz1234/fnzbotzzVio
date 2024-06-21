@@ -331,8 +331,8 @@ case 'fnzaiimg4': {
   }
   break
   
-case 'spotify2':
-  if (!q) retrun reply(`Judulnya apa, ya?`)
+case 'spotify':{
+  if (!q) retrun m.reply(`Judulnya apa, ya?`)
   try {
     await m.reply("`Tunggu Sebentar.....`");
     const search = await fetch(
@@ -369,7 +369,7 @@ _Tunggu, sedang mengirim audio..._
   } catch (e) {
     m.reply(e);
   }
-};
+}
 break
   
   /*/case  'cekkhodam':{
