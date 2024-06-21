@@ -567,10 +567,10 @@ const mime = (quoted.msg || quoted).mimetype || ''
 if (/image/.test(mime)) {
 await reply('sek proses, please wait...');
 let media = await conn.downloadAndSaveMediaMessage(quoted);
-let re2s = await await TelegraPh(media)
+let re2s = await TelegraPh(media)
 let res = await fetchJson(`https://aemt.me/remini?url=${re2s}&resolusi=4`)
 await conn.sendMessage(m.chat, { image: {url: res.url }, caption: 'kio su wes dadi gambare:v' , mimetype: "image/jpeg"},{ quoted: m });
-} else return reply('Bot Hanya Bisa Enhance Image/gambar.') 
+} else return reply('Reply Gambarnya Wir.') 
 
 }
 break
