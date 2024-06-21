@@ -332,7 +332,7 @@ case 'fnzaiimg4': {
   break
   
 case 'spotify2':
-  if (!q) throw "Judulnya apa, ya?";
+  if (!q) return reply('Judulnya apa, ya?');
   try {
     await m.reply("`Tunggu Sebentar.....`");
     const search = await fetch(
