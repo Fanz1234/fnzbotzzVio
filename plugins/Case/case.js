@@ -334,7 +334,7 @@ case 'fnzaiimg4': {
   // CEK KHODAM TYPE SUARA 
 // BY LANA
 
-case  'khodamsayaapa':{
+case  'khodam':{
     const defaultLang = 'id';
     const gtts = require( 'node-gtts')
     // Penanganan input nama
