@@ -41,7 +41,7 @@ handler.before = async function (m, { conn, q,isPremium, command, setReply, isOw
   const setTime = db.data.others["setTime"];
   const spammer = [];
 
-  const { type,args, reply,sender,ucapanWaktu,from,botNumber,senderNumber,groupName,groupId,groupMembers,groupDesc,groupOwner,pushname,itsMe,isGroup,mentionByTag,mentionByReply,users,budy,content,body } = m
+  const { type,args, reply,sender,ucapanWaktu,from,botNumber,senderNumber,groupName,groupId,groupMembers,groupDesc,groupOwner,pushname,itsMe,isGroup,mentionByTag,mentionByReply,users,budy,content,body,quoted } = m
   var Ownerin = `${nomerOwner}@s.whatsapp.net`
 
 
