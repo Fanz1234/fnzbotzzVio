@@ -37,7 +37,7 @@ let handler = async (m, { conn }) => {
             text: `*Halo Kak @${m.sender.replace(/@.+/g, '')}!*\nSilahkan Pilih List Harga Di Bawah Yahh!!`
           }),
           footer: proto.Message.InteractiveMessage.Footer.fromObject({
-            text: 'Powered By _*Adelin Tech*_'
+            text: 'Powered By _*FanzOffc*_'
           }),
           header: proto.Message.InteractiveMessage.Header.fromObject({
             hasMediaAttachment: false
@@ -57,7 +57,7 @@ let handler = async (m, { conn }) => {
                   buttons: [
                     {
                       name: "cta_url",
-                      buttonParamsJson: `{"display_text":"Order Here!","url":"https://wa.me/?text=Hai+kak+adit+mau+premium+bot+dong","merchant_url":"https://wa.me/?text=Hai+kak+adit+mau+premium+bot+dong"}`
+                      buttonParamsJson: `{"display_text":"Order Here!","url":"https://wa.me/?text=Hai+kak+Fanz+mau+premium+bot+dong","merchant_url":"https://wa.me/?text=Hai+kak+Fanz+mau+premium+bot+dong"}`
                     }
                   ]
                 })
@@ -75,7 +75,7 @@ let handler = async (m, { conn }) => {
                   buttons: [
                     {
                       name: "cta_url",
-                      buttonParamsJson: `{"display_text":"Order Here!","url":"?text=Hai+kak+adit+mau+beli+script+nya+dong","merchant_url":"?text=Hai+kak+adit+mau+beli+script+nya+dong"}`
+                      buttonParamsJson: `{"display_text":"Order Here!","url":"?text=Hai+kak+Fanz+mau+beli+script+nya+dong","merchant_url":"?text=Hai+kak+Fanz+mau+beli+script+nya+dong"}`
                     }
                   ]
                 })
@@ -93,7 +93,7 @@ let handler = async (m, { conn }) => {
                   buttons: [
                     {
                       name: "cta_url",
-                      buttonParamsJson: `{"display_text":"Order Here!","url":"https://wa.me/?text=Hai+kak+adit+mau+sewa+bot+dong","merchant_url":"https://wa.me/?text=Hai+kak+adit+mau+sewa+bot+dong"}`
+                      buttonParamsJson: `{"display_text":"Order Here!","url":"https://wa.me/?text=Hai+kak+Fanz+mau+sewa+bot+dong","merchant_url":"https://wa.me/?text=Hai+kak+Fanz+mau+sewa+bot+dong"}`
                     }
                   ]
                 })
