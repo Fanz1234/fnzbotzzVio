@@ -593,7 +593,7 @@ _Tunggu, sedang mengirim audio..._
         mimetype: "audio/mpeg",
         fileName: title,
       },
-      { quoted: m },
+      { quoted: m, false },
     );
   } catch (e) {
     m.reply(e);
