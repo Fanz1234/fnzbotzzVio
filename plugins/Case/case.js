@@ -528,8 +528,8 @@ case  'cekkhodam2':{
 ];
 
 
-    const randomKhodam = khodam[Math.floor(Math.random() * khodam.length)];
-    let text = `Khodam ${lana} adalah ${randomKhodam}`;
+    const randomKhodam2 = khodam2[Math.floor(Math.random() * khodam2.length)];
+    let text = `Khodam2 ${lana} adalah ${randomKhodam2}`;
 function tts(text, lang = 'id') {
 return new Promise((resolve, reject) => {
 try {
