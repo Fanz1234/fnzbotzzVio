@@ -1,4 +1,4 @@
-/*/let handler = async (m, { conn, usedPrefix, text }) => {
+let handler = async (m, { conn, usedPrefix, text }) => {
  
 m.reply(`memanggil dukun...`)
 await sleep(1000) 
@@ -118,4 +118,4 @@ const khodam = [
 "kuda kudaan", 
 "gajah Mada", 
 "silit wangi", 
-]*/
+]
