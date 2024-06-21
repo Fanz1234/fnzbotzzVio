@@ -562,7 +562,6 @@ break
 
 case 'remini2':
 case 'hd2':{
-if (!q) return reply(`reply gambarnya`)
 if (/image/.test(mime)) {
 await reply('sek proses, please wait...');
 let media = await conn.downloadAndSaveMediaMessage(quoted);
