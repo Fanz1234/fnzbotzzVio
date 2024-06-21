@@ -46,8 +46,8 @@ handler.before = async (m, { conn }) => {
             externalAdReply: {
             showAdAttribution: false,
             mediaType: 1,
-            title: 'TENKA-AI',
-            body: 'Version: XR',
+            title: 'FANZ-AI',
+            body: 'Version: 0.1',
             thumbnailUrl: 'https://telegra.ph/file/58cf88ce7b3fed162f08c.jpg',
             renderLargerThumbnail: true
             }}},{ quoted: m});
