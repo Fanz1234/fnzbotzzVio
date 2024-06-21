@@ -559,47 +559,6 @@ await conn.sendMessage(m.chat, { audio: res, ptt: true, mimetype: "audio/mpeg", 
     }
 };
 break
-
-case 'spotify2':{
-  if (!q) retrun m.reply(`Judulnya apa, ya?`)
-  try {
-    await m.reply("`Tunggu Sebentar.....`");
-    const search = await fetch(
-      `https://api.maher-zubair.tech/search/spotify?q=${q}`,
-    );
-    const results = await search.json();
-    let { title, duration, popularity, artist, url } = results.result[0];
-
-    const lagu = await fetch(
-      `https://api.maher-zubair.tech/download/spotify?url=${url}`,
-    );
-    const reslagu = await lagu.json();
-    let { song, album_name, release_date, cover_url } = reslagu.result;
-    let teks = `     *[ Spotify ]*
-> *Judul:* ${title} 
-> *Populeritas:* ${popularity}
-> *Durasi:* ${duration}
-> *Artis:* ${artist}
-> *Album:* ${album_name}
-> *Rilis:* ${release_date}
-
-_Tunggu, sedang mengirim audio..._
-    `;
-    let msg = await conn.sendFile(m.chat, cover_url, "cover.jpg", teks, m);
-    await conn.sendMessage(
-      m.chat,
-      {
-        audio: { url: reslagu.result.url },
-        mimetype: "audio/mpeg",
-        fileName: title,
-      },
-      { quoted: m, false },
-    );
-  } catch (e) {
-    m.reply(e);
-  }
-}
-break
   
   /*/case  'cekkhodam':{
 const tanggal = new Date().toLocaleDateString('id', { weekday: 'long' }) + ',' + ' ' + new Date().toLocaleDateString("id", {day: 'numeric', month: 'long', year: 'numeric'})
