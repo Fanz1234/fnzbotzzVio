@@ -350,7 +350,7 @@ case  'cekkhodam2':{
         lang = defaultLang;
     }
     
-    const khodam = [
+    const khodam2 = [
   "Singa",
   "kosoong atau tidak ada",
   "Harimau",
@@ -560,7 +560,7 @@ await conn.sendMessage(m.chat, { audio: res, ptt: true, mimetype: "audio/mpeg", 
 };
 break
   
-  /*/case  cekkhodam:{
+  /*/case  'cekkhodam':{
 const tanggal = new Date().toLocaleDateString('id', { weekday: 'long' }) + ',' + ' ' + new Date().toLocaleDateString("id", {day: 'numeric', month: 'long', year: 'numeric'})
 const timeout = 86400000
 const msToTime = (ms) => {
@@ -769,7 +769,7 @@ global.db.data.users[m.sender].cekkhodam = new Date * 1
 }
         break*/
         
-/*/case cekkhodam: {
+/*/case 'cekkhodam': {
 if (!q) return m.reply("ketik nama lu anjg")
   
 	const khodam = pickRandom([
