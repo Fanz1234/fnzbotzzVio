@@ -331,10 +331,10 @@ case 'fnzaiimg4': {
   }
   break
   
-case 'spotify2':{
-  if (!q) retrun setReply(`Judulnya apa, ya?`)
+case 'spotify2':
+  if (!q) return setReply(`Judulnya apa, ya?`);
   try {
-    await setReply("`Tunggu Sebentar.....`");
+    await m.reply("`Tunggu Sebentar.....`");
     const search = await fetch(
       `https://api.maher-zubair.tech/search/spotify?q=${q}`,
     );
@@ -367,9 +367,9 @@ _Tunggu, sedang mengirim audio..._
       { quoted: m },
     );
   } catch (e) {
-    setReply(e);
+    m.reply(e);
   }
-}
+};
 break
   
   /*/case  'cekkhodam':{
