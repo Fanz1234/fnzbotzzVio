@@ -334,7 +334,7 @@ case 'fnzaiimg4': {
   // CEK KHODAM TYPE SUARA 
 // BY LANA
 
-case  'cekkhodam2':{
+case  'khodamsayaapa':{
     const defaultLang = 'id';
     const gtts = require( 'node-gtts')
     // Penanganan input nama
@@ -350,7 +350,7 @@ case  'cekkhodam2':{
         lang = defaultLang;
     }
     
-    const khodam2 = [
+    const khodam = [
   "Singa",
   "kosoong atau tidak ada",
   "Harimau",
@@ -528,8 +528,8 @@ case  'cekkhodam2':{
 ];
 
 
-    const randomKhodam2 = khodam2[Math.floor(Math.random() * khodam2.length)];
-    let text = `Khodam2 ${lana} adalah ${randomKhodam2}`;
+    const randomKhodam = khodam[Math.floor(Math.random() * khodam.length)];
+    let text = `Khodam ${lana} adalah ${randomKhodam}`;
 function tts(text, lang = 'id') {
 return new Promise((resolve, reject) => {
 try {
