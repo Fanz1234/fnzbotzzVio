@@ -592,6 +592,21 @@ await conn.sendMessage(m.chat, { image: {url: res.url }, caption: 'kio su wes da
 }
 break
 
+case 'trigger':
+case 'triggered':{
+const quoted = m.quoted ? m.quoted : m
+const mime = (quoted.msg || quoted).mimetype || ''
+if (/image/.test(mime)) {
+await reply('sek proses, please wait...');
+let media = await conn.downloadAndSaveMediaMessage(quoted);
+let re2s = await TelegraPh(media)
+let res = await fetchJson(`https://api.maher-zubair.tech/maker/trigger?url=${re2s}`)
+await conn.sendMessage(m.chat, { image: {url: res.url }, caption: 'kio su wes dadi gambare:v' , mimetype: "image/jpeg"},{ quoted: m });
+} else return reply('Reply Gambarnya Wir.') 
+
+}
+break
+
 case  'lirik2':{
 if (!q) return reply(`lu mauu nyari lirik lagu apa tod\n\n Ex:.lirik Bernafas Tanpamu`)
 let res = await fetchJson('https://aemt.me/lirik?text='+q)
