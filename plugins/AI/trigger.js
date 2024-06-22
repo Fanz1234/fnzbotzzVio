@@ -1,3 +1,4 @@
+import ffmpeg from "fluent-ffmpeg";
 import fetch from "node-fetch";
 import { TelegraPh } from "../../lib/uploader.js";
 import { miftah,nazmy,nekohime } from '../../lib/restApi.js'
@@ -11,7 +12,7 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
   let name = await conn.getName(who);
   let q = m.quoted ? m.quoted : m;
   let mime = (q.msg || q).mimetype || "";
-  if (!mime) return m.reply("Kirim/Reply Gambar Dengan Caption .toanime")
+  if (!mime) return m.reply("Kirim/Reply Gambar Dengan Caption .trigger")
   m.reply(mess.wait);
   try {
     let media = await conn.downloadAndSaveMediaMessage(q, makeid(5));
