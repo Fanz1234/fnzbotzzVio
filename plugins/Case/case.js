@@ -343,7 +343,6 @@ let text;
   } else {
     return m.reply("*Example:* .bingimg 1girl");
   }
-const { BingImageCreator } = require("./lib/bingimg");
   await reply("Please wait...");
   try {
     const res = new BingImageCreator({
