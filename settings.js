@@ -2,7 +2,6 @@ import { createRequire } from "module";
 import { fileURLToPath } from "url";
 import fs from 'fs-extra'
 import chalk from "chalk";
-import { BingImageCreator } from "../../lib/bingimg.js"
 const require = createRequire(import.meta.url);
 const version = require("baileys/package.json").version;
 const stringSimilarity = require("string-similarity");
