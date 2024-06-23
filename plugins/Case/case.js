@@ -22,7 +22,7 @@ import _spam from '../../lib/antispam.js'
 import _ban from "../../lib/banned.js"
 import { TelegraPh } from "../../lib/uploader.js"
 import { fetchJson } from "../../lib/myfunc.js"
-const { BingImageCreator } = require("../../lib/bingimg.js");
+import { BingImageCreator } from "../../lib/bingimg.js"
 
 import {randomNomor } from "../../lib/myfunc.js"
 
@@ -343,6 +343,7 @@ let text;
   } else {
     return m.reply("*Example:* .bingimg 1girl");
   }
+  const { BingImageCreator } = require("../../lib/bingimg.js");
   await reply("Please wait...");
   try {
     const res = new BingImageCreator({
