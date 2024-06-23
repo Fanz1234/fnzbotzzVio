@@ -22,6 +22,7 @@ import _spam from '../../lib/antispam.js'
 import _ban from "../../lib/banned.js"
 import { TelegraPh } from "../../lib/uploader.js"
 import { fetchJson } from "../../lib/myfunc.js"
+import { BingImageCreator } from "../../lib/bingimg.js"
 
 import {randomNomor } from "../../lib/myfunc.js"
 
@@ -332,6 +333,52 @@ case 'fnzaiimg4': {
   conn.sendFile(m.chat, imageBuffer.data, 'image.jpg', 'Ini gambarnya', m);
   }
   break
+  
+case'bingimg':{
+let text;
+  if (args.length >= 1) {
+    text = args.slice(0).join(" ");
+  } else if (m.quoted && m.quoted.text) {
+    text = m.quoted.text;
+  } else {
+    return m.reply("*Example:* .bingimg 1girl");
+  }
+const { BingImageCreator } = require("./lib/bingimg");
+  await reply("Please wait...");
+  try {
+    const res = new BingImageCreator({
+      cookie: `_C_Auth=; ipv6=hit=1719155893264; MUID=3970034137BD675C128B171036EB66DB; MSPTC=EBoL9q_FcLckcebbYxpD21SZ8oVJDZtU5aJHXZ8QuXA; SRCHD=AF=NOFORM; SRCHUID=V=2&GUID=6F0F9CB0194E4D6D914FE836D8771AE1&dmnchg=1; _SS=SID=31329BF5016C6B7D11E08F5200946A92; _clck=f8mt3u%7C2%7Cfmv%7C0%7C1635; GI_FRE_COOKIE=gi_fre=2; SRCHUSR=DOB=20240623&POEX=W; ANON=A=DEE8B28E02CF6C615A7D9EA9FFFFFFFF&E=1deb&W=1; NAP=V=1.9&E=1d91&C=WGc51PRa1yuMjEYg21JoOZgE3V52NGmwAYza2EtcKWB_RqZ9gzGOcw&W=1; PPLState=1; _U=15CNAF27LIWupbHQwhHI6VaTkKERkK-gsuGDyUe9o9KXCzAvTBzpfxe3sgwqWzoeEVBCxP5CxLSQOkkbXyes6LhKPqORO7VXmwaJGuJHpawuZedJVbCg6_FWrs4c1-JS75JfVJgqzEFr_qw3FoaKjFD-J3vk0EBTCzMQLbEpYgKsQuPOH8ooKp6pjtxxFo58dMn0i0_KZsrRbI3smdcgoVw; WLS=C=9fae1e90d234f4f5&N=panz; SRCHHPGUSR=SRCHLANG=id&CW=360&CH=669&SCW=360&SCH=669&BRW=MM&BRH=MT&DPR=2.0&UTC=420&DM=0&HV=1719152293&PV=10&WTS=63854748588&PRVCW=360&PRVCH=669; _clsk=18yp85v%7C1719152293746%7C4%7C0%7Cx.clarity.ms%2Fcollect`, _//Isi kuki mu_
+    });
+    const data = await res.createImage(text);
+
+    if (data.length > 0) {
+      for (let i = 0; i < data.length; i++) {
+        try {
+          if (!data[i].endsWith(".svg")) {
+            await ptz.sendFile(
+              m.chat,
+              data[i],
+              "",
+              `Image *(${i + 1}/${data.length})*\n\n*Prompt*: ${text}`,
+              m,
+              false,
+              { mentions: [m.sender] },
+            );
+          }
+        } catch (error) {
+          console.error(`Error sending file: ${error.message}`);
+          await reply(`Failed to send image *(${i + 1}/${data.length})*`);
+        }
+      }
+    } else {
+      await reply("No images found.");
+    }
+  } catch (error) {
+    console.error(`Error in handler: ${error.message}`);
+    await reply(`${error}\n\n${error.message}`);
+  }
+};
+break
   
   // CEK KHODAM TYPE SUARA 
 // BY LANA
