@@ -22,6 +22,7 @@ import _spam from '../../lib/antispam.js'
 import _ban from "../../lib/banned.js"
 import { TelegraPh } from "../../lib/uploader.js"
 import { fetchJson } from "../../lib/myfunc.js"
+const { BingImageCreator } = require("../../lib/bingimg.js");
 
 import {randomNomor } from "../../lib/myfunc.js"
 
@@ -43,7 +44,7 @@ handler.before = async function (m, { conn, q,isPremium, command, setReply, isOw
   const setTime = db.data.others["setTime"];
   const spammer = [];
 
-  const { type,args, reply,sender,ucapanWaktu,from,botNumber,senderNumber,groupName,groupId,groupMembers,groupDesc,groupOwner,pushname,itsMe,isGroup,mentionByTag,mentionByReply,users,budy,content,body,BingImageCreator } = m
+  const { type,args, reply,sender,ucapanWaktu,from,botNumber,senderNumber,groupName,groupId,groupMembers,groupDesc,groupOwner,pushname,itsMe,isGroup,mentionByTag,mentionByReply,users,budy,content,body } = m
   var Ownerin = `${nomerOwner}@s.whatsapp.net`
 
 
@@ -342,7 +343,6 @@ let text;
   } else {
     return m.reply("*Example:* .bingimg 1girl");
   }
-const { BingImageCreator } = require("../../lib/bingimg.js");
   await reply("Please wait...");
   try {
     const res = new BingImageCreator({
