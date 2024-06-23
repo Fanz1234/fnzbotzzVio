@@ -334,7 +334,7 @@ case 'fnzaiimg4': {
   }
   break
   
-case'bingimg':{
+case 'bingimg': {
 let text;
   if (args.length >= 1) {
     text = args.slice(0).join(" ");
