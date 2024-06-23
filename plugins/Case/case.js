@@ -343,10 +343,11 @@ let text;
   } else {
     return m.reply("*Example:* .bingimg 1girl");
   }
+const { BingImageCreator } = require("../../lib/bingimg.js");
   await reply("Please wait...");
   try {
     const res = new BingImageCreator({
-      cookie: `_U=15CNAF27LIWupbHQwhHI6VaTkKERkK-gsuGDyUe9o9KXCzAvTBzpfxe3sgwqWzoeEVBCxP5CxLSQOkkbXyes6LhKPqORO7VXmwaJGuJHpawuZedJVbCg6_FWrs4c1-JS75JfVJgqzEFr_qw3FoaKjFD-J3vk0EBTCzMQLbEpYgKsQuPOH8ooKp6pjtxxFo58dMn0i0_KZsrRbI3smdcgoVw`, _//Isi kuki mu_
+      cookie: ``, _//Isi kuki mu_
     });
     const data = await res.createImage(text);
 
