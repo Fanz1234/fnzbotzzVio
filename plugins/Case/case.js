@@ -43,7 +43,7 @@ handler.before = async function (m, { conn, q,isPremium, command, setReply, isOw
   const setTime = db.data.others["setTime"];
   const spammer = [];
 
-  const { type,args, reply,sender,ucapanWaktu,from,botNumber,senderNumber,groupName,groupId,groupMembers,groupDesc,groupOwner,pushname,itsMe,isGroup,mentionByTag,mentionByReply,users,budy,content,body } = m
+  const { type,args, reply,sender,ucapanWaktu,from,botNumber,senderNumber,groupName,groupId,groupMembers,groupDesc,groupOwner,pushname,itsMe,isGroup,mentionByTag,mentionByReply,users,budy,content,body,BingImageCreator } = m
   var Ownerin = `${nomerOwner}@s.whatsapp.net`
 
 
@@ -346,7 +346,7 @@ const { BingImageCreator } = require("../../lib/bingimg.js");
   await reply("Please wait...");
   try {
     const res = new BingImageCreator({
-      cookie: ``, _//Isi kuki mu_
+      cookie: `_U=15CNAF27LIWupbHQwhHI6VaTkKERkK-gsuGDyUe9o9KXCzAvTBzpfxe3sgwqWzoeEVBCxP5CxLSQOkkbXyes6LhKPqORO7VXmwaJGuJHpawuZedJVbCg6_FWrs4c1-JS75JfVJgqzEFr_qw3FoaKjFD-J3vk0EBTCzMQLbEpYgKsQuPOH8ooKp6pjtxxFo58dMn0i0_KZsrRbI3smdcgoVw`, _//Isi kuki mu_
     });
     const data = await res.createImage(text);
 
