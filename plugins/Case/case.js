@@ -378,7 +378,24 @@ let text;
     await reply(`${error}\n\n${error.message}`);
   }
 };
-break          
+break
+
+
+case 'bingimg2':{
+        	if (!args[0]) return reply(`Input Text Yang Ingin Di Buatkan\n\nExample : ${prefix + command} Buatkan saya logo 3d dengan bertuliskan Ruztan XD`)
+ conn.sendMessage(m.chat, { react: { text: `🕐`, key: m.key }})
+        try {
+        let url = `https://api.betabotz.eu.org/api/search/bing-img?text=${args[0]}&apikey=xaIsBL6f`
+        let response = await axios(url)
+        	for (let i = 0; i < 4; i++) {
+        	let buffer = response.data.result[i]
+        	conn.sendFile(m.chat, buffer, null, 'SUCCES', m)
+        }
+        } catch (e) {
+        	console.log(e)
+        }
+        }
+        break         
   
   // CEK KHODAM TYPE SUARA 
 // BY LANA
