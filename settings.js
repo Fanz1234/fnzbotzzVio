@@ -5,7 +5,6 @@ import chalk from "chalk";
 const require = createRequire(import.meta.url);
 const version = require("baileys/package.json").version;
 const stringSimilarity = require("string-similarity");
-const { BingImageCreator } = require("./lib/bingimg");
 
 //======== OWNER SETTINGS =======\\
 global.nomerOwner = "6285812373011";
