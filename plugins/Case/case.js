@@ -23,6 +23,7 @@ import _ban from "../../lib/banned.js"
 import { TelegraPh } from "../../lib/uploader.js"
 import { fetchJson } from "../../lib/myfunc.js"
 import { BingImageCreator } from "../../lib/bingimg.js"
+import { thinkany } from "../../lib/thinkany.js"
 
 import {randomNomor } from "../../lib/myfunc.js"
 
@@ -333,6 +334,22 @@ case 'fnzaiimg4': {
   conn.sendFile(m.chat, imageBuffer.data, 'image.jpg', 'Ini gambarnya', m);
   }
   break
+
+case'fanzai':{
+if (!text) return reply(`*Example*: ${prefix + command} siapa kamu`)
+let res = await thinkany(text)
+conn.sendMessage(m.chat, {
+text: res,
+contextInfo: {
+externalAdReply:{
+title: `FANZ-Ai`,
+body: `FANZ-Ai`,
+thumbnailUrl: `https://telegra.ph/file/2f1818dee3930e7fef374.jpg`,
+sourceUrl: `https://thinkany.ai`,
+mediaType: 1,
+renderLargerThumbnail: true
+}}},{quoted:m})}
+break
           
 case'bingimg':{
 let text;
