@@ -355,7 +355,7 @@ let text;
       for (let i = 0; i < data.length; i++) {
         try {
           if (!data[i].endsWith(".svg")) {
-            await ptz.sendFile(
+            await conn.sendFile(
               m.chat,
               data[i],
               "",
