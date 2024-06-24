@@ -17,7 +17,7 @@ let text;
   await setReply("Please wait...");
   try {
     const res = new BingImageCreator({
-      cookie: `15CNAF27LIWupbHQwhHI6VaTkKERkK-gsuGDyUe9o9KXCzAvTBzpfxe3sgwqWzoeEVBCxP5CxLSQOkkbXyes6LhKPqORO7VXmwaJGuJHpawuZedJVbCg6_FWrs4c1-JS75JfVJgqzEFr_qw3FoaKjFD-J3vk0EBTCzMQLbEpYgKsQuPOH8ooKp6pjtxxFo58dMn0i0_KZsrRbI3smdcgoVw`,//Isi kuki mu_
+      cookie: `1XnJiepo1YheVhXoCzLGtLQX-cfkL9EbiDyCmrvzQs2TfuwL-kB-TuGsXmSmynnMapE4s-fPa3zwmk-Qxwd_lKOj1XZwCMt2diyKh_R_yjzs0NhLGrvwMzuUEU9JnWu49D2mtnSszjqV79QS-bmTTf3gkeIVL4GwjOtoRJXQsVJ`,//Isi kuki mu_
     });
     const data = await res.createImage(text);
 
