@@ -48,10 +48,6 @@ let text;
     await reply(`${error}\n\n${error.message}`);
   }
 };
-handler.help = ["bingimg"];
-handler.tags = ["ai"];
-handler.command = /^(bingimg|bingimage)$/i;
-handler.premium = false;
-handler.limit = true;
+handler.command = ["bingimg", "bingimage"];
 
 export default handler;
