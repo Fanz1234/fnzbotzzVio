@@ -3,7 +3,7 @@ import fetch from "node-fetch";
 import fs from 'fs-extra'
 import { BingImageCreator } from "../../lib/bingimg.js"
 
-let handler = async (m, { conn, isPremium, prefix, isOwner,command, setReply, q}) => {
+let handler = async (m, { conn, isPremium, args, prefix, isOwner,command, setReply, q}) => {
 	
 let text;
   if (args.length >= 1) {
@@ -49,6 +49,6 @@ let text;
   }
 };
 
-handler.command = ["bingimage"];
+handler.command = ["bingimage", "bingimg"];
 
 export default handler;
