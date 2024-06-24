@@ -333,16 +333,6 @@ case 'fnzaiimg4': {
   conn.sendFile(m.chat, imageBuffer.data, 'image.jpg', 'Ini gambarnya', m);
   }
   break
-  
-case 'baka': case 'bite': case 'blush': case 'bored': case 'cry': case 'cuddle': case 'dance': case 'facepalm': case 'feed': case 'handhold': case 'handshake': case 'happy': case 'highfive': case 'hug': case 'kiss': case 'laugh': case 'lurk': case 'nod': case 'nom': case 'nope': case 'pat': case 'peck': case 'poke': case 'pout': case 'punch': case 'shoot': case 'shrug': case 'slap': case 'sleep': case 'smile': case 'smug': case 'stare': case 'think': case 'thumbsup': case 'tickle': case 'wave': case 'wink': case 'yawn': case 'yeet': {
-  if (isBan) return m.reply(mess.ban)
-  m.reply(mess.wait)
-  let wet = await (await fetch(`https://nekos.best/api/v2/${command}`)).json();
-  let gif = wet.results[0];
-  conn.sendMessage(m.chat, { video: { url: gif.url }, caption: `\n🗿 *Anime :* ${gif.anime_name}\n`, gifPlayback: true }, { quoted: m });
-}
-break
-
           
 case'bingimg':{
 let text;
@@ -388,6 +378,15 @@ let text;
     await reply(`${error}\n\n${error.message}`);
   }
 };
+break
+
+case 'baka': case 'bite': case 'blush': case 'bored': case 'cry': case 'cuddle': case 'dance': case 'facepalm': case 'feed': case 'handhold': case 'handshake': case 'happy': case 'highfive': case 'hug': case 'kiss': case 'laugh': case 'lurk': case 'nod': case 'nom': case 'nope': case 'pat': case 'peck': case 'poke': case 'pout': case 'punch': case 'shoot': case 'shrug': case 'slap': case 'sleep': case 'smile': case 'smug': case 'stare': case 'think': case 'thumbsup': case 'tickle': case 'wave': case 'wink': case 'yawn': case 'yeet': {
+  if (isBan) return m.reply(mess.ban)
+  m.reply(mess.wait)
+  let wet = await (await fetch(`https://nekos.best/api/v2/${command}`)).json();
+  let gif = wet.results[0];
+  conn.sendMessage(m.chat, { video: { url: gif.url }, caption: `\n🗿 *Anime :* ${gif.anime_name}\n`, gifPlayback: true }, { quoted: m });
+}
 break
   
   // CEK KHODAM TYPE SUARA 
