@@ -336,10 +336,10 @@ case 'fnzaiimg4': {
   break
 
 case'fanzai':{
-if (!text) return reply(`*Example*: ${prefix + command} siapa kamu`)
+if (!q) return reply(`*Example*: ${prefix + command} siapa kamu`)
 let res = await thinkany(text)
 conn.sendMessage(m.chat, {
-text: res,
+q: res,
 contextInfo: {
 externalAdReply:{
 title: `FANZ-Ai`,
