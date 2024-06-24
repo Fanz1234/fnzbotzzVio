@@ -22,7 +22,6 @@ import _spam from '../../lib/antispam.js'
 import _ban from "../../lib/banned.js"
 import { TelegraPh } from "../../lib/uploader.js"
 import { fetchJson } from "../../lib/myfunc.js"
-import { BingImageCreator } from "../../lib/bingimg.js
 
 import {randomNomor } from "../../lib/myfunc.js"
 
@@ -333,52 +332,6 @@ case 'fnzaiimg4': {
   conn.sendFile(m.chat, imageBuffer.data, 'image.jpg', 'Ini gambarnya', m);
   }
   break
-          
-case'bingimg':{
-let text;
-  if (args.length >= 1) {
-    text = args.slice(0).join(" ");
-  } else if (m.quoted && m.quoted.text) {
-    text = m.quoted.text;
-  } else {
-    return m.reply("*Example:* .bingimg 1girl");
-  }
-  const { BingImageCreator } = await import("../../lib/bingimg.js");
-  await reply("Please wait...");
-  try {
-    const res = new BingImageCreator({
-      cookie: `15CNAF27LIWupbHQwhHI6VaTkKERkK-gsuGDyUe9o9KXCzAvTBzpfxe3sgwqWzoeEVBCxP5CxLSQOkkbXyes6LhKPqORO7VXmwaJGuJHpawuZedJVbCg6_FWrs4c1-JS75JfVJgqzEFr_qw3FoaKjFD-J3vk0EBTCzMQLbEpYgKsQuPOH8ooKp6pjtxxFo58dMn0i0_KZsrRbI3smdcgoVw`,//Isi kuki mu_
-    });
-    const data = await res.createImage(text);
-
-    if (data.length > 0) {
-      for (let i = 0; i < data.length; i++) {
-        try {
-          if (!data[i].endsWith(".svg")) {
-            await conn.sendFile(
-              m.chat,
-              data[i],
-              "",
-              `Image *(${i + 1}/${data.length})*\n\n*Prompt*: ${text}`,
-              m,
-              false,
-              { mentions: [m.sender] },
-            );
-          }
-        } catch (error) {
-          console.error(`Error sending file: ${error.message}`);
-          await reply(`Failed to send image *(${i + 1}/${data.length})*`);
-        }
-      }
-    } else {
-      await reply("No images found.");
-    }
-  } catch (error) {
-    console.error(`Error in handler: ${error.message}`);
-    await reply(`${error}\n\n${error.message}`);
-  }
-};
-break
 
 case 'baka': case 'bite': case 'blush': case 'bored': case 'cry': case 'cuddle': case 'dance': case 'facepalm': case 'feed': case 'handhold': case 'handshake': case 'happy': case 'highfive': case 'hug': case 'kiss': case 'laugh': case 'lurk': case 'nod': case 'nom': case 'nope': case 'pat': case 'peck': case 'poke': case 'pout': case 'punch': case 'shoot': case 'shrug': case 'slap': case 'sleep': case 'smile': case 'smug': case 'stare': case 'think': case 'thumbsup': case 'tickle': case 'wave': case 'wink': case 'yawn': case 'yeet': {
   if (!isPremium && !isOwner) return setReply(mess.only.prem)
