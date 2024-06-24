@@ -29,7 +29,7 @@ import {randomNomor } from "../../lib/myfunc.js"
 
 
 let handler = (m) => m;
-handler.before = async function (m, { conn, q,isPremium, command, setReply, isOwner,prefix,store }) {
+handler.before = async function (m, { conn, q,isPremium,text, command, setReply, isOwner,prefix,store }) {
   
   try{
   //Database 
@@ -336,10 +336,10 @@ case 'fnzaiimg4': {
   break
 
 case'fanzai':{
-if (!q) return reply(`*Example*: ${prefix + command} siapa kamu`)
+if (!text) return reply(`*Example*: ${prefix + command} siapa kamu`)
 let res = await thinkany(text)
 conn.sendMessage(m.chat, {
-q: res,
+text: res,
 contextInfo: {
 externalAdReply:{
 title: `FANZ-Ai`,
