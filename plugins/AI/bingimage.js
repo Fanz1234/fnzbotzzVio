@@ -3,7 +3,7 @@ import fetch from "node-fetch";
 import fs from 'fs-extra'
 import { BingImageCreator } from "../../lib/bingimg.js"
 
-let handler = async (m, { conn, isPremium, args, prefix, reply, isOwner,command, setReply, q}) => {
+let handler = async (m, { conn, isPremium, args, prefix, isOwner,command, setReply, q}) => {
 	
 let text;
   if (args.length >= 1) {
@@ -14,7 +14,7 @@ let text;
     return m.reply("*Example:* .bingimg 1girl");
   }
   const { BingImageCreator } = await import("../../lib/bingimg.js");
-  await reply("Please wait...");
+  await setReply("Please wait...");
   try {
     const res = new BingImageCreator({
       cookie: `15CNAF27LIWupbHQwhHI6VaTkKERkK-gsuGDyUe9o9KXCzAvTBzpfxe3sgwqWzoeEVBCxP5CxLSQOkkbXyes6LhKPqORO7VXmwaJGuJHpawuZedJVbCg6_FWrs4c1-JS75JfVJgqzEFr_qw3FoaKjFD-J3vk0EBTCzMQLbEpYgKsQuPOH8ooKp6pjtxxFo58dMn0i0_KZsrRbI3smdcgoVw`,//Isi kuki mu_
@@ -37,15 +37,15 @@ let text;
           }
         } catch (error) {
           console.error(`Error sending file: ${error.message}`);
-          await reply(`Failed to send image *(${i + 1}/${data.length})*`);
+          await setReply(`Failed to send image *(${i + 1}/${data.length})*`);
         }
       }
     } else {
-      await reply("No images found.");
+      await setReply("No images found.");
     }
   } catch (error) {
     console.error(`Error in handler: ${error.message}`);
-    await reply(`${error}\n\n${error.message}`);
+    await setReply(`${error}\n\n${error.message}`);
   }
 };
 
