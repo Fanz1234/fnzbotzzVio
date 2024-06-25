@@ -22,6 +22,7 @@ import _spam from '../../lib/antispam.js'
 import _ban from "../../lib/banned.js"
 import { TelegraPh } from "../../lib/uploader.js"
 import { fetchJson } from "../../lib/myfunc.js"
+import { thinkany } from "../../lib/thinkany.js"
 
 import {randomNomor } from "../../lib/myfunc.js"
 
@@ -332,6 +333,68 @@ case 'fnzaiimg4': {
   conn.sendFile(m.chat, imageBuffer.data, 'image.jpg', 'Ini gambarnya', m);
   }
   break
+  
+  case 'rule34': {
+ async function rule34Random() {
+ try {
+ let response = await axios.get('https://api.rule34.xxx/index.php?page=dapi&s=post&q=index&json=1')
+ let results = response.data
+
+ if (!Array.isArray(results) || results.length === 0) {
+ throw new Error('No images found')
+ }
+
+ let randomImage = results[Math.floor(Math.random() * results.length)]
+ let imageUrl = randomImage.file_url
+
+ if (!imageUrl) {
+ throw new Error('Image URL not found')
+ }
+
+ return { status: 200, imageUrl }
+ } catch (error) {
+ console.error('Error:', error)
+ return { status: 500, error: error.message }
+ }
+ }
+
+ async function sendRandomRule34Image(m) {
+ try { 
+
+ let response = await rule34Random()
+ if (response.status !== 200) {
+ throw new Error(response.error)
+ }
+
+ let imageUrl = response.imageUrl
+
+ conn.sendMessage(m.chat, { image: { url: imageUrl }, caption: 'Random Image from Rule34\n\n*Powered By Fanz' }, { quoted: m })
+ } catch (e) {
+ m.reply(e.message)
+ }
+ }
+
+ sendRandomRule34Image(m)
+ }
+ break
+ 
+ _Thinkany Feature_
+
+case'thinkany':{
+if (!q) return reply(`*Example*: ${prefix + command} siapa kamu`)
+let res = await thinkany(q)
+conn.sendMessage(m.chat, {
+q: res,
+contextInfo: {
+externalAdReply:{
+title: `ThinkAny-Ai`,
+body: `ThinkAny-Ai`,
+thumbnailUrl: `https://telegra.ph/file/e4ad278b5e86928b3b9a8.png`,
+sourceUrl: `https://thinkany.ai`,
+mediaType: 1,
+renderLargerThumbnail: true
+}}},{quoted:m})}
+break
   
   // CEK KHODAM TYPE SUARA 
 // BY LANA
