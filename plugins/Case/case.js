@@ -332,14 +332,7 @@ case 'fnzaiimg4': {
   let imageBuffer = await axios.get(imageUrl, { responseType: 'arraybuffer' });
   conn.sendFile(m.chat, imageBuffer.data, 'image.jpg', 'Ini gambarnya', m);
   }
-  break https://api.rule34.xxx/index.php?page=dapi&s=post&q=index&json=1
-  
-case 'bokep':{
-let res = loli.getRandom()
-const loli = `https://api.rule34.xxx/index.php?page=dapi&s=post&q=index&json=1`
-    conn.sendFile(m.chat, res.url, false, 'Nehhh Kak ><', m, false)
-}
-break
+  break 
 
 case'thinkany':{
 if (!q) return reply(`*Example*: ${prefix + command} siapa kamu`)
