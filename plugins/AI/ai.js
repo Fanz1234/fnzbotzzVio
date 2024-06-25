@@ -4,7 +4,7 @@ import axios from "axios";
 let handler = async (m, { q, conn, args, usedPrefix, command }) => {
   if (!q) return m.reply("Mau ngomong apa?");
   try {
-    const url = `https://aemt.me/openai?text=${q}`;
+    const url = `https://api.maher-zubair.tech/ai/chatgpt?q=${q}`;
     
     fetch(url)
       .then((response) => {
