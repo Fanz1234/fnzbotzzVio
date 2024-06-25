@@ -334,35 +334,6 @@ case 'fnzaiimg4': {
   }
   break
 
-//*FITUR BLUR VIDEO*
-
-case 'hdvid' : {
-  const quoted = m.quoted ? m.quoted : m
-const mime = (quoted.msg || quoted).mimetype || ''
-  if (!q) return reply(`*PERMINTAAN ERROR!! PESAN :\n> Kirim video dengan caption .hdvid`);
-  m.reply(mess.wait);
-  const media = await conn.downloadAndSaveMediaMessage(quoted);
-  const output = 'output.mp4'; 
-  
-  exec(`ffmpeg -i ${media} -vf "unsharp=3:3:1.0,eq=brightness=0.05:contrast=1.2:saturation=1.1,hqdn3d=1.5:1.5:6:6" -vcodec libx264 -profile:v high -level 4.1 -preset slow -crf 18 -x264-params ref=4 -acodec copy -movflags +faststart ${output}`, (error, stdout, stderr) => {
-    if (error) {
-      console.error(`Error: ${error.message}`);
-      return;
-    }
-    console.log(`stdout: ${stdout}`);
-    console.error(`stderr: ${stderr}`);
-
-    conn.sendMessage(m.chat, { caption: `*SUCCESS*`, video: { url: output }}, {quoted: m});
-  });
-  
-  fs.unlinkSync(output);
-  fs.unlinkSync(media);
-  
-}
-break
-
-//*Note:* kalo kurang hd bisa di oprek² saturation dll nya
-
 case 'fanzai': {
 if (!q) return reply(`*Example*: ${prefix + command} siapa kamu`)
 let res = await thinkany(q)
