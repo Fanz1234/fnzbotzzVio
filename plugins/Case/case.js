@@ -338,27 +338,38 @@ case 'fnzaiimg4': {
 
 case 'hdvid' : {
   const mime = (q.msg || q).mimetype || '';
-  if (!mime) return m.reply(`*PERMINTAAN ERROR!! PESAN :\n> Kirim video dengan caption .hdvid`);
-  m.reply(mess.wait);
-  const media = await conn.downloadAndSaveMediaMessage(q);
-  const output = 'output.mp4'; 
+  if (!mime.startsWith('video')) return m.reply(`Kirim video dengan caption .hdvid`);
   
-  exec(`ffmpeg -i ${media} -vf "unsharp=3:3:1.0,eq=brightness=0.05:contrast=1.2:saturation=1.1,hqdn3d=1.5:1.5:6:6" -vcodec libx264 -profile:v high -level 4.1 -preset slow -crf 18 -x264-params ref=4 -acodec copy -movflags +faststart ${output}`, (error, stdout, stderr) => {
+  m.reply('Sedang memproses, sabar ya...');
+  const media = await conn.downloadAndSaveMediaMessage(q);
+  const output = 'output.mp4';
+
+  const ffmpegCommand = `ffmpeg -i ${media} -vf "unsharp=3:3:1.0,eq=brightness=0.05:contrast=1.2:saturation=1.1,hqdn3d=1.5:1.5:6:6" -vcodec libx264 -profile:v high -level 4.1 -preset slow -crf 18 -x264-params ref=4 -acodec copy -movflags +faststart ${output}`;
+
+  exec(ffmpegCommand, async (error, stdout, stderr) => {
     if (error) {
       console.error(`Error: ${error.message}`);
+      m.reply(`Terjadi kesalahan saat memproses video.`);
       return;
     }
+
     console.log(`stdout: ${stdout}`);
     console.error(`stderr: ${stderr}`);
 
-    conn.sendMessage(m.chat, { caption: `*SUCCESS*`, video: { url: output }}, {quoted: m});
+    // Kirim video hasil proses
+    try {
+      await conn.sendFile(m.chat, output, 'output.mp4', `Berhasil memproses video!`, m);
+    } catch (e) {
+      m.reply(`Gagal mengirim video yang telah diproses.`);
+    } finally {
+      // Hapus berkas setelah selesai
+      fs.unlinkSync(output);
+      fs.unlinkSync(media);
+    }
   });
-  
-  fs.unlinkSync(output);
-  fs.unlinkSync(media);
-  
 }
 break
+
 
 //*Note:* kalo kurang hd bisa di oprek² saturation dll nya
 
