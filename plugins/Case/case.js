@@ -334,7 +334,7 @@ case 'fnzaiimg4': {
   }
   break 
 
-case'fanzai':{
+case 'fanzai': {
 if (!q) return reply(`*Example*: ${prefix + command} siapa kamu`)
 let res = await thinkany(q)
 conn.sendMessage(m.chat, {
