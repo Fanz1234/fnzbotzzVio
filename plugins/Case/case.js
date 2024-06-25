@@ -28,7 +28,7 @@ import {randomNomor } from "../../lib/myfunc.js"
 
 
 let handler = (m) => m;
-handler.before = async function (m, { conn, q,isPremium, rule34Random, sendRandomRule34Image, command, setReply, isOwner,prefix,store }) {
+handler.before = async function (m, { conn, q,isPremium, command, setReply, isOwner,prefix,store }) {
   
   try{
   //Database 
@@ -332,53 +332,14 @@ case 'fnzaiimg4': {
   let imageBuffer = await axios.get(imageUrl, { responseType: 'arraybuffer' });
   conn.sendFile(m.chat, imageBuffer.data, 'image.jpg', 'Ini gambarnya', m);
   }
-  break
+  break https://api.rule34.xxx/index.php?page=dapi&s=post&q=index&json=1
   
-  case 'rule34': {
- async function rule34Random() {
- try {
- let response = await axios.get('https://api.rule34.xxx/index.php?page=dapi&s=post&q=index&json=1')
- let results = response.data
-
- if (!Array.isArray(results) || results.length === 0) {
- throw new Error('No images found')
- }
-
- let randomImage = results[Math.floor(Math.random() * results.length)]
- let imageUrl = randomImage.file_url
-
- if (!imageUrl) {
- throw new Error('Image URL not found')
- }
-
- return { status: 200, imageUrl }
- } catch (error) {
- console.error('Error:', error)
- return { status: 500, error: error.message }
- }
- }
-
- async function sendRandomRule34Image(m) {
- try { 
-
- let response = await rule34Random()
- if (response.status !== 200) {
- throw new Error(response.error)
- }
-
- let imageUrl = response.imageUrl
-
- conn.sendMessage(m.chat, { image: { url: imageUrl }, caption: 'Random Image from Rule34\n\n*Powered By Fanz' }, { quoted: m })
- } catch (e) {
- m.reply(e.message)
- }
- }
-
- sendRandomRule34Image(m)
- }
- break
- 
- _Thinkany Feature_
+case 'bokep':{
+let res = loli.getRandom()
+const loli = {"https://api.rule34.xxx/index.php?page=dapi&s=post&q=index&json=1"}
+    conn.sendFile(m.chat, res.url, false, 'Nehhh Kak ><', m, false)
+}
+break
 
 case'thinkany':{
 if (!q) return reply(`*Example*: ${prefix + command} siapa kamu`)
