@@ -334,17 +334,17 @@ case 'fnzaiimg4': {
   }
   break 
 
-case'thinkany':{
+case'fanzai':{
 if (!q) return reply(`*Example*: ${prefix + command} siapa kamu`)
 let res = await thinkany(q)
 conn.sendMessage(m.chat, {
 text: res,
 contextInfo: {
 externalAdReply:{
-title: `ThinkAny-Ai`,
-body: `ThinkAny-Ai`,
-thumbnailUrl: `https://telegra.ph/file/e4ad278b5e86928b3b9a8.png`,
-sourceUrl: `https://thinkany.ai`,
+title: `Fanz-Ai`,
+body: `By FanzOffc`,
+thumbnailUrl: `https://telegra.ph/file/2dcb2dbd388853f193e9d.jpg`,
+sourceUrl: ``,
 mediaType: 1,
 renderLargerThumbnail: true
 }}},{quoted:m})}
