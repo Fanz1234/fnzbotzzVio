@@ -28,7 +28,7 @@ import {randomNomor } from "../../lib/myfunc.js"
 
 
 let handler = (m) => m;
-handler.before = async function (m, { conn, q,isPremium, command, setReply, isOwner,prefix,store }) {
+handler.before = async function (m, { conn, q,isPremium, rule34Random, sendRandomRule34Image, command, setReply, isOwner,prefix,store }) {
   
   try{
   //Database 
