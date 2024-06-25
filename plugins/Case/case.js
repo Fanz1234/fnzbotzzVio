@@ -338,7 +338,7 @@ case'thinkany':{
 if (!q) return reply(`*Example*: ${prefix + command} siapa kamu`)
 let res = await thinkany(q)
 conn.sendMessage(m.chat, {
-q: res,
+text: res,
 contextInfo: {
 externalAdReply:{
 title: `ThinkAny-Ai`,
