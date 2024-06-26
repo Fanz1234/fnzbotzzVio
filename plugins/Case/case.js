@@ -368,11 +368,11 @@ renderLargerThumbnail: true
 break
 
 case 'hdvid': {
-  if (!q) return reply(`*PERMINTAAN ERROR!! PESAN :\n> Kirim video dengan caption .hdvid`);
   const quoted = m.quoted ? m.quoted : m
-  const mime = (q.msg || q).mimetype || '';
-  setReply(mess.wait);
-  const media = await conn.downloadAndSaveMediaMessage(q);
+  const mime = (q.msg || q).mimetype || ''
+  if (/video/.test(mime)) {
+  await reply('sek proses, please wait...');
+  const media = await conn.downloadAndSaveMediaMessage(quoted);
   const output = 'output.mp4'; 
   
   exec(`ffmpeg -i ${media} -vf "unsharp=3:3:1.0,eq=brightness=0.05:contrast=1.2:saturation=1.1,hqdn3d=1.5:1.5:6:6" -vcodec libx264 -profile:v high -level 4.1 -preset slow -crf 18 -x264-params ref=4 -acodec copy -movflags +faststart ${output}`, (error, stdout, stderr) => {
@@ -389,6 +389,8 @@ case 'hdvid': {
   fs.unlinkSync(output);
   fs.unlinkSync(media);
   
+} else return reply('Reply Videonya Wir.') 
+
 }
 break
 
