@@ -23,6 +23,7 @@ import _ban from "../../lib/banned.js"
 import { TelegraPh } from "../../lib/uploader.js"
 import { fetchJson } from "../../lib/myfunc.js"
 import { thinkany } from "../../lib/thinkany.js"
+import { postData } from "../../lib/aoyo.js"
 
 import {randomNomor } from "../../lib/myfunc.js"
 
@@ -335,13 +336,29 @@ case 'fnzaiimg4': {
   break
 
 case 'fanzai': {
-if (!q) return reply(`*Example*: ${prefix + command} siapa kamu`)
+if (!q) return reply(`*Example*: ${prefix + command} apa itu galaxy`)
 let res = await thinkany(q)
 conn.sendMessage(m.chat, {
 text: res,
 contextInfo: {
 externalAdReply:{
 title: `Fanz-Ai`,
+body: `By FanzOffc`,
+thumbnailUrl: `https://telegra.ph/file/2dcb2dbd388853f193e9d.jpg`,
+sourceUrl: ``,
+mediaType: 1,
+renderLargerThumbnail: true
+}}},{quoted:m})}
+break
+
+case 'fanzai2': {
+if (!q) return reply(`*Example*: ${prefix + command} siapa kamu`)
+let res = await postData(q)
+conn.sendMessage(m.chat, {
+text: res,
+contextInfo: {
+externalAdReply:{
+title: `Fanz-Ai2`,
 body: `By FanzOffc`,
 thumbnailUrl: `https://telegra.ph/file/2dcb2dbd388853f193e9d.jpg`,
 sourceUrl: ``,
