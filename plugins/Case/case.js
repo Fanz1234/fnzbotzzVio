@@ -337,7 +337,7 @@ case 'fnzaiimg4': {
 
 case 'fanzai': {
 if (!q) return reply(`*Example*: ${prefix + command} apa itu galaxy`)
-let res = await thinkany(q)
+let res = await postData(q)
 conn.sendMessage(m.chat, {
 text: res,
 contextInfo: {
@@ -353,7 +353,7 @@ break
 
 case 'fanzai2': {
 if (!q) return reply(`*Example*: ${prefix + command} siapa kamu`)
-let res = await postData(q)
+let res = await thinkany(q)
 conn.sendMessage(m.chat, {
 text: res,
 contextInfo: {
