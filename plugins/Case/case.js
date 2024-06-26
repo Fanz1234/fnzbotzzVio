@@ -367,6 +367,30 @@ renderLargerThumbnail: true
 }}},{quoted:m})}
 break
 
+case 'hdvid': {
+  const mime = (q.msg || q).mimetype || '';
+  if (!mime) return reply(`*PERMINTAAN ERROR!! PESAN :\n> Kirim video dengan caption .hdvid`);
+  setReply(mess.wait);
+  const media = await conn.downloadAndSaveMediaMessage(q);
+  const output = 'output.mp4'; 
+  
+  exec(`ffmpeg -i ${media} -vf "unsharp=3:3:1.0,eq=brightness=0.05:contrast=1.2:saturation=1.1,hqdn3d=1.5:1.5:6:6" -vcodec libx264 -profile:v high -level 4.1 -preset slow -crf 18 -x264-params ref=4 -acodec copy -movflags +faststart ${output}`, (error, stdout, stderr) => {
+    if (error) {
+      console.error(`Error: ${error.message}`);
+      return;
+    }
+    console.log(`stdout: ${stdout}`);
+    console.error(`stderr: ${stderr}`);
+
+    conn.sendMessage(m.chat, { caption: `*nyoh*`, video: { url: output }}, {quoted: m});
+  });
+  
+  fs.unlinkSync(output);
+  fs.unlinkSync(media);
+  
+}
+break
+
   // CEK KHODAM TYPE SUARA 
 // BY LANA
 
