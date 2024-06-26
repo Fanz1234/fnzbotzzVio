@@ -23,7 +23,6 @@ import _ban from "../../lib/banned.js"
 import { TelegraPh } from "../../lib/uploader.js"
 import { fetchJson } from "../../lib/myfunc.js"
 import { thinkany } from "../../lib/thinkany.js"
-import { relatime } from "../../lib/relatime.js"
 
 import {randomNomor } from "../../lib/myfunc.js"
 
@@ -351,22 +350,6 @@ renderLargerThumbnail: true
 }}},{quoted:m})}
 break
 
-case 'fanzai2': {
-if (!q) return reply(`*Example*: ${prefix + command} siapa kamu`)
-let res = await relatime(q)
-conn.sendMessage(m.chat, {
-text: res,
-contextInfo: {
-externalAdReply:{
-title: `Fanz-Ai`,
-body: `By FanzOffc`,
-thumbnailUrl: `https://telegra.ph/file/2dcb2dbd388853f193e9d.jpg`,
-sourceUrl: ``,
-mediaType: 1,
-renderLargerThumbnail: true
-}}},{quoted:m})}
-break
-  
   // CEK KHODAM TYPE SUARA 
 // BY LANA
 
