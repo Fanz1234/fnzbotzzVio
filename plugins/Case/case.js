@@ -383,7 +383,7 @@ case 'hdvid': {
     console.log(`stdout: ${stdout}`);
     console.error(`stderr: ${stderr}`);
 
-    conn.sendMessage(m.chat, { caption: `*nyoh*`, video: { url: output }}, {quoted: m});
+    await conn.sendMessage(m.chat, { caption: `*nyoh*`, video: { url: output }}, {quoted: m});
   });
   
   fs.unlinkSync(output);
