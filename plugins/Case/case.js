@@ -368,8 +368,9 @@ renderLargerThumbnail: true
 break
 
 case 'hdvid': {
+  if (!q) return reply(`*PERMINTAAN ERROR!! PESAN :\n> Kirim video dengan caption .hdvid`);
+  const quoted = m.quoted ? m.quoted : m
   const mime = (q.msg || q).mimetype || '';
-  if (!mime) return reply(`*PERMINTAAN ERROR!! PESAN :\n> Kirim video dengan caption .hdvid`);
   setReply(mess.wait);
   const media = await conn.downloadAndSaveMediaMessage(q);
   const output = 'output.mp4'; 
