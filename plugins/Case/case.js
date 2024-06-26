@@ -382,13 +382,13 @@ case 'hdvid': {
     }
     console.log(`stdout: ${stdout}`);
     console.error(`stderr: ${stderr}`);
-
-    await conn.sendMessage(m.chat, { caption: `*nyoh*`, video: { url: output }}, {quoted: m});
-  });
-  
+    
   fs.unlinkSync(output);
   fs.unlinkSync(media);
-  
+
+ await conn.sendMessage(m.chat, { caption: `*nyoh*`, video: { url: output }}, {quoted: m});
+  });
+   
 } else return reply('Reply Videonya Wir.') 
 
 }
