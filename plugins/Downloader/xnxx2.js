@@ -2,6 +2,18 @@ import axios from 'axios';
 import fs from 'fs-extra';
 import fg from 'api-dylux';
 
+const axiosAdGuard = axios.create({
+    baseURL: 'https://dns.adguard.com/dns-query',
+    headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+    },
+    params: {
+        dns: 'dns.adguard.com',
+        ct: 'application/dns-json'
+    }
+});
+
 let handler = async (m, { conn, args, text, usedPrefix, command }) => {
     let chat = global.db.data.chats[m.chat];
     let userAge = global.db.data.users[m.sender]?.age || 0; // Handle undefined age
@@ -21,7 +33,24 @@ let handler = async (m, { conn, args, text, usedPrefix, command }) => {
                 // Add more headers if necessary
             };
 
-            let response = await axios.get(text, { headers });
+            // Resolve DNS using AdGuard
+            let dnsResponse = await axiosAdGuard.get('', {
+                params: {
+                    name: new URL(text).hostname,
+                    type: 'A'
+                }
+            });
+            let ipAddress = dnsResponse.data.Answer[0].data;
+
+            // Make HTTP request using resolved IP address
+            let response = await axios.get(text, {
+                headers: {
+                    ...headers,
+                    'Host': new URL(text).hostname
+                },
+                // Use resolved IP address directly
+                baseURL: `http://${ipAddress}`
+            });
             let data = response.data;
 
             // Parse the video information
@@ -35,7 +64,9 @@ let handler = async (m, { conn, args, text, usedPrefix, command }) => {
             // Download and send the video file
             let downloadResponse = await axios.get(result.videoUrl, {
                 responseType: 'arraybuffer',
-                headers: headers
+                headers: headers,
+                // Use resolved IP address directly
+                baseURL: `http://${ipAddress}`
             });
 
             // Save the video file temporarily
@@ -70,8 +101,8 @@ let handler = async (m, { conn, args, text, usedPrefix, command }) => {
     }
 }
 
-handler.help = ["xnxx2"].map(v => v + " <query/url>");
+handler.help = ["xnxx"].map(v => v + " <query/url>");
 handler.tags = ["nsfw"];
-handler.command = ["xnxxsearch2", "xnxx2"];
+handler.command = ["xnxxsearch", "xnxx"];
 
 export default handler;
