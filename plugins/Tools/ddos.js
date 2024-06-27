@@ -1,3 +1,5 @@
+const fs = require('fs');
+const Jimp = require('jimp');
 import { ddosin } from "../../lib/ddos.js"
 
 let handler = async (m, { conn, command, usedPrefix, args }) => {
