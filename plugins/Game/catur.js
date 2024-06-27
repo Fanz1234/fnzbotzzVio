@@ -1,7 +1,7 @@
 const fs = require('fs');
 const Jimp = require('jimp');
 
-const handler = async (m, { conn, args }) => {
+const handler = async (m, { conn, args, chess }) => {
   conn.chess = conn.chess ? conn.chess : {};
   const key = m.chat;
   let chessData = conn.chess?.[key] || {
