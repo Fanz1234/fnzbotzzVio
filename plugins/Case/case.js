@@ -368,7 +368,7 @@ renderLargerThumbnail: true
 break
 
 case 'pan': {
-  if (!text) return reply(`Hai! Aku Pan! Senang bertemu denganmu~ Apa yang ingin kamu ceritakan atau tanyakan hari ini? Aku siap mendengarkan dan membantu dengan apapun yang kamu butuhkan! 😉`);
+  if (!q) return reply(`Hai! Aku Pan! Senang bertemu denganmu~ Apa yang ingin kamu ceritakan atau tanyakan hari ini? Aku siap mendengarkan dan membantu dengan apapun yang kamu butuhkan! 😉`);
 
   function checkText(text) {
     const lowerCaseText = text.toLowerCase();
