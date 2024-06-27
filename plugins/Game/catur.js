@@ -1,6 +1,8 @@
 const fs = require('fs');
 const Jimp = require('jimp');
 
+import { Chess } from 'chess.js';
+
 const handler = async (m, { conn, args }) => {
   conn.chess = conn.chess ? conn.chess : {};
   const key = m.chat;
@@ -11,7 +13,7 @@ const handler = async (m, { conn, args }) => {
     hasJoined: [],
   };
   conn.chess[key] = chessData;
-  const { gameData, chess, fen, currentTurn, hasJoined } = chessData;
+  const { gameData, fen, currentTurn, hasJoined } = chessData;
   const feature = args[0]?.toLowerCase();
   if (feature === 'delete') {
     delete conn.chess[key];
@@ -118,7 +120,9 @@ const handler = async (m, { conn, args }) => {
   }
 };
 
-
-handler.command = ["chess", "skak", "catur"];
-
+handler.help = ["chess"];
+handler.tags = ["game"];
+handler.command = /^(chess)$/i;
+handler.register = true;
+handler.group = true;
 export default handler;
