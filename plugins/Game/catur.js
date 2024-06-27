@@ -1,7 +1,7 @@
 const fs = require('fs');
 const Jimp = require('jimp');
 
-const handler = async (m, { conn, args, chess }) => {
+const handler = async (m, { conn, args }) => {
   conn.chess = conn.chess ? conn.chess : {};
   const key = m.chat;
   let chessData = conn.chess?.[key] || {
@@ -11,7 +11,7 @@ const handler = async (m, { conn, args, chess }) => {
     hasJoined: [],
   };
   conn.chess[key] = chessData;
-  const { gameData, fen, currentTurn, hasJoined } = chessData;
+  const { gameData, chess, fen, currentTurn, hasJoined } = chessData;
   const feature = args[0]?.toLowerCase();
   if (feature === 'delete') {
     delete conn.chess[key];
