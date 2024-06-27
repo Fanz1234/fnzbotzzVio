@@ -3,7 +3,7 @@ import fg from 'api-dylux'
 let handler = async (m, { conn, args, text, usedPrefix, command }) => {
 
  let chat = global.db.data.chats[m.chat]
-  if (!chat.nsfw) throw `🚫 Grup ini tidak mengizinkan konten nsfw \n\nUntuk mengaktifkannya, ketik \n*${usedPrefix}enable* nsfw`
+  //if (!chat.nsfw) throw `🚫 Grup ini tidak mengizinkan konten nsfw \n\nUntuk mengaktifkannya, ketik \n*${usedPrefix}enable* nsfw`
   let user = global.db.data.users[m.sender].age
   if (user < 17) throw `❎ Kamu belum cukup umur! Silakan kembali ketika kamu berusia di atas 18 tahun`
   if (!text) throw `✳️ Untuk mencari\n📌 Gunakan: *${usedPrefix + command} <pencarian>*\n\nUntuk mengunduh dari URL:\n📌 Gunakan: *${usedPrefix + command} <url>*`
@@ -33,8 +33,8 @@ let handler = async (m, { conn, args, text, usedPrefix, command }) => {
                }
     }
 }
-handler.help = ['xnxx'].map(v => v + ' <query/url>')
-handler.tags = ['nsfw']
-handler.command = ['xnxxsearch', 'xnxx'] 
+handler.help = ["xnxx"].map(v => v + " <query/url>")
+handler.tags = ["nsfw"]
+handler.command = ["xnxxsearch", "xnxx"] 
 
 export default handler;
