@@ -24,7 +24,6 @@ import { TelegraPh } from "../../lib/uploader.js"
 import { fetchJson } from "../../lib/myfunc.js"
 import { thinkany } from "../../lib/thinkany.js"
 import { postData } from "../../lib/aoyo.js"
-import { getGroupAdmins } from "../../lib/myfunc.js"
 
 import {randomNomor } from "../../lib/myfunc.js"
 
@@ -56,8 +55,13 @@ handler.before = async function (m, { conn, q,isPremium, command, setReply, isOw
   const timeWib = moment().tz('Asia/Jakarta').format('HH:mm:ss')
   const user = global.db.data.users[m.sender]
 
-
-
+//Security / Keamanan
+const groupMetadata = isGroup ? await 
+conn.groupMetadata(m.chat).catch(e => {}) : ''
+const participants = isGroup ? await groupMetadata.participants : ''
+const isBotGroupAdmins = isGroup ? m.isBotAdmin : false
+const isGroupOwner = isGroup ? m.isRAdmin : false
+const isGroupAdmins = isGroup ? m.isAdmin : false
 
 
 
