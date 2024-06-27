@@ -1,4 +1,5 @@
-import { Chess } from 'chess.js';
+const fs = require('fs');
+const Jimp = require('jimp');
 
 const handler = async (m, { conn, args }) => {
   conn.chess = conn.chess ? conn.chess : {};
@@ -117,9 +118,7 @@ const handler = async (m, { conn, args }) => {
   }
 };
 
-handler.help = ["chess"];
-handler.tags = ["game"];
+
 handler.command = ["chess", "skak", "catur"];
-handler.register = true;
-handler.group = true;
+
 export default handler;
