@@ -29,7 +29,7 @@ import {randomNomor } from "../../lib/myfunc.js"
 
 
 let handler = (m) => m;
-handler.before = async function (m, { conn, q,isPremium, text, command, setReply, isOwner,prefix,store }) {
+handler.before = async function (m, { conn, q,isPremium, command, setReply, isOwner,prefix,store }) {
   
   try{
   //Database 
@@ -45,7 +45,7 @@ handler.before = async function (m, { conn, q,isPremium, text, command, setReply
   const setTime = db.data.others["setTime"];
   const spammer = [];
 
-  const { type,args, reply,sender,ucapanWaktu,from,botNumber,senderNumber,groupName,groupId,groupMembers,groupDesc,groupOwner,pushname,itsMe,isGroup,mentionByTag,mentionByReply,users,budy,content,body } = m
+  const { type,args,text,reply,sender,ucapanWaktu,from,botNumber,senderNumber,groupName,groupId,groupMembers,groupDesc,groupOwner,pushname,itsMe,isGroup,mentionByTag,mentionByReply,users,budy,content,body } = m
   var Ownerin = `${nomerOwner}@s.whatsapp.net`
 
 
