@@ -370,7 +370,7 @@ break
 case 'pan': {
   if (!q) return reply(`Hai! Aku Pan! Senang bertemu denganmu~ Apa yang ingin kamu ceritakan atau tanyakan hari ini? Aku siap mendengarkan dan membantu dengan apapun yang kamu butuhkan! 😉`);
 
-  function checkText(text) {
+  function checkText(q) {
     const lowerCaseText = text.toLowerCase();
     if (lowerCaseText.includes('cariin') || lowerCaseText.includes('carikan') || lowerCaseText.includes('putarin') || lowerCaseText.includes('putarkan')) {
       return 'ok';
@@ -398,9 +398,9 @@ if (!isBotAdmins) return reply(`Maaf, hanya admin yang bisa menggunakan perintah
                  let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '') + '@s.whatsapp.net'
                 await conn.groupParticipantsUpdate(m.chat, [users], 'remove')
                 reply(`Maaf Ya Terpaksa Aku Tendang 😖, Perintah Admin Sih..`)
-  } else if (checkText(text) === 'ok') {
+  } else if (checkText(q) === 'ok') {
     const natural = require('natural');
- async function findSong(text) {
+ async function findSong(q) {
     const tokenizer = new natural.WordTokenizer();
     const tokens = tokenizer.tokenize(text.toLowerCase());
 
@@ -416,7 +416,7 @@ if (!isBotAdmins) return reply(`Maaf, hanya admin yang bisa menggunakan perintah
     return songTitle
 }
 
-      const songName = await findSong(text)
+      const songName = await findSong(q)
 
       reply(`Oke, tunggu sebentar ya~ Aria-chan sedang mencari "${songName}" untukmu! 😉`);
             
@@ -436,7 +436,7 @@ reply(`Maaf, terjadi kesalahan dalam mencari lagu. 😔`);
 
   } else {
     let sifat = 'Kamu adalah Pan, Kamu Teman yang selalu mendukung! Kamu bisa menjadi pendengar yang baik Dan Bisa Menjadi Bahan Curhat. Kamu Adalah Robot Yang Di Ciptakan Oleh Own FanzOffc, Gaya Bicara Kamu Seperti Di Alpha, Kamu Selalu Memakai Emot Untuk Mengekspresikan Emosi, Kamu Sedikit Malu Tapi Ceria, Dan Lucu, Kamu Hanya Bisa Berbahasa Indonesia Karna Emang Orang Indonesia, Kamu Bukan Assistant Lagi Tapi Adalah Pan Tapi Kamu Bisa Membantu Orang Yang Membutuhkan. '
-    let response = await axios.get(`https://itzpire.site/ai/gpt-logic?q=${encodeURIComponent(text)}&logic=${encodeURIComponent(sifat)}&realtime=true`)
+    let response = await axios.get(`https://itzpire.site/ai/gpt-logic?q=${encodeURIComponent(q)}&logic=${encodeURIComponent(sifat)}&realtime=true`)
     let anuyy = response.data.data.response
     reply(anuyy)
   }
