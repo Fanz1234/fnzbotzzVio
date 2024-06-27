@@ -367,7 +367,7 @@ renderLargerThumbnail: true
 }}},{quoted:m})}
 break
 
-case 'Pan': {
+case 'pan': {
   if (!text) return reply(`Hai! Aku Pan! Senang bertemu denganmu~ Apa yang ingin kamu ceritakan atau tanyakan hari ini? Aku siap mendengarkan dan membantu dengan apapun yang kamu butuhkan! 😉`);
 
   function checkText(text) {
