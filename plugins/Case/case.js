@@ -402,7 +402,7 @@ if (!isBotGroupAdmins) return reply(`Maaf, hanya admin yang bisa menggunakan per
  
                  let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '') + '@s.whatsapp.net'
                 await conn.groupParticipantsUpdate(m.chat, [users], 'remove')
-                reply(`Pergi Sono Lu Kontol!!! , Perintah Admin Sih..`)
+                reply(`Pergi Sono Lu Kontol!!!`)
   } else if (checkText(q) === 'ok') {
     const natural = require('natural');
  async function findSong(q) {
