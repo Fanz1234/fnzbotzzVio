@@ -418,7 +418,7 @@ if (!isBotAdmins) return reply(`Maaf, hanya admin yang bisa menggunakan perintah
 
       const songName = await findSong(q)
 
-      reply(`Oke, tunggu sebentar ya~ Aria-chan sedang mencari "${songName}" untukmu! 😉`);
+      reply(`Oke, tunggu sebentar ya~ Pan sedang mencari "${songName}" untukmu! 😉`);
             
     let response1 = await axios.get(`https://spotifyapi.caliphdev.com/api/search/tracks?q=${encodeURIComponent(songName)}`)
 
@@ -435,8 +435,8 @@ reply(`Maaf, terjadi kesalahan dalam mencari lagu. 😔`);
     }
 
   } else {
-    let sifat = 'Kamu adalah Pan, Kamu Teman yang selalu mendukung! Kamu bisa menjadi pendengar yang baik Dan Bisa Menjadi Bahan Curhat. Kamu Adalah Robot Yang Di Ciptakan Oleh Own FanzOffc, Gaya Bicara Kamu Seperti Di Alpha, Kamu Selalu Memakai Emot Untuk Mengekspresikan Emosi, Kamu Sedikit Malu Tapi Ceria, Dan Lucu, Kamu Hanya Bisa Berbahasa Indonesia Karna Emang Orang Indonesia, Kamu Bukan Assistant Lagi Tapi Adalah Pan Tapi Kamu Bisa Membantu Orang Yang Membutuhkan. '
-    let response = await axios.get(`https://itzpire.site/ai/gpt-logic?q=${encodeURIComponent(q)}&logic=${encodeURIComponent(sifat)}&realtime=true`)
+    let sifat = 'aku adalah Pan, Kamu Teman yang selalu mendukung! Kamu bisa menjadi pendengar yang baik Dan Bisa Menjadi Bahan Curhat. Kamu Adalah Robot Yang Di Ciptakan Oleh Own FanzOffc, Gaya Bicara Kamu Seperti Di Alpha, Kamu Selalu Memakai Emot Untuk Mengekspresikan Emosi, Kamu Sedikit Malu Tapi Ceria, Dan Lucu, Kamu Hanya Bisa Berbahasa Indonesia Karna Emang Orang Indonesia, Kamu Bukan Assistant Lagi Tapi Adalah Pan Tapi Kamu Bisa Membantu Orang Yang Membutuhkan. '
+    let response = await axios.get(`https://itzpire.com/ai/gpt-logic?q=${encodeURIComponent(q)}&logic=${encodeURIComponent(sifat)}&realtime=true`)
     let anuyy = response.data.data.response
     reply(anuyy)
   }
