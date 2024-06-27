@@ -384,19 +384,19 @@ case 'pan': {
     }
   }
 
-  if (text.includes('group') && text.includes('tutup')) {
+  if (text.includes('tutup') && text.includes('gc')) {
     if (!isBotGroupAdmins) return reply(`Maaf, hanya admin yang bisa menggunakan perintah ini. 😔`);
         if (!isGroupAdmins && !isOwner) return reply(`Maaf, hanya admin yang bisa menggunakan perintah ini. 😔`);
     
     await conn.groupSettingUpdate(m.chat, 'announcement')
     reply(`Oke, grup telah ditutup. Semoga lebih teratur ya~ 😉`);
-  } else if (text.includes('group') && text.includes('buka')) {
+  } else if (text.includes('buka') && text.includes('gc')) {
 if (!isBotGroupAdmins) return reply(`Maaf, hanya admin yang bisa menggunakan perintah ini. 😔`);
         if (!isGroupAdmins && !isOwner) return reply(`Maaf, hanya admin yang bisa menggunakan perintah ini. 😔`);
     
     await conn.groupSettingUpdate(m.chat, 'not_announcement')
     reply(`Oke, grup telah dibuka. Ayo kita beraktivitas bersama-sama! 😉`);
-  } else if (text.includes('kick') || text.includes('kik')) {
+  } else if (text.includes('kick') || text.includes('kik') || text.includes('suruh pergi')) {
   if (!isBotGroupAdmins) return reply(`Maaf, hanya admin yang bisa menggunakan perintah ini. 😔`);
         if (!isGroupAdmins && !isOwner) return reply(`Maaf, hanya admin yang bisa menggunakan perintah ini. 😔`);
  
