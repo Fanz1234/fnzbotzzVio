@@ -556,6 +556,10 @@ if (plugin.game && m.isGroup && !global.db.data.chats[m.chat].game) {
 fail('game')
 break
 }
+if (plugin.nsfw && m.isGroup && !global.db.data.chats[m.chat].nsfw) {
+fail('nsfw')
+break
+}
 
 if (user && plugin.level > _user.level) {
 conn.reply(m.chat, `[💬] Mohon maaf level yang di perlukan untuk menggunakan fitur ini ${plugin.level}\n*Level mu:* ${_user.level} 📊`, m, {
