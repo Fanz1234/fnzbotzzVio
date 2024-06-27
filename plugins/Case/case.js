@@ -24,6 +24,7 @@ import { TelegraPh } from "../../lib/uploader.js"
 import { fetchJson } from "../../lib/myfunc.js"
 import { thinkany } from "../../lib/thinkany.js"
 import { postData } from "../../lib/aoyo.js"
+import { getGroupAdmins } from "../../lib/myfunc.js"
 
 import {randomNomor } from "../../lib/myfunc.js"
 
