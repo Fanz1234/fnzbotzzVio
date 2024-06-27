@@ -21,15 +21,13 @@ import _blockcmd from "../../lib/blockcmd.js"
 import _spam from '../../lib/antispam.js'
 import _ban from "../../lib/banned.js"
 import { TelegraPh } from "../../lib/uploader.js"
-import { fetchJson } from "../../lib/myfunc.js"
+import { formatp,parseMention,getRandom,getRandomFile,generateProfilePicture, getCase,runtime,FileSize,h2k, makeid,kyun,randomNomor,jsonformat, isUrl, fetchJson,pickRandom,getGroupAdmins, sleep, getBuffer, reSize } from "../../lib/myfunc.js"
 import { thinkany } from "../../lib/thinkany.js"
 import { postData } from "../../lib/aoyo.js"
 
-import {randomNomor } from "../../lib/myfunc.js"
-
 
 let handler = (m) => m;
-handler.before = async function (m, { conn, q,isPremium, command, isBotAdmins, isAdmins, setReply, isOwner,prefix,store }) {
+handler.before = async function (m, { conn, q,isPremium, command, setReply, isOwner,prefix,store }) {
   
   try{
   //Database 
@@ -380,24 +378,24 @@ case 'pan': {
   }
 
   if (text.includes('group') && text.includes('tutup')) {
-    if (!isBotAdmins) return reply(`Maaf, hanya admin yang bisa menggunakan perintah ini. 😔`);
-        if (!isAdmins) return reply(`Maaf, hanya admin yang bisa menggunakan perintah ini. 😔`);
+    if (!isBotGroupAdmins) return reply(`Maaf, hanya admin yang bisa menggunakan perintah ini. 😔`);
+        if (!isGroupAdmins && !isOwner) return reply(`Maaf, hanya admin yang bisa menggunakan perintah ini. 😔`);
     
     await conn.groupSettingUpdate(m.chat, 'announcement')
     reply(`Oke, grup telah ditutup. Semoga lebih teratur ya~ 😉`);
   } else if (text.includes('group') && text.includes('buka')) {
-if (!isBotAdmins) return reply(`Maaf, hanya admin yang bisa menggunakan perintah ini. 😔`);
-        if (!isAdmins) return reply(`Maaf, hanya admin yang bisa menggunakan perintah ini. 😔`);
+if (!isBotGroupAdmins) return reply(`Maaf, hanya admin yang bisa menggunakan perintah ini. 😔`);
+        if (!isGroupAdmins && !isOwner) return reply(`Maaf, hanya admin yang bisa menggunakan perintah ini. 😔`);
     
     await conn.groupSettingUpdate(m.chat, 'not_announcement')
     reply(`Oke, grup telah dibuka. Ayo kita beraktivitas bersama-sama! 😉`);
   } else if (text.includes('kick') || text.includes('kik')) {
-  if (!isBotAdmins) return reply(`Maaf, hanya admin yang bisa menggunakan perintah ini. 😔`);
-        if (!isAdmins) return reply(`Maaf, hanya admin yang bisa menggunakan perintah ini. 😔`);
+  if (!isBotGroupAdmins) return reply(`Maaf, hanya admin yang bisa menggunakan perintah ini. 😔`);
+        if (!isGroupAdmins && !isOwner) return reply(`Maaf, hanya admin yang bisa menggunakan perintah ini. 😔`);
  
                  let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '') + '@s.whatsapp.net'
                 await conn.groupParticipantsUpdate(m.chat, [users], 'remove')
-                reply(`Maaf Ya Terpaksa Aku Tendang 😖, Perintah Admin Sih..`)
+                reply(`Pergi Sono Lu Kontol!!! , Perintah Admin Sih..`)
   } else if (checkText(q) === 'ok') {
     const natural = require('natural');
  async function findSong(q) {
