@@ -21,9 +21,11 @@ import _blockcmd from "../../lib/blockcmd.js"
 import _spam from '../../lib/antispam.js'
 import _ban from "../../lib/banned.js"
 import { TelegraPh } from "../../lib/uploader.js"
-import { parseMention,getRandom,getRandomFile,generateProfilePicture, getCase,runtime,FileSize,h2k, makeid,kyun,randomNomor,jsonformat, isUrl, fetchJson,pickRandom,getGroupAdmins, sleep, getBuffer, reSize } from "../../lib/myfunc.js"
+import { fetchJson } from "../../lib/myfunc.js"
 import { thinkany } from "../../lib/thinkany.js"
 import { postData } from "../../lib/aoyo.js"
+
+import {randomNomor } from "../../lib/myfunc.js"
 
 
 let handler = (m) => m;
