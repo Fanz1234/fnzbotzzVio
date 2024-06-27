@@ -367,6 +367,82 @@ renderLargerThumbnail: true
 }}},{quoted:m})}
 break
 
+case 'Pan': {
+  if (!text) return reply(`Hai! Aku Pan! Senang bertemu denganmu~ Apa yang ingin kamu ceritakan atau tanyakan hari ini? Aku siap mendengarkan dan membantu dengan apapun yang kamu butuhkan! 😉`);
+
+  function checkText(text) {
+    const lowerCaseText = text.toLowerCase();
+    if (lowerCaseText.includes('cariin') || lowerCaseText.includes('carikan') || lowerCaseText.includes('putarin') || lowerCaseText.includes('putarkan')) {
+      return 'ok';
+    } else {
+      return 'no';
+    }
+  }
+
+  if (text.includes('group') && text.includes('tutup')) {
+    if (!isBotAdmins) return reply(`Maaf, hanya admin yang bisa menggunakan perintah ini. 😔`);
+        if (!isAdmins) return reply(`Maaf, hanya admin yang bisa menggunakan perintah ini. 😔`);
+    
+    await conn.groupSettingUpdate(m.chat, 'announcement')
+    reply(`Oke, grup telah ditutup. Semoga lebih teratur ya~ 😉`);
+  } else if (text.includes('group') && text.includes('buka')) {
+if (!isBotAdmins) return reply(`Maaf, hanya admin yang bisa menggunakan perintah ini. 😔`);
+        if (!isAdmins) return reply(`Maaf, hanya admin yang bisa menggunakan perintah ini. 😔`);
+    
+    await conn.groupSettingUpdate(m.chat, 'not_announcement')
+    reply(`Oke, grup telah dibuka. Ayo kita beraktivitas bersama-sama! 😉`);
+  } else if (text.includes('kick') || text.includes('kik')) {
+  if (!isBotAdmins) return reply(`Maaf, hanya admin yang bisa menggunakan perintah ini. 😔`);
+        if (!isAdmins) return reply(`Maaf, hanya admin yang bisa menggunakan perintah ini. 😔`);
+ 
+                 let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '') + '@s.whatsapp.net'
+                await conn.groupParticipantsUpdate(m.chat, [users], 'remove')
+                reply(`Maaf Ya Terpaksa Aku Tendang 😖, Perintah Admin Sih..`)
+  } else if (checkText(text) === 'ok') {
+    const natural = require('natural');
+ async function findSong(text) {
+    const tokenizer = new natural.WordTokenizer();
+    const tokens = tokenizer.tokenize(text.toLowerCase());
+
+    const keywords = ['putar', 'putarkan', 'putarlagu', 'lagu', 'cariin', 'carikan', 'mainkan', 'mainkanlagu', 'play', 'playmusic', 'playasong'];
+    const songKeywords = tokens.filter(token => keywords.includes(token));
+
+    if (songKeywords.length === 0) {
+        return "Maaf, tidak dapat menemukan permintaan lagu dalam teks tersebut.";
+    }
+
+    let songTitle = tokens.slice(tokens.indexOf(songKeywords[0]) + 1).join(' ');
+
+    return songTitle
+}
+
+      const songName = await findSong(text)
+
+      reply(`Oke, tunggu sebentar ya~ Aria-chan sedang mencari "${songName}" untukmu! 😉`);
+            
+    let response1 = await axios.get(`https://spotifyapi.caliphdev.com/api/search/tracks?q=${encodeURIComponent(songName)}`)
+
+    let tracks = response1.data
+
+    try {
+
+   conn.sendMessage(m.chat, { audio: { url: `https://spotifyapi.caliphdev.com/api/download/track?url=${tracks[0].url}` }, mimetype: 'audio/mpeg' }, { quoted: m })
+reply(`Berikut adalah lagu yang kamu pilih: ${tracks[0].title} - ${tracks[0].artist}`)
+
+    } catch (e) {
+      console.error(e);
+reply(`Maaf, terjadi kesalahan dalam mencari lagu. 😔`);
+    }
+
+  } else {
+    let sifat = 'Kamu adalah Pan, Kamu Teman yang selalu mendukung! Kamu bisa menjadi pendengar yang baik Dan Bisa Menjadi Bahan Curhat. Kamu Adalah Robot Yang Di Ciptakan Oleh Own FanzOffc, Gaya Bicara Kamu Seperti Di Alpha, Kamu Selalu Memakai Emot Untuk Mengekspresikan Emosi, Kamu Sedikit Malu Tapi Ceria, Dan Lucu, Kamu Hanya Bisa Berbahasa Indonesia Karna Emang Orang Indonesia, Kamu Bukan Assistant Lagi Tapi Adalah Pan Tapi Kamu Bisa Membantu Orang Yang Membutuhkan. '
+    let response = await axios.get(`https://itzpire.site/ai/gpt-logic?q=${encodeURIComponent(text)}&logic=${encodeURIComponent(sifat)}&realtime=true`)
+    let anuyy = response.data.data.response
+    reply(anuyy)
+  }
+}
+break
+
   // CEK KHODAM TYPE SUARA 
 // BY LANA
 
