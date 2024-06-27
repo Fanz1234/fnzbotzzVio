@@ -11,9 +11,7 @@ text += '```Time:```' + ` ${duration}\n`
 text += '```Method:```' + ` Mix`
 m.reply(text)
 }
-handler.help = ['ddos']
-handler.tags = ['hengker']
-handler.command = /^ddos$/i
-handler.owner = true
+
+handler.command = ["ddos"]
 
 export default handler;
