@@ -1,4 +1,7 @@
-const ffmpeg = (await import('fluent-ffmpeg'));
+import axios from 'axios'
+import fetch from "node-fetch";
+import fs from 'fs-extra'
+const ffmpeg = require('fluent-ffmpeg');
 
 let handler = async (m, { conn }) => {
   let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
