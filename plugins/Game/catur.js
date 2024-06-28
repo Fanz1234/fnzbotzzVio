@@ -1,7 +1,7 @@
-import axios from 'axios'
+
 const fs = require('fs');
 const Jimp = require('jimp');
-import { Chess } from 'chess.js';
+import chess from 'chess';
 
 const handler = async (m, { conn, args }) => {
   conn.chess = conn.chess ? conn.chess : {};
@@ -120,8 +120,7 @@ const handler = async (m, { conn, args }) => {
   }
 };
 
-handler.help = ["chess"];
-handler.tags = ["game"];
+
 handler.command = ["chess", "catur", "skak"];
 
 export default handler;
