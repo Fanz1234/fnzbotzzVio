@@ -14,7 +14,7 @@ let handler = async (m, { conn }) => {
   let videoData = await conn.downloadM(q, 'video') // Simpan sebagai file video sementara
 
   // Menggunakan ffmpeg untuk meningkatkan resolusi video
-  let output = './lib/video.mp4' // Tentukan path dan nama file output yang diinginkan
+  let output = '../../lib/video.mp4' // Tentukan path dan nama file output yang diinginkan
   ffmpeg(videoData)
     .outputOptions('-s', '1280x720') // Ganti resolusi sesuai kebutuhan, contoh disini menggunakan 1280x720
     .save(output)
