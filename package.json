@@ -50,6 +50,7 @@
     "fs-extra": "^11.0.0",
     "g-i-s": "^2.1.6",
     "got": "^12.5.3",
+    "https": "^1.0.0",
     "https-proxy-agent": "^7.0.4",
     "jimp": "latest",
     "lowdb": "^6.1.1",
