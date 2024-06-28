@@ -1,6 +1,6 @@
 import axios from 'axios'
-import fetch from "node-fetch";
-import fs from 'fs-extra'
+const fs = require('fs');
+const Jimp = require('jimp');
 import { Chess } from 'chess.js';
 
 const handler = async (m, { conn, args }) => {
