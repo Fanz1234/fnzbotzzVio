@@ -1,6 +1,7 @@
-const path = require('path');
-const fs = require('fs-extra');
-const ffmpeg = require('fluent-ffmpeg');
+import { fileURLToPath } from 'url';
+import path from 'path';
+import fs from 'fs-extra';
+import ffmpeg from 'fluent-ffmpeg';
 
 let handler = async (m, { conn }) => {
   let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender;
@@ -8,6 +9,10 @@ let handler = async (m, { conn }) => {
   let q = m.quoted ? m.quoted : m;
   let mime = (q.msg || q).mimetype || '';
   if (!mime || !mime.includes('video')) throw `Video tidak ditemukan`;
+
+  // Determine the current directory using import.meta.url
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = path.dirname(__filename);
 
   // Temporary directory for storing the processed video
   let tmpDir = path.resolve(__dirname, 'tmp/');
