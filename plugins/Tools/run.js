@@ -17,7 +17,7 @@ import path { join } from 'path'
   export default handler
   
   let tmp = path.join('./tmp/')
-  function running(img, duration = 10, fps = 60) {
+  function running(img, duration = 10, fps = 60) 
     return new Promise((resolve, reject) => {
       let layers = [
         `color=s=512x512:d=${duration}:r=${fps}[bg]`,
@@ -53,8 +53,7 @@ import path { join } from 'path'
         })
       //.stderr.on('data', a => console.log(a+''))
     })
-  }
-  }
+   }
 /*
 dari gambar menjadi video gerak😱
 */
