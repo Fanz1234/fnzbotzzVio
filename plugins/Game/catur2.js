@@ -17,39 +17,39 @@ const handler = async (m, { conn, args }) => {
   const feature = args[0]?.toLowerCase();
   if (feature === 'delete') {
     delete conn.chess[key];
-    return conn.reply(m.chat, ' *Permainan catur dihentikan.*', m);
+    return conn.reply(m.chat, '🏳️ *Permainan catur dihentikan.*', m);
   }
   if (feature === 'create') {
     if (!gameData) {
       chessData.gameData = { status: 'waiting', players: [] };
-      return conn.reply(m.chat, ' *Permainan catur dimulai.*\nMenunggu pemain lain untuk bergabung.', m);
+      return conn.reply(m.chat, '🎮 *Permainan catur dimulai.*\nMenunggu pemain lain untuk bergabung.', m);
     } else {
-      return conn.reply(m.chat, ' *Permainan sudah dimulai.*', m);
+      return conn.reply(m.chat, '⚠️ *Permainan sudah dimulai.*', m);
     }
   } else if (feature === 'join') {
     const senderId = m.sender;
     const joinedPlayers = gameData?.players || [];
     if (joinedPlayers.includes(senderId)) {
-      return conn.reply(m.chat, ' *Anda sudah bergabung dalam permainan ini.*', m);
+      return conn.reply(m.chat, '🙅‍♂️ *Anda sudah bergabung dalam permainan ini.*', m);
     }
     if (!gameData || gameData.status !== 'waiting') {
-      return conn.reply(m.chat, ' *Tidak ada permainan catur yang sedang menunggu.*', m);
+      return conn.reply(m.chat, '⚠️ *Tidak ada permainan catur yang sedang menunggu.*', m);
     }
     if (gameData.players.length >= 2) {
-      return conn.reply(m.chat, ' *Pemain sudah mencukupi.*\nPermainan otomatis dimulai.', m);
+      return conn.reply(m.chat, '👥 *Pemain sudah mencukupi.*\nPermainan otomatis dimulai.', m);
     }
     gameData.players.push(senderId);
     hasJoined.push(senderId);
     if (gameData.players.length === 2) {
       gameData.status = 'ready';
       const joinedPlayersList = hasJoined.map(playerId => `@${playerId.split('@')[0]}`).join('\n');
-      return conn.reply(m.chat, ` *Pemain yang telah bergabung:*\n${joinedPlayersList}\n\nSilakan gunakan *'chess start'* untuk memulai permainan.`, m, { mentions: hasJoined });
+      return conn.reply(m.chat, `🙌 *Pemain yang telah bergabung:*\n${joinedPlayersList}\n\nSilakan gunakan *'chess start'* untuk memulai permainan.`, m, { mentions: hasJoined });
     } else {
-      return conn.reply(m.chat, ' *Anda telah bergabung dalam permainan catur.*\nMenunggu pemain lain untuk bergabung.', m);
+      return conn.reply(m.chat, '🙋‍♂️ *Anda telah bergabung dalam permainan catur.*\nMenunggu pemain lain untuk bergabung.', m);
     }
   } else if (feature === 'start') {
     if (gameData.status !== 'ready') {
-      return conn.reply(m.chat, ' *Tidak dapat memulai permainan. Tunggu hingga dua pemain bergabung.*', m);
+      return conn.reply(m.chat, '⚠️ *Tidak dapat memulai permainan. Tunggu hingga dua pemain bergabung.*', m);
     }
     gameData.status = 'playing';
     const senderId = m.sender;
@@ -58,61 +58,58 @@ const handler = async (m, { conn, args }) => {
       chessData.fen = fen;
       chessData.currentTurn = gameData.players[0];
       const encodedFen = encodeURIComponent(fen);
-      const giliran = ` *Giliran:* @${chessData.currentTurn.split('@')[0]}`;
+      const giliran = `🎲 *Giliran:* @${chessData.currentTurn.split('@')[0]}`;
       const flipParam = senderId === gameData.players[0] ? '' : '&flip=true';
       const boardUrl = `https://www.chess.com/dynboard?fen=${encodedFen}&board=graffiti&piece=graffiti&size=3&coordinates=inside${flipParam}`;
       await conn.sendFile(m.chat, boardUrl, '', giliran, m, false, { mentions: [chessData.currentTurn] });
       return;
     } else {
-      return conn.reply(m.chat, ' *Anda telah bergabung dalam permainan catur.*\nMenunggu pemain lain untuk bergabung.', m);
+      return conn.reply(m.chat, '🙋‍♂️ *Anda telah bergabung dalam permainan catur.*\nMenunggu pemain lain untuk bergabung.', m);
     }
   } else if (args[0] && args[1]) {
     const senderId = m.sender;
     if (!gameData || gameData.status !== 'playing') {
-      return conn.reply(m.chat, ' *Permainan belum dimulai.*', m);
+      return conn.reply(m.chat, '⚠️ *Permainan belum dimulai.*', m);
     }
     if (currentTurn !== senderId) {
-      return conn.reply(m.chat, ' *Sekarang bukan giliran Anda untuk bergerak.*', m);
+      return conn.reply(m.chat, '⏳ *Sekarang bukan giliran Anda untuk bergerak.*', m);
     }
     const chess = new Chess(fen);
     if (chess.isCheckmate()) {
-      return conn.reply(m.chat, ' *Checkmate.*', m);
+      return conn.reply(m.chat, '⚠️ *Checkmate.*', m);
     }
     if (chess.isDraw()) {
-      return conn.reply(m.chat, ' *Draw.*', m);
+      return conn.reply(m.chat, '⚠️ *Draw.*', m);
     }
     if (chess.isGameOver()) {
-      return conn.reply(m.chat, ' *Game Over.*', m);
+      return conn.reply(m.chat, '⚠️ *Game Over.*', m);
     }
     const [from, to] = args;
     try {
       chess.move({ from, to, promotion: 'q' });
     } catch (e) {
-      return conn.reply(m.chat, ' *Langkah tidak valid.*', m);
+      return conn.reply(m.chat, '❌ *Langkah tidak valid.*', m);
     }
     chessData.fen = chess.fen();
-    const currentTurnIndex = gameData.players.indexOf(currentTurn);
-    const nextTurnIndex = (currentTurnIndex + 1) % 2;
-    chessData.currentTurn = gameData.players[nextTurnIndex];
-    const encodedFen = encodeURIComponent(chess.fen());
-    const giliran = ` *Giliran:* @${chessData.currentTurn.split('@')[0]}\n\n${chess.getComment() || ''}`;
-    const flipParam = senderId !== gameData.players[0] ? '' : '&flip=true';
-    const boardUrl = `https://www.chess.com/dynboard?fen=${encodedFen}&board=graffiti&piece=graffiti&size=3&coordinates=inside${flipParam}`;
-    
-    // Delete the previous chessboard message
-  if (chessData.boardMessageId) {
-    conn.deleteMessage(m.chat, chessData.boardMessageId);
-  }
+const currentTurnIndex = gameData.players.indexOf(currentTurn);
+const nextTurnIndex = (currentTurnIndex + 1) % 2;
+chessData.currentTurn = gameData.players[nextTurnIndex];
+const encodedFen = encodeURIComponent(chess.fen());
+const giliran = `🎲 *Giliran:* @${chessData.currentTurn.split('@')[0]}\n\n${chess.getComment() || ''}`;
+const flipParam = senderId !== gameData.players[0] ? '' : '&flip=true';
+const boardUrl = `https://www.chess.com/dynboard?fen=${encodedFen}&board=graffiti&piece=graffiti&size=3&coordinates=inside${flipParam}`;
 
-  // Store the message ID of the current chessboard
-  const sentMessage = await conn.sendFile(m.chat, boardUrl, '', giliran, m, false, { mentions: [chessData.currentTurn] });
-  chessData.boardMessageId = sentMessage?.message?.ephemeral_id;
-    
-    chess.deleteComment();
+// Mengirim gambar papan catur baru
+let lastMessageId = await conn.sendFile(m.chat, boardUrl, '', giliran, m, false, { mentions: [chessData.currentTurn] });
+
+// Menghapus pesan gambar sebelumnya
+await conn.deleteMessage(m.chat, lastMessageId);
+
+chess.deleteComment();
     return;
   } else if (feature === 'help') {
     return conn.reply(m.chat, `
-       *Perintah Permainan Catur:*
+      🌟 *Perintah Permainan Catur:*
 
 *chess create* - Mulai permainan catur
 *chess join* - Bergabung dalam permainan catur yang sedang menunggu
@@ -125,11 +122,11 @@ const handler = async (m, { conn, args }) => {
       Ketik *chess join* untuk bergabung dalam permainan catur yang sedang menunggu.
     `, m);
   } else {
-    return conn.reply(m.chat, ' Perintah tidak valid. Gunakan *"chess help"* untuk melihat bantuan.', m);
+    return conn.reply(m.chat, '❓ Perintah tidak valid. Gunakan *"chess help"* untuk melihat bantuan.', m);
   }
 };
 
 
-handler.command = ["chess2", "catur2", "skak2"];
+handler.command = ["chess", "catur", "skak"];
 
 export default handler;
