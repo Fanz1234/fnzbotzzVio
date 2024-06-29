@@ -50,10 +50,10 @@ let audio = {
         showAdAttribution: true,
         mediaType: 1,
         mediaUrl: '',
-        title: 'Ai VOICE',
+        title: 'FANZAI VOICE',
         body: '',
         sourceUrl: '',
-        thumbnail: await (await conn.getFile('https://telegra.ph/file/d18f4c96b4f558afa707c.jpg')).data,
+        thumbnail: await (await conn.getFile('https://telegra.ph/file/509d0541f75f9edc4feec.jpg')).data,
         renderLargerThumbnail: true
       }
     }
@@ -74,12 +74,12 @@ let audio = {
         title: 'FANZAI VOICE',
         body: '',
         sourceUrl: '',
-        thumbnail: await (await conn.getFile('https://telegra.ph/file/d18f4c96b4f558afa707c.jpg')).data,
+        thumbnail: await (await conn.getFile('https://telegra.ph/file/509d0541f75f9edc4feec.jpg')).data,
         renderLargerThumbnail: true
       }
     }
   };
-    conn.sendMessage(m.chat, audios, { quoted: m })
+    conn.sendMessage(m.chat, audio, { quoted: m })
     
 }
 }
@@ -95,7 +95,7 @@ function tts(text, lang = 'id') {
   return new Promise((resolve, reject) => {
     try {
       let tts = gtts(lang)
-let filePath =  (1 * new Date) + '.wav'
+let filePath =  (1 * new Date) + '.mp3'
 tts.save(filePath, text, () => {
 resolve(fs.readFileSync(filePath))
 fs.unlinkSync(filePath)
