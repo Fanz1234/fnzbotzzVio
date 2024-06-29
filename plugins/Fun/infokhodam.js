@@ -1,5 +1,6 @@
+
 let handler = async (m, { conn, text, usedPrefix, command }) => {
-  if (command === 'cekkodam' || command === 'cekodam' || command === 'cekhodam' || command === 'cekkhodam') {
+  if (command === 'infokodam' || command === 'infokodam' || command === 'infokhodam' || command === 'infokhodam') {
     const result = await cekkhodam();
     if (m.key.fromMe) {
         let txt = `- Khodam yang ada didalam diri \`@${m.quoted ? m.quoted.sender.split("@")[0] : m.sender.split("@")[0]}\` : ${result.khodam}\n\n> Penjelasan: ${result.description}`;
@@ -9,10 +10,10 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     }
   }
 };
-handler.help = ["infokhodam"];
-handler.tags = ["fun"];
+
 handler.command = ["infokhodam", "infokodam"];
-export default handler
+
+export default handler;
 
                 async function cekkhodam() {
                     const animals = [
