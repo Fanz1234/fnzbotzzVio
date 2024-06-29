@@ -54,6 +54,7 @@ import path { join } from 'path'
       //.stderr.on('data', a => console.log(a+''))
     })
   }
+  }
 /*
 dari gambar menjadi video gerak😱
 */
