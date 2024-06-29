@@ -301,7 +301,7 @@ case 'fnzaiimg': {
   if (!isGroup) return setReply(mess.only.group)
   if (!q) return reply(`Teksnya?\nExample: ${prefix+command} apa itu rumah`);
   setReply(mess.wait);
-  let imageUrl = `https://aemt.me/ai/text2img?text=${encodeURIComponent(q)}`;
+  let imageUrl = `https://widipe.com/ai/text2img?text=${encodeURIComponent(q)}`;
   let imageBuffer = await axios.get(imageUrl, { responseType: 'arraybuffer' });
   conn.sendFile(m.chat, imageBuffer.data, 'image.jpg', 'nyoh gambare cok', m);
   }
@@ -312,7 +312,7 @@ case 'fnzaiimg2': {
   if (!isGroup) return setReply(mess.only.group)
   if (!q) return reply(`Teksnya?\nExample: ${prefix+command} apa itu rumah`);
   setReply(mess.wait);
-  let imageUrl = `https://aemt.me/v1/text2img?text=${encodeURIComponent(q)}`;
+  let imageUrl = `https://widipe.com/v1/text2img?text=${encodeURIComponent(q)}`;
   let imageBuffer = await axios.get(imageUrl, { responseType: 'arraybuffer' });
   conn.sendFile(m.chat, imageBuffer.data, 'image.jpg', 'Ini gambarnya', m);
   }
@@ -323,7 +323,7 @@ case 'fnzaiimg3': {
   if (!isGroup) return setReply(mess.only.group)
   if (!q) return reply(`Teksnya?\nExample: ${prefix+command} apa itu rumah`);
   setReply(mess.wait);
-  let imageUrl = `https://aemt.me/dalle?text=${encodeURIComponent(q)}`;
+  let imageUrl = `https://widipe.com/dalle?text=${encodeURIComponent(q)}`;
   let imageBuffer = await axios.get(imageUrl, { responseType: 'arraybuffer' });
   conn.sendFile(m.chat, imageBuffer.data, 'image.jpg', 'Ini gambarnya', m);
   }
@@ -334,7 +334,7 @@ case 'fnzaiimg4': {
   if (!isGroup) return setReply(mess.only.group)
   if (!q) return reply(`Teksnya?\nExample: ${prefix+command} apa itu rumah`);
   setReply(mess.wait);
-  let imageUrl = `https://aemt.me/v6/text2img?text=${encodeURIComponent(q)}`;
+  let imageUrl = `https://widipe.com/v6/text2img?text=${encodeURIComponent(q)}`;
   let imageBuffer = await axios.get(imageUrl, { responseType: 'arraybuffer' });
   conn.sendFile(m.chat, imageBuffer.data, 'image.jpg', 'Ini gambarnya', m);
   }
@@ -685,12 +685,14 @@ if (/image/.test(mime)) {
 await reply('sek proses, please wait...');
 let media = await conn.downloadAndSaveMediaMessage(quoted);
 let re2s = await TelegraPh(media)
-let res = await fetchJson(`https://aemt.me/remini?url=${re2s}&resolusi=4`)
+let res = await fetchJson(`https://widipe.com/remini?url=${re2s}&resolusi=4`)
 await conn.sendMessage(m.chat, { image: {url: res.url }, caption: 'kio su wes dadi gambare:v' , mimetype: "image/jpeg"},{ quoted: m });
 } else return reply('Reply Gambarnya Wir.') 
 
 }
 break
+
+//aemt.me
 
 case 'jadianime2':
 case 'toanime2':{
@@ -700,7 +702,7 @@ if (/image/.test(mime)) {
 await reply('sek proses, please wait...');
 let media = await conn.downloadAndSaveMediaMessage(quoted);
 let re2s = await TelegraPh(media)
-let res = await fetchJson(`https://aemt.me/toanime?url=${re2s}`)
+let res = await fetchJson(`https://widipe.com/toanime?url=${re2s}`)
 await conn.sendMessage(m.chat, { image: {url: res.url }, caption: 'kio su wes dadi gambare:v' , mimetype: "image/jpeg"},{ quoted: m });
 } else return reply('Reply Gambarnya Wir.') 
 
@@ -709,7 +711,7 @@ break
 
 case  'lirik2':{
 if (!q) return reply(`lu mauu nyari lirik lagu apa tod\n\n Ex:.lirik Bernafas Tanpamu`)
-let res = await fetchJson('https://aemt.me/lirik?text='+q)
+let res = await fetchJson('https://widipe.com/lirik?text='+q)
 let teks =`
 - Judul: ${res.result.title}
 - Artis: ${res.result.artist}
