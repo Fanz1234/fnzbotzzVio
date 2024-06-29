@@ -11,9 +11,8 @@ import path { join } from 'path'
     m.reply(wait)
     running(await q).then(vid => conn.sendFile(m.chat, vid, 'run.mp4', wm, m))
   }
-  handler.help = ['run']
-  handler.tags = ['tools']
-  handler.command = /^run$/i
+  
+  handler.command = ["run"]
   
   export default handler
   
