@@ -30,8 +30,10 @@ let handler = async (m, { conn }) => {
         // Mengirim video yang telah ditingkatkan resolusinya
         conn.sendFile(m.chat, path.join(tmpDir, 'output.mp4'), '', `🍟 Nih Kak`, m)
           .then(() => {
-            // Optional: Clean up the temporary file after sending
-            fs.unlinkSync(path.join(tmpDir, 'output.mp4'));
+            // Delete the temporary file after sending
+            if (fs.existsSync(path.join(tmpDir, 'output.mp4'))) {
+              fs.unlinkSync(path.join(tmpDir, 'output.mp4'));
+            }
           })
           .catch((err) => {
             console.error('Failed to send file:', err);
