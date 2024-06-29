@@ -2,7 +2,8 @@
 import axios from 'axios'
 import fetch from 'node-fetch'
 import gtts from 'node-gtts'
-import { readFileSync, unlinkSync } from 'fs'
+//import { readFileSync, unlinkSync } from 'fs'
+import fs from 'fs-extra'
 import { join } from 'path'
 
 let handler = async (m, { conn, args, text, usedPrefix, command }) => {
