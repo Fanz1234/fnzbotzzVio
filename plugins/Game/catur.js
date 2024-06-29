@@ -1,7 +1,7 @@
 
 const fs = require('fs');
 const Jimp = require('jimp');
-import chess from 'chess';
+import { Chess } from 'chess.js'
 
 const handler = async (m, { conn, args }) => {
   conn.chess = conn.chess ? conn.chess : {};
