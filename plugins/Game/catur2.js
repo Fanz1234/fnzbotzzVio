@@ -127,6 +127,6 @@ chess.deleteComment();
 };
 
 
-handler.command = ["chess", "catur", "skak"];
+handler.command = ["chess2", "catur2", "skak2"];
 
 export default handler;
