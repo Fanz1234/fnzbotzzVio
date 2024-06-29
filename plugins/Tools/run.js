@@ -1,5 +1,8 @@
 import { spawn } from 'child_process';
-import fs from 'fs';
+//import fs from 'fs';
+import axios from 'axios'
+import fetch from 'node-fetch'
+import fs from 'fs-extra'
 import path, { join } from 'path';  // Corrected import syntax for `path.join`
 
 let handler = async (m, { conn, text }) => {
