@@ -67,7 +67,7 @@ let handler = async (m, { conn }) => {
       }
     }, { quoted: { key: { participant: '0@s.whatsapp.net', remoteJid: "0@s.whatsapp.net" }, message: { conversation: 'Support XinzukiApss saweria.co/xianzuki' }}});
     }    
-    }
+    
 handler.help = ['ewe-paksa @tag']
 handler.tags = ['rpg']
 handler.command = /^(ewe-paksa)$/i
