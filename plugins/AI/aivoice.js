@@ -65,7 +65,7 @@ let audio = {
  let audios = {
     audio: Buffer.from(res, "base64"),
     mimetype: 'audio/mp4',
-    ptt: false,
+    ptt: true,
     contextInfo: {
       externalAdReply: {
         showAdAttribution: true,
@@ -79,7 +79,7 @@ let audio = {
       }
     }
   };
-    conn.sendMessage(m.chat, audio, { quoted: m })
+    conn.sendMessage(m.chat, audios, { quoted: m })
     
 }
 }
