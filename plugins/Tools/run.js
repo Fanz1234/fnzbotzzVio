@@ -15,15 +15,15 @@ let handler = async (m, { conn, text }) => {
   if (!/image/.test(mime)) throw `Gambarnya??!`;
   try { q = await m.quoted.download(); }
   catch (e) { q = await m.download(); }
-  m.reply('Wait...');
-  running(await q, wm).then(vid => conn.sendFile(m.chat, vid, 'run.mp4', null, m));
+  m.reply(wait);
+  running(await q).then(vid => conn.sendFile(m.chat, vid, 'run.mp4', null, m));
 };
 
 handler.command = ["run"];
 
 export default handler;
 
-function running(img, wm, duration = 10, fps = 60) {
+function running(img, duration = 10, fps = 60) {
   return new Promise((resolve, reject) => {
     let layers = [
       `color=s=512x512:d=${duration}:r=${fps}[bg]`,
