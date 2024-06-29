@@ -1,16 +1,20 @@
 import { spawn } from 'child_process';
-//import fs from 'fs';
-import axios from 'axios'
-import fetch from 'node-fetch'
-import fs from 'fs-extra'
-import path, { join } from 'path';  // Corrected import syntax for `path.join`
+import fs from 'fs';
+import path from 'path';
+
+let tmpDir = './tmp/';
+
+// Ensure tmpDir exists
+if (!fs.existsSync(tmpDir)) {
+  fs.mkdirSync(tmpDir);
+}
 
 let handler = async (m, { conn, text }) => {
   let q = m.quoted ? m.quoted : m;
   let mime = (q.msg || q).mimetype || '';
   if (!/image/.test(mime)) throw `Gambarnya??!`;
-  try { q = await m.quoted.download(); }  // Added `await` for asynchronous download
-  catch (e) { q = await m.download(); }   // Added `await` for asynchronous download
+  try { q = await m.quoted.download(); }
+  catch (e) { q = await m.download(); }
   m.reply(wait);
   running(await q).then(vid => conn.sendFile(m.chat, vid, 'run.mp4', wm, m));
 };
@@ -18,8 +22,6 @@ let handler = async (m, { conn, text }) => {
 handler.command = ["run"];
 
 export default handler;
-
-let tmp = path.join('./tmp/');  // Added `;` at the end of statement
 
 function running(img, duration = 10, fps = 60) {
   return new Promise((resolve, reject) => {
@@ -29,11 +31,11 @@ function running(img, duration = 10, fps = 60) {
       `[bg][img]overlay=x='(w+h)*((n/${fps})*-1/${duration})+h'`
     ];
 
-    let n = +new Date() + 'run.jpg';  // Corrected concatenation
-    let i = path.join(tmp, n);
+    let n = +new Date() + 'run.jpg';
+    let i = path.join(tmpDir, n);
     fs.writeFileSync(i, img);
     console.log(img);
-    let o = path.join(tmp, n + '.mp4');
+    let o = path.join(tmpDir, n + '.mp4');
     let args = [
       '-y',
       '-i', i,
@@ -55,6 +57,5 @@ function running(img, duration = 10, fps = 60) {
           reject(e);
         }
       });
-    //.stderr.on('data', a => console.log(a+''));
   });
 }
