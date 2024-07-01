@@ -1,6 +1,9 @@
-
+import { fileURLToPath } from 'url';
+import path from 'path';
+import fs from 'fs-extra';
+import ffmpeg from 'fluent-ffmpeg';
 const { uploader } = require('../../lib/uploader');
-  const { exec } = require('child_process');
+const { exec } = require('child_process');
 
 let handler = async (m, { conn, command, usedPrefix }) => {
 	
