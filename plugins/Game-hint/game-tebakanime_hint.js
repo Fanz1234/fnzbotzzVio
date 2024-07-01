@@ -3,10 +3,11 @@ let handler = async (m, { conn }) => {
     let id = m.chat
     if (!(id in conn.tebakanime)) throw false
     let json = conn.tebakanime[id][1]
-    let ans = json.jawaban
+    let ans = json.jawaban.trim()
     let clue = ans.replace(/[AIUEOaiueo]/g, '_')
-    conn.reply(m.chat, '```' + clue + '```\nBalas Soalnya, Bukan Pesan Ini', conn.tebakanime[id][0])
+    conn.reply(m.chat, '```' + clue + '```\nBalas soalnya, bukan pesan ini', conn.tebakanime[id][0])
 }
 handler.command = /^wa$/i
 handler.limit = true
-export default handler
+
+export default handler;
