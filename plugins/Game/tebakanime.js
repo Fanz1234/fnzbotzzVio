@@ -34,4 +34,4 @@ handler.command = /^tebakanime/i
 handler.limit = true
 handler.group = false
 
-module.exports = handler
+export default handler;
