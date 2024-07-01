@@ -1,37 +1,44 @@
-let fetch = require('node-fetch')
-
-let timeout = 180000
-let poin = 1000
-let tiketcoin = 1
-let handler = async (m, { conn, usedPrefix }) => {
-  conn.tebakanime = conn.tebakanime ? conn.tebakanime : {}
-  let id = m.chat
-  if (id in conn.tebakanime) {
-    conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini!', conn.tebakanime[id][0])
-    throw false
-  }
+import fs from 'fs-extra'
+let timeout = 120000;
+let poin = 4999;
+let handler = async (m, { conn, command, usedPrefix }) => {
+  conn.game = conn.game ? conn.game : {};
+  let id = "tebakanime-" + m.chat;
+  if (id in conn.game)
+    return conn.reply(
+      m.chat,
+      "Masih ada soal belum terjawab di chat ini",
+      conn.game[id][0]
+    );
   let src = await (await fetch('https://raw.githubusercontent.com/unx21/ngetezz/main/src/data/nyenyenye.json')).json()
-    let json = src[Math.floor(Math.random() * src.length)]
-  // if (!json.status) throw json
+  let json = src[Math.floor(Math.random() * src.length)];
   let caption = `
+animek apakah ini?
+
 Timeout *${(timeout / 1000).toFixed(2)} detik*
-Ketik ${usedPrefix}wa untuk clue
+Ketik ${usedPrefix}hanime untuk bantuan
 Bonus: ${poin} XP
-TiketCoin: ${tiketcoin}
-    `.trim()
-  conn.tebakanime[id] = [
-    await conn.sendFile(m.chat, json.img, 'tebakgame.jpg', caption, m, false, { thumbnail: Buffer.alloc(0) }),
-    json, poin,
+`.trim();
+  conn.game[id] = [
+    await conn.sendFile(m.chat, json.img, "tebakanime.jpg", caption, m),
+    json,
+    poin,
     setTimeout(() => {
-      if (conn.tebakanime[id]) conn.reply(m.chat, `Waktu habis!\nJawabannya adalah *${json.jawaban}*`, conn.tebakanime[id][0])
-      delete conn.tebakanime[id]
-    }, timeout)
-  ]
-}
-handler.help = ['tebakanime']
-handler.tags = ['game']
-handler.command = /^tebakanime/i
-handler.limit = true
-handler.group = false
+      if (conn.game[id])
+        conn.reply(
+          m.chat,
+          `Waktu habis!\nJawabannya adalah *${json.jawaban}*`,
+          conn.game[id][0]
+        );
+      delete conn.game[id];
+    }, timeout),
+  ];
+};
+handler.help = ["tebakanime"];
+handler.tags = ["game"];
+handler.command = /^tebakanime$/i;
+
+handler.onlyprem = true;
+handler.game = true;
 
 export default handler;
