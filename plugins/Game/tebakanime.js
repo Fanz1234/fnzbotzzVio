@@ -4,10 +4,10 @@ let timeout = 180000
 let poin = 1000
 let tiketcoin = 1
 let handler = async (m, { conn, usedPrefix }) => {
-  conn.tebakgame = conn.tebakgame ? conn.tebakgame : {}
+  conn.tebakanime = conn.tebakanime ? conn.tebakanime : {}
   let id = m.chat
-  if (id in conn.tebakgame) {
-    conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini!', conn.tebakgame[id][0])
+  if (id in conn.tebakanime) {
+    conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini!', conn.tebakanime[id][0])
     throw false
   }
   let src = await (await fetch('https://raw.githubusercontent.com/unx21/ngetezz/main/src/data/nyenyenye.json')).json()
@@ -19,12 +19,12 @@ Ketik ${usedPrefix}wa untuk clue
 Bonus: ${poin} XP
 TiketCoin: ${tiketcoin}
     `.trim()
-  conn.tebakgame[id] = [
+  conn.tebakanime[id] = [
     await conn.sendFile(m.chat, json.img, 'tebakgame.jpg', caption, m, false, { thumbnail: Buffer.alloc(0) }),
     json, poin,
     setTimeout(() => {
-      if (conn.tebakgame[id]) conn.reply(m.chat, `Waktu habis!\nJawabannya adalah *${json.jawaban}*`, conn.tebakgame[id][0])
-      delete conn.tebakgame[id]
+      if (conn.tebakanime[id]) conn.reply(m.chat, `Waktu habis!\nJawabannya adalah *${json.jawaban}*`, conn.tebakanime[id][0])
+      delete conn.tebakanime[id]
     }, timeout)
   ]
 }
