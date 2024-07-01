@@ -1,6 +1,6 @@
 const fs = require('fs');
 const { exec } = require('child_process');
-const { TelegraPh } = require('../../lib/uploader');
+import { TelegraPh } from "../../lib/uploader.js"
 
 let handler = async (m, { conn, command, usedPrefix }) => {
     const who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender;
