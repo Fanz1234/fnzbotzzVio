@@ -1,7 +1,7 @@
-const similarity = require('similarity')
+
 const threshold = 0.72;
 export async function before(m, { conn }) {
-  let id = "tebakanime-" + m.chat;
+  let id = "tebakgame-" + m.chat;
   conn.game = conn.game ? conn.game : {};
   if (id in conn.game) {
     let isSurrender = /^((me)?nyerah|surr?ender)$/i.test(m.text);
