@@ -43,8 +43,8 @@ global.Intervalmsg = 1000; //detik
 global.mongodb ="mongodb+srv://owelwoy:PuSRg9jfEjWbpKNi@cluster0.ivnbsuh.mongodb.net/?retryWrites=true&w=majority"
 global.dbName = "FanzOffc"
 global.redisdb = ''//'default:h9uWVPicTOatFOmZHsmyO4YJb83X5Pgy@redis-10292.c1.ap-southeast-1-1.ec2.cloud.redislabs.com:10292'//'default:nfsmwROCK909@redis-10292.c1.ap-southeast-1-1.ec2.cloud.redislabs.com:10292'
-global.myUrl = ""//"https://wa.me/c/6285812373011"
-global.newsletterJid = "120363249625006239@newsletter"
+global.myUrl = "https://wa.me/c/6285812373011"
+global.newsletterJid = ""//"120363249625006239@newsletter"
 global.newsletterName = "FANZ BOTZ"
 global.gcounti = {
   prem: 60,
